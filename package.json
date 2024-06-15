@@ -2,6 +2,7 @@
 	"name": "website",
 	"type": "module",
 	"private": true,
+	"packageManager": "pnpm@9.3.0",
 	"description": "my website",
 	"author": "asasinmode <skin9470@gmail.com> (https://github.com/asasinmode/)",
 	"license": "MIT",
