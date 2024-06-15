@@ -1,21 +1,28 @@
 {
-  "name": "nuxt-app",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "typecheck": "nuxi typecheck"
-  },
-  "dependencies": {
-    "nuxt": "^3.11.2",
-    "vue": "^3.4.27",
-    "vue-router": "^4.3.2"
-  },
-  "devDependencies": {
-    "@nuxtjs/i18n": "^8.3.1"
-  }
+	"name": "website",
+	"type": "module",
+	"private": true,
+	"author": "asasinmode <skin9470@gmail.com> (https://github.com/asasinmode/)",
+	"license": "MIT",
+	"scripts": {
+		"build": "nuxt build",
+		"dev": "nuxt dev",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare",
+		"typecheck": "nuxi typecheck",
+		"lint": "eslint . --fix"
+	},
+	"dependencies": {
+		"nuxt": "^3.11.2",
+		"vue": "^3.4.27",
+		"vue-router": "^4.3.2"
+	},
+	"devDependencies": {
+		"@antfu/eslint-config": "^2.21.1",
+		"@nuxtjs/i18n": "^8.3.1",
+		"@unocss/eslint-plugin": "^0.60.4",
+		"@unocss/nuxt": "^0.61.0",
+		"eslint": "9.4.0"
+	}
 }
