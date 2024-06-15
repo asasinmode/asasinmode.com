@@ -10,7 +10,9 @@ const route = useRoute();
 </script>
 
 <template>
-	<h1>{{ $t("error.code") }}: {{ error.statusCode }}</h1>
+	<h1>
+		{{ $t("error.code") }}: {{ error.statusCode }}
+	</h1>
 	<p>
 		{{ $t("error.message") }}:
 		{{

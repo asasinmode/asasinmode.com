@@ -11,4 +11,5 @@ export default defineNuxtConfig({
 		defaultLocale: 'en',
 		baseUrl: 'https://asasinmode.com',
 	},
+	css: ['~/assets/index.css'],
 });
