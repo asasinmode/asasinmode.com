@@ -9,8 +9,6 @@ const localePath = useLocalePath();
 const route = useRoute();
 
 console.log(props.error);
-// TODO error statusCode shows even if unknown
-// TODO page meta types are wrong
 </script>
 
 <template>
@@ -18,6 +16,7 @@ console.log(props.error);
   <p>
     {{ $t("error.message") }}:
     {{
+      // @TODO this doesnt work and shows the translation path if status code is unknown
       $t(`error.${error.statusCode}`, { url: route.path }) ||
       error.statusMessage
     }}
