@@ -5,7 +5,7 @@ export default {
 		unknown: 'Niewiadoma',
 	},
 	home: {
-		title: 'Dom strona',
+		title: 'Ta strona jest teraz zdecydowanie niedokończona. W tym momencie jestem zajęty tworzeniem gry.',
 		meta: {
 			title: 'SEO Dom',
 		},

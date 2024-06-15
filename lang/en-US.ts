@@ -5,7 +5,7 @@ export default {
 		unknown: 'Unknown',
 	},
 	home: {
-		title: 'Home page',
+		title: 'This page is currently very much work in progress. At the moment I\'m busy making a game.',
 		meta: {
 			title: 'SEO Home',
 		},
