@@ -2,7 +2,7 @@
 	"name": "website",
 	"type": "module",
 	"private": true,
-	"description": "my website's source code https://asasinmode.com",
+	"description": "my website",
 	"author": "asasinmode <skin9470@gmail.com> (https://github.com/asasinmode/)",
 	"license": "MIT",
 	"scripts": {

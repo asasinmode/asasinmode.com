@@ -9,6 +9,6 @@ export default defineNuxtConfig({
 		lazy: true,
 		langDir: 'lang',
 		defaultLocale: 'en',
-		baseUrl: 'http://localhost:3000',
+		baseUrl: 'https://asasinmode.com',
 	},
 });
