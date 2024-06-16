@@ -11,7 +11,7 @@ export default defineNuxtConfig({
 		defaultLocale: 'en',
 		baseUrl: 'https://asasinmode.com',
 	},
-	css: ['~/assets/index.css'],
+	css: ['~/assets/index.css', '~/assets/rainbow.css'],
 	eslint: {
 		config: {
 			standalone: false,

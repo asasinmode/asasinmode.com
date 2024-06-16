@@ -16,8 +16,18 @@ const switchLocalePath = useSwitchLocalePath();
 </template>
 
 <style>
+:root {
+	--language-switch-font-size: 1.5rem;
+}
+
 #languageSwitch {
 	display: flex;
-	column-gap: 0.4rem;
+	column-gap: 0.4em;
+	font-size: var(--language-switch-font-size);
+	line-height: 1;
+
+	.router-link-active {
+		text-decoration: underline;
+	}
 }
 </style>
