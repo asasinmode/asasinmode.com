@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
 	devtools: { enabled: true },
-	modules: ['@nuxtjs/i18n', '@unocss/nuxt'],
+	modules: ['@nuxtjs/i18n', '@nuxt/eslint'],
 	i18n: {
 		locales: [
 			{ code: 'en', iso: 'en-US', file: 'en-US.ts', name: 'English' },
@@ -12,4 +12,9 @@ export default defineNuxtConfig({
 		baseUrl: 'https://asasinmode.com',
 	},
 	css: ['~/assets/index.css'],
+	eslint: {
+		config: {
+			standalone: false,
+		},
+	},
 });

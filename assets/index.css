@@ -1,13 +1,13 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  font: inherit;
+	margin: 0;
+	padding: 0;
+	font: inherit;
 }
 
 html {
@@ -15,13 +15,13 @@ html {
 }
 
 body {
-  min-height: 100vh;
+	min-height: 100vh;
 }
 
 img,
 picture,
 svg,
 video {
-  display: block;
-  max-width: 100%;
+	display: block;
+	max-width: 100%;
 }

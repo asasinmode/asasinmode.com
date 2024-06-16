@@ -1,20 +1,7 @@
 export default {
-	nav: {
-		home: 'Dom',
-		about: 'O nas',
-		unknown: 'Niewiadoma',
-	},
 	home: {
-		title: 'Ta strona jest teraz zdecydowanie niedokończona. W tym momencie jestem zajęty tworzeniem gry.',
-		meta: {
-			title: 'SEO Dom',
-		},
-	},
-	about: {
-		title: 'O nas strona',
-		meta: {
-			title: 'SEO O nas',
-		},
+		subtitle: 'Ta strona jest teraz zdecydowanie niedokończona',
+		description: 'W tym momencie skupiam się na tworzeniu gry. Mój progres można śledzić na {0} i {1}.'
 	},
 	error: {
 		goBack: 'Wróć',

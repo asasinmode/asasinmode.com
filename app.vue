@@ -12,6 +12,10 @@ useHead({
 	link: [].concat(i18nHead.value.link),
 	meta: i18nHead.value.meta || [],
 });
+
+useSeoMeta({
+	title: 'asasinmode | Stanisław Perek',
+});
 </script>
 
 <template>
