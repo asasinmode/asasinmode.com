@@ -7,7 +7,7 @@
 			<h2 id="subtitle">
 				{{ $t('home.subtitle') }}
 			</h2>
-			<I18nT id="description" tag="p" keypath="home.description">
+			<I18nT id="description" tag="p" scope="global" keypath="home.description">
 				<br>
 				<NuxtLink to="https://x.com/asasinmode" target="_blank">
 					X
