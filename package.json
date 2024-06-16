@@ -15,16 +15,15 @@
 		"typecheck": "nuxi typecheck",
 		"lint": "eslint . --fix"
 	},
-	"dependencies": {
-		"vue": "^3.4.27",
-		"vue-router": "^4.3.2"
-	},
 	"devDependencies": {
 		"@antfu/eslint-config": "^2.21.1",
 		"@nuxt/eslint": "^0.3.13",
 		"@nuxtjs/i18n": "^8.3.1",
 		"eslint": "9.4.0",
 		"eslint-plugin-format": "^0.1.2",
-		"nuxt": "^3.12.2"
+		"nuxt": "^3.12.2",
+		"typescript": "^5.4.5",
+		"vue": "^3.4.27",
+		"vue-router": "^4.3.2"
 	}
 }

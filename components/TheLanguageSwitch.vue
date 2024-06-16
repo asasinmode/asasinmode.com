@@ -14,3 +14,10 @@ const switchLocalePath = useSwitchLocalePath();
 		</NuxtLink>
 	</div>
 </template>
+
+<style>
+#languageSwitch {
+	display: flex;
+	column-gap: 0.4rem;
+}
+</style>
