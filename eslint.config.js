@@ -1,7 +1,7 @@
 import antfu from '@antfu/eslint-config';
-import nuxt from './.nuxt/eslint.config.mjs';
+import withNuxt from './.nuxt/eslint.config.mjs';
 
-export default nuxt(
+export default withNuxt(
 	antfu({
 		stylistic: {
 			semi: true,
@@ -9,7 +9,6 @@ export default nuxt(
 		},
 		rules: {
 			'curly': ['error', 'all'],
-			'no-labels': 'off',
 			'style/brace-style': ['error', '1tbs'],
 		},
 		formatters: true,

@@ -1,10 +1,13 @@
 export default defineNuxtConfig({
 	devtools: { enabled: true },
+	future: {
+		compatibilityVersion: 4
+	},
 	modules: ['@nuxtjs/i18n', '@nuxt/eslint'],
 	i18n: {
 		locales: [
-			{ code: 'en', iso: 'en-US', file: 'en-US.ts', name: 'English' },
-			{ code: 'pl', iso: 'pl-PL', file: 'pl-PL.ts', name: 'Polski' },
+			{ code: 'en', iso: 'en-US', file: 'en-US.json', name: 'English' },
+			{ code: 'pl', iso: 'pl-PL', file: 'pl-PL.json', name: 'Polski' },
 		],
 		lazy: true,
 		langDir: 'lang',
