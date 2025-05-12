@@ -34,7 +34,7 @@
 		</p>
 		<h3>experience</h3>
 		<ol>
-			<li>4 years of polish <i>technikum</i> (a vocational IT school), in the middle of which i started freelance work</li>
+			<li>4 years of polish <i>technikum</i> (vocational IT school), in the middle of which i started freelance work</li>
 			<li>internship that turned into 4 years of junior, then mid fullstack web developer position</li>
 			<li>? - excited for what future holds</li>
 		</ol>
@@ -55,6 +55,8 @@
 			git for version control and a decent knowledge of what to do with branches, pull requests and commits. I'm familiar with creating/maintaining Github CI/CD pipelines, as well as making and using Docker containers. I use Neovim btw. Additionally i have experience with video editing
 		</p>
 		<h3>contact</h3>
-		<p>get in touch through email (stanislaw.perek.ui@gmail.com) or a discord dm (username: asasinmode). whether business related or something i yapped about on <strong>TODO blog</strong>, i'm happy to talk</p>
+		<p>
+			get in touch through email (<a href="mailto:stanislaw.perek.ui@gmail.com">stanislaw.perek.ui@gmail.com</a>) or a discord dm (username: <v-copiable-text text="asasinmode" />). Whether business related or something i yapped about on <strong>TODO blog</strong>, i'm happy to talk
+		</p>
 	</main>
 </template>

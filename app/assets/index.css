@@ -13,10 +13,12 @@
 
 :root {
 	color-scheme: dark light;
+	--text-color: light-dark(black, white);
 }
 
 body {
 	font-family: system-ui, sans-serif;
+	color: var(--text-color);
 }
 
 body,
@@ -27,4 +29,11 @@ body,
 a {
 	text-decoration: none;
 	color: inherit;
+}
+
+button {
+	appearance: none;
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
 }
