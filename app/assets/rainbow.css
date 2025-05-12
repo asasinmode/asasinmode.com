@@ -1,6 +1,4 @@
-/* shamefully stolen from unocss, it looks sick */
 /* https://github.com/unocss/unocss/blob/main/docs/.vitepress/theme/rainbow.css */
-
 @keyframes rainbow {
 	0% {
 		--color: #00a98e;

@@ -1,20 +1,17 @@
 <script setup lang="ts">
-const i18nHead = useLocaleHead({
-	addSeoAttributes: true,
-	addDirAttribute: true,
-});
+const i18nHead = useLocaleHead({ seo: true, dir: true });
 
 useHead({
 	htmlAttrs: {
 		lang: () => i18nHead.value.htmlAttrs.lang,
-		dir: () => i18nHead.value.htmlAttrs.dir,
+		dir: 'ltr',
 	},
-	link: [].concat(i18nHead.value.link),
-	meta: i18nHead.value.meta || [],
+	link: i18nHead.value.link,
+	meta: i18nHead.value.meta,
 });
 
 useSeoMeta({
-	title: 'asasinmode | Stanisław Perek',
+	title: 'Stanisław Perek',
 });
 </script>
 
@@ -23,3 +20,7 @@ useSeoMeta({
 		<NuxtPage />
 	</NuxtLayout>
 </template>
+
+<style>
+@import '~/assets/skins/minimal.css';
+</style>
