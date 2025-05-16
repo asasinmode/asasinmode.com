@@ -4,7 +4,15 @@ export default defineNuxtConfig({
 	future: {
 		compatibilityVersion: 4,
 	},
-	modules: ['@nuxtjs/i18n', '@nuxt/eslint'],
+	experimental: {
+		typedPages: true,
+	},
+	eslint: {
+		config: {
+			standalone: false,
+		},
+	},
+	modules: ['@nuxtjs/i18n', '@nuxt/eslint', '@nuxt/icon', '@nuxt/fonts'],
 	i18n: {
 		locales: [
 			{ code: 'en', language: 'en-US', file: 'en-US.json', name: 'English' },
@@ -14,10 +22,10 @@ export default defineNuxtConfig({
 		defaultLocale: 'en',
 		baseUrl: 'https://asasinmode.com',
 	},
-	css: ['~/assets/index.css', '~/assets/rainbow.css'],
-	eslint: {
-		config: {
-			standalone: false,
+	css: ['~/assets/reset.css', '~/assets/index.css', '~/assets/rainbow.css'],
+	fonts: {
+		defaults: {
+			weights: [400, 700],
 		},
 	},
 });
