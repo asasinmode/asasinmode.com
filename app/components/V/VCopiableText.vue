@@ -1,9 +1,10 @@
 <script setup lang="ts">
-defineProps<{ text: string }>();
+const props = defineProps<{ text: string }>();
 
 const hasCopied = ref(false);
 
-function copy() {
+async function copy() {
+	await navigator.clipboard.writeText(props.text);
 	hasCopied.value = true;
 }
 function resetInfo() {
@@ -12,37 +13,33 @@ function resetInfo() {
 </script>
 
 <template>
-	<button class="copiable" @click="copy" @mouseleave="resetInfo" @blur="resetInfo">
+	<button class="v-copiable-text" @click="copy" @mouseleave="resetInfo" @blur="resetInfo">
 		{{ text }}
 		<client-only>
 			<span class="info" :aria-live="hasCopied ? undefined : 'polite'">
-				<span v-if="hasCopied" class="copied">copied</span>
-				<span v-else class="copy">copy</span>
+				<span class="copy">{{ hasCopied ? 'copied!' : 'copy' }}</span>
 			</span>
 		</client-only>
 	</button>
 </template>
 
 <style>
-.copiable {
+.v-copiable-text {
 	position: relative;
 
 	.info {
 		position: absolute;
 		left: 50%;
+		top: 0;
 		transform: translate(-50%, -100%);
-		color: var(--text-color);
 	}
 
-	.copy,
-	.copied {
+	.copy {
 		display: none;
 	}
 
 	&:hover .copy,
-	&:focus-visible .copy,
-	&:hover .copied,
-	&:focus-visible .copied {
+	&:focus-visible .copy {
 		display: block;
 	}
 }

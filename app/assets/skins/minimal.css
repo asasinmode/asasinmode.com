@@ -1,5 +1,5 @@
 a,
-.copiable {
+.v-copiable-text {
 	transition: text-decoration-thickness 50ms linear;
 	color: var(--color);
 	text-decoration-line: underline;
@@ -16,12 +16,16 @@ a,
 	}
 }
 
-.copiable {
+.v-copiable-text {
 	text-decoration-style: dashed;
 
 	&:hover,
 	&:focus-visible {
 		text-decoration-thickness: 0.1em;
 		text-decoration-skip-ink: auto;
+	}
+
+	.copy {
+		color: var(--text-color);
 	}
 }
