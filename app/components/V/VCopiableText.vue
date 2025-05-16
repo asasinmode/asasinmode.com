@@ -6,7 +6,6 @@ const hasCopied = ref(false);
 function copy() {
 	hasCopied.value = true;
 }
-
 function resetInfo() {
 	hasCopied.value = false;
 }
@@ -16,7 +15,7 @@ function resetInfo() {
 	<button class="copiable" @click="copy" @mouseleave="resetInfo" @blur="resetInfo">
 		{{ text }}
 		<client-only>
-			<span class="info" aria-live="polite">
+			<span class="info" :aria-live="hasCopied ? undefined : 'polite'">
 				<span v-if="hasCopied" class="copied">copied</span>
 				<span v-else class="copy">copy</span>
 			</span>
