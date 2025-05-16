@@ -49,7 +49,7 @@
 		</p>
 		<h5>not web dev</h5>
 		<p>
-			my mindset is that given enough time i'll figure it out. Sooner rather than later, it's all programming after all. I enjoy finding new ways of doing things and programming languages are really good at providing them. I know what Rust, Python and PHP look like and i feel like i wouldn't be <i>that</i> lost amidst Java decorators or Lua's 1-based indexing.
+			my mindset is that given enough time i'll figure it out - sooner rather than later, it's all programming after all. I enjoy finding new ways of doing things and programming languages are really good at providing them. I know what Rust, Python and PHP look like and i feel like i wouldn't be <i>that</i> lost amidst Java decorators or Lua's 1-based indexing.
 		</p>
 		<p>
 			git for version control and a decent knowledge of what to do with branches, pull requests and commits. I'm familiar with creating/maintaining Github CI/CD pipelines, as well as making and using Docker containers. I use Neovim btw. Additionally i have experience with video editing

@@ -4,5 +4,7 @@
 		"code": "Code",
 		"message": "Message?",
 		"404": "Page not found: {url}"
-	}
+	},
+	"copy": "copy",
+	"copied": "copied!"
 }

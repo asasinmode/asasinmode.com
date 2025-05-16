@@ -4,5 +4,7 @@
 		"code": "Kod",
 		"message": "Wiadomość?",
 		"404": "Strona nieznaleziona: {url}"
-	}
+	},
+	"copy": "kopiuj",
+	"copied": "skopiowane!"
 }

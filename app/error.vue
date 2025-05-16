@@ -16,12 +16,12 @@ const route = useRoute();
 	<p>
 		{{ $t("error.message") }}:
 		{{
-			// @TODO this doesnt work and shows the translation path if status code is unknown
+			// TODO this doesnt work and shows the translation path if status code is unknown
 			$t(`error.${error.statusCode}`, { url: route.path })
 				|| error.statusMessage
 		}}
 	</p>
-	<NuxtLink :to="localePath('/')" @click="clearError()">
+	<NuxtLink :to="localePath('index')" @click="clearError()">
 		{{ $t("error.goBack") }}
 	</NuxtLink>
 </template>

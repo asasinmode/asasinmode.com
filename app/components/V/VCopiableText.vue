@@ -17,7 +17,7 @@ function resetInfo() {
 		{{ text }}
 		<client-only>
 			<span class="info" :aria-live="hasCopied ? undefined : 'polite'">
-				<span class="copy">{{ hasCopied ? 'copied!' : 'copy' }}</span>
+				<span class="copy">{{ hasCopied ? $t('copied') : $t('copy') }}</span>
 			</span>
 		</client-only>
 	</button>

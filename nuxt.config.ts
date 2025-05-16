@@ -15,8 +15,8 @@ export default defineNuxtConfig({
 	modules: ['@nuxtjs/i18n', '@nuxt/eslint', '@nuxt/icon', '@nuxt/fonts'],
 	i18n: {
 		locales: [
-			{ code: 'en', language: 'en-US', file: 'en-US.json', name: 'English' },
-			{ code: 'pl', language: 'pl-PL', file: 'pl-PL.json', name: 'Polski' },
+			{ code: 'en', language: 'en-US', file: 'en.json', name: 'English' },
+			{ code: 'pl', language: 'pl-PL', file: 'pl.json', name: 'Polski' },
 		],
 		lazy: true,
 		defaultLocale: 'en',

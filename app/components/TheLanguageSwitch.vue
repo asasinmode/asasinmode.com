@@ -3,7 +3,7 @@ const { locales } = useI18n();
 </script>
 
 <template>
-	<div id="languageSwitch">
+	<div id="language-switch">
 		<NuxtLink
 			v-for="locale in locales"
 			:key="locale.code"
@@ -15,7 +15,7 @@ const { locales } = useI18n();
 </template>
 
 <style>
-#languageSwitch {
+#language-switch {
 	display: flex;
 	column-gap: 0.4em;
 	font-size: 1.5rem;
