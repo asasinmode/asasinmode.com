@@ -22,5 +22,5 @@ useSeoMeta({
 </template>
 
 <style>
-@import '~/assets/skins/minimal.css';
+@import '~/assets/skins/default.css';
 </style>

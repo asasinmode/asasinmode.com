@@ -6,5 +6,8 @@
 		"404": "Strona nieznaleziona: {url}"
 	},
 	"copy": "kopiuj",
-	"copied": "skopiowane!"
+	"copied": "skopiowane!",
+	"index": {
+		"wip": "prace w toku"
+	}
 }

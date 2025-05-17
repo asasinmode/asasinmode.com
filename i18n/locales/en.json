@@ -6,5 +6,8 @@
 		"404": "Page not found: {url}"
 	},
 	"copy": "copy",
-	"copied": "copied!"
+	"copied": "copied!",
+	"index": {
+		"wip": "work in progress"
+	}
 }

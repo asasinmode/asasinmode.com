@@ -1,6 +1,8 @@
 :root {
 	color-scheme: dark light;
 	--text-color: light-dark(black, white);
+
+	--fluid-40-160: clamp(2.5rem, 1rem + 7.5vw, 10rem);
 }
 
 body {
