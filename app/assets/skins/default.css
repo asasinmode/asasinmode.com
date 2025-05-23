@@ -59,7 +59,7 @@ main {
 	font-size: 2rem;
 	padding-block-end: 0.5rem;
 	line-height: 1;
-	opacity: 0.75;
+	color: light-dark(#404040, #d4d4d4);
 
 	:nth-child(2) {
 		position: relative;
