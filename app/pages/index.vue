@@ -4,11 +4,11 @@
 		<h1 id="name-header">
 			Stanisław Perek
 		</h1>
-		<p>
-			<span>web developer</span>
-			<span>programmer</span>
-			<span>i like coding :3</span>
-		</p>
+		<ul id="me-tokens">
+			<li>web developer</li>
+			<li>programmer</li>
+			<li>i like coding</li>
+		</ul>
 		<h3>stuff</h3>
 		<ul>
 			<li>

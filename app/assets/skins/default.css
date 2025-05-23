@@ -44,9 +44,43 @@ main {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	height: 100vh;
+	min-height: calc(100vh - 2.5rem);
 	max-height: 90rem;
 	font-size: var(--fluid-40-160);
 	font-weight: 700;
 	line-height: 1;
+}
+
+#me-tokens {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 2.5rem;
+	font-size: 2rem;
+	padding-block-end: 0.5rem;
+	line-height: 1;
+	opacity: 0.75;
+
+	:nth-child(2) {
+		position: relative;
+	}
+
+	:nth-child(2)::before,
+	:nth-child(2)::after {
+		width: min-content;
+		pointer-events: none;
+		position: absolute;
+		top: 50%;
+		content: '\2022';
+	}
+
+	:nth-child(2)::before {
+		left: -1.25rem;
+		transform: translate(-50%, -50%);
+	}
+
+	:nth-child(2)::after {
+		right: -1.25rem;
+		transform: translate(50%, -50%);
+	}
 }
