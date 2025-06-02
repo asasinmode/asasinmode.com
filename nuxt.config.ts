@@ -1,5 +1,3 @@
-import vitePluginFluidVariables from './vite-plugin-fluid-variables';
-
 export default defineNuxtConfig({
 	compatibilityDate: '2025-05-12',
 	devtools: { enabled: true },
@@ -15,7 +13,6 @@ export default defineNuxtConfig({
 		},
 	},
 	modules: ['@nuxtjs/i18n', '@nuxt/eslint', '@nuxt/icon', '@nuxt/fonts'],
-	vite: { plugins: [vitePluginFluidVariables()] },
 	i18n: {
 		locales: [
 			{ code: 'en', language: 'en-US', file: 'en.json', name: 'English' },
@@ -25,7 +22,7 @@ export default defineNuxtConfig({
 		defaultLocale: 'en',
 		baseUrl: 'https://asasinmode.com',
 	},
-	css: ['~/assets/reset.css', '~/assets/index.css', '~/assets/rainbow.css'],
+	css: ['~/assets/reset.css', '~/assets/index.css', '~/assets/rainbow.css', '#build/asasinmode:fluid-variables.css'],
 	fonts: {
 		defaults: {
 			weights: [400, 700],
