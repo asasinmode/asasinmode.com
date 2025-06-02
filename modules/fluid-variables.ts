@@ -1,4 +1,3 @@
-import type { Plugin, ViteDevServer } from 'vite';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
@@ -9,131 +8,132 @@ export default defineNuxtModule({
 	meta: {
 		name: 'asasinmode:fluid-variables',
 	},
-	async setup(options, nuxt) {
-		nuxt.options.vite.plugins ||= [];
-		nuxt.options.vite.plugins.push(vitePluginFluidVariables());
+	async setup(_options, nuxt) {
+		const variablesByFile: Map<string, IFileVariables> = new Map();
+		let generatedCss = '';
+
+		const files = await findStyleFiles(path.join(process.cwd(), 'app'));
+		await Promise.all(files.map(processFile));
+		generatedCss = generateCss(variablesByFile);
 
 		const template = 'asasinmode:fluid-variables.css';
-		let generatedCss = 'body {color: red}';
-
 		addTemplate({
 			filename: template,
 			getContents: () => generatedCss,
 		});
 
-		nuxt.hook('build:before', async () => {
+		async function processFile(file: string) {
+			variablesByFile.set(file, await extractFluidVariables(file));
+		}
 
-		});
-
-		nuxt.hook('builder:watch', async (event, path) => {
-			console.log('buidler watch', path);
-			if (path.endsWith('.css')) {
-				generatedCss = 'body {color: hotpink}';
-				updateTemplates({
-					filter: t => t.filename === template,
-				});
+		nuxt.hook('builder:watch', async (_event, path) => {
+			if (path.endsWith('.css') || path.endsWith('.vue')) {
+				await processFile(path);
+				generatedCss = generateCss(variablesByFile);
+				updateTemplates({ filter: t => t.filename === template });
 			}
 		});
 	},
 });
 
-function vitePluginFluidVariables(): Plugin {
-	const variablesByFile: Map<string, IFileVariables> = new Map();
-	const servers: ViteDevServer[] = [];
-	let rootDir = process.cwd();
-	let generatedCss = '';
+// import type { Plugin, ViteDevServer } from 'vite';
+// function vitePluginFluidVariables(): Plugin {
+// 	const variablesByFile: Map<string, IFileVariables> = new Map();
+// 	const servers: ViteDevServer[] = [];
+// 	let rootDir = process.cwd();
+// 	let generatedCss = '';
 
-	function updateCss() {
-		generatedCss = generateCss(variablesByFile);
-		for (const server of servers) {
-			server.hot.send({
-				type: 'custom',
-				event: 'asasinmode:fluid-variables-update',
-				data: generatedCss,
-			});
-		}
-	}
+// 	function updateCss() {
+// 		generatedCss = generateCss(variablesByFile);
+// 		for (const server of servers) {
+// 			server.hot.send({
+// 				type: 'custom',
+// 				event: 'asasinmode:fluid-variables-update',
+// 				data: generatedCss,
+// 			});
+// 		}
+// 	}
 
-	async function processFile(file: string) {
-		const vars = await extractFluidVariables(file);
-		variablesByFile.set(file, vars);
-	}
+// 	async function processFile(file: string) {
+// 		const vars = await extractFluidVariables(file);
+// 		variablesByFile.set(file, vars);
+// 	}
 
-	return {
-		name: 'asasinmode:fluid-variables',
-		enforce: 'pre',
+// 	return {
+// 		name: 'asasinmode:fluid-variables',
+// 		enforce: 'pre',
 
-		configResolved(config) {
-			rootDir = config.root;
-		},
+// 		configResolved(config) {
+// 			rootDir = config.root;
+// 		},
 
-		async buildStart() {
-			generatedCss = '';
-			variablesByFile.clear();
-			const files = await findStyleFiles(rootDir);
-			await Promise.all(files.map(processFile));
-			updateCss();
-		},
+// 		async buildStart() {
+// 			generatedCss = '';
+// 			variablesByFile.clear();
+// 			const files = await findStyleFiles(rootDir);
+// 			await Promise.all(files.map(processFile));
+// 			updateCss();
+// 		},
 
-		configureServer(server) {
-			servers.push(server);
-			server.watcher.on('change', async (file) => {
-				if (file.endsWith('.css')) {
-					await processFile(normalizePath(file));
-					updateCss();
-				}
-			});
+// 		configureServer(server) {
+// 			servers.push(server);
+// 			server.watcher.on('change', async (file) => {
+// 				if (file.endsWith('.css')) {
+// 					await processFile(normalizePath(file));
+// 					updateCss();
+// 				}
+// 			});
 
-			server.watcher.on('unlink', async (file) => {
-				if (file.endsWith('.css')) {
-					variablesByFile.delete(normalizePath(file));
-					updateCss();
-				}
-			});
-		},
+// 			server.watcher.on('unlink', async (file) => {
+// 				if (file.endsWith('.css')) {
+// 					variablesByFile.delete(normalizePath(file));
+// 					updateCss();
+// 				}
+// 			});
+// 		},
 
-		// maybe useful in a vue spa?
-		// transformIndexHtml() {
-		// 	console.log('--------------------');
-		// 	console.log('TRANSFORM INDEX HTML', generatedCss);
-		// 	console.log('--------------------');
-		// 	return [
-		// 		{
-		// 			tag: 'style',
-		// 			attrs: { id: 'fluid-variables' },
-		// 			children: generatedCss,
-		// 			injectTo: 'head',
-		// 		},
-		// 	];
-		// },
+// 		// maybe useful in a vue spa?
+// 		// transformIndexHtml() {
+// 		// 	console.log('--------------------');
+// 		// 	console.log('TRANSFORM INDEX HTML', generatedCss);
+// 		// 	console.log('--------------------');
+// 		// 	return [
+// 		// 		{
+// 		// 			tag: 'style',
+// 		// 			attrs: { id: 'fluid-variables' },
+// 		// 			children: generatedCss,
+// 		// 			injectTo: 'head',
+// 		// 		},
+// 		// 	];
+// 		// },
 
-		resolveId(id) {
-			if (id === 'virtual:fluid-variables-hmr') {
-				return id;
-			}
-		},
+// 		resolveId(id) {
+// 			if (id === 'virtual:fluid-variables-hmr') {
+// 				return id;
+// 			}
+// 		},
 
-		load(id) {
-			if (id === 'virtual:fluid-variables-hmr') {
-				return `
-if (import.meta.hot) {
-	const id = 'fluid-variables';
+// 		load(id) {
+// 			if (id === 'virtual:fluid-variables-hmr') {
+// 				return `
+// if (import.meta.hot) {
+// 	const id = 'fluid-variables';
 
-	let el = document.getElementById(id);
-	if (!el) {
-		el = Object.assign(document.createElement('style'), { id });
-		el.textContent = \`${generatedCss}\`
-		document.head.appendChild(el);
-	}
+// 	let el = document.getElementById(id);
+// 	if (!el) {
+// 		el = Object.assign(document.createElement('style'), { id });
+// 		el.textContent = \`${generatedCss}\`
+// 		document.head.appendChild(el);
+// 	}
 
-	import.meta.hot.on('asasinmode:fluid-variables-update', (css) => {
-		el.textContent = css;
-	});
-}`;
-			}
-		},
-	};
-}
+// 	import.meta.hot.on('asasinmode:fluid-variables-update', (css) => {
+// 		el.textContent = css;
+// 	});
+// }`;
+// 			}
+// 		},
+// 	};
+// }
 
 type IFileVariables = Map<string, [number, number]>;
 

@@ -44,7 +44,7 @@ main {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	min-height: calc(100vh - 2.5rem);
+	min-height: min(calc(100vh - 2.5rem), 90rem);
 	max-height: 90rem;
 	font-size: var(--fluid-40-160);
 	font-weight: 700;
