@@ -7,6 +7,9 @@ export default defineNuxtConfig({
 	experimental: {
 		typedPages: true,
 	},
+	features: {
+		inlineStyles: false,
+	},
 	eslint: {
 		config: {
 			standalone: false,
