@@ -13,7 +13,7 @@ export default defineNuxtModule({
 		let generatedCss = '';
 
 		const files = await findStyleFiles(path.join(process.cwd(), 'app'));
-		await Promise.all(files.map(processFile));
+		await Promise.all(files.map(file => processFile(file)));
 		generatedCss = generateCss(variablesByFile);
 
 		const template = 'asasinmode:fluid-variables.css';
@@ -22,13 +22,17 @@ export default defineNuxtModule({
 			getContents: () => generatedCss,
 		});
 
-		async function processFile(file: string) {
-			variablesByFile.set(file, await extractFluidVariables(file));
+		async function processFile(file: string, isVue = file.endsWith('.vue')) {
+			if (file.endsWith('assets/rainbow.css') || file.endsWith('assets/reset.css')) {
+				return;
+			}
+			variablesByFile.set(file, await extractFluidVariables(file, isVue));
 		}
 
 		nuxt.hook('builder:watch', async (_event, path) => {
-			if (path.endsWith('.css') || path.endsWith('.vue')) {
-				await processFile(path);
+			const isVue = path.endsWith('.vue');
+			if (path.endsWith('.css') || isVue) {
+				await processFile(path, isVue);
 				generatedCss = generateCss(variablesByFile);
 				updateTemplates({ filter: t => t.filename === template });
 			}
@@ -36,6 +40,78 @@ export default defineNuxtModule({
 	},
 });
 
+type IFileVariables = Map<string, [number, number]>;
+
+const variableRegex = /--fluid-(\d+)-(\d+)/g;
+const minScreenWidth = 20;
+const maxScreenWidth = 120;
+const remInPx = 16;
+
+function generateClamp(sizeFrom: number, sizeTo: number): string {
+	sizeFrom = sizeFrom / remInPx;
+	sizeTo = sizeTo / remInPx;
+
+	const slope = (sizeTo - sizeFrom) / (maxScreenWidth - minScreenWidth);
+	const yAxisIntersection = -minScreenWidth * slope + sizeFrom;
+
+	return `clamp(${sizeFrom}rem, ${yAxisIntersection}rem + ${(slope * 100)}vw, ${sizeTo}rem)`;
+}
+
+async function extractFluidVariables(filePath: string, isVue: boolean): Promise<IFileVariables> {
+	const variables: IFileVariables = new Map();
+
+	let content = await fs.readFile(filePath, 'utf-8');
+	if (isVue) {
+		content = content.slice(content.indexOf('\n<style>') + 9, content.indexOf('\n</style>'));
+	}
+
+	for (const match of content.matchAll(variableRegex)) {
+		const sizeFrom = Number(match[1]);
+		const sizeTo = Number(match[2]);
+		if (!Number.isNaN(sizeFrom) && !Number.isNaN(sizeTo) && !variables.has(`${sizeFrom}-${sizeTo}`)) {
+			variables.set(`${sizeFrom}-${sizeTo}`, [sizeFrom, sizeTo]);
+		}
+	}
+
+	return variables;
+}
+
+function generateCss(variablesByFile: Map<string, IFileVariables>) {
+	const wantedVariables: IFileVariables = new Map();
+	for (const fileVariables of variablesByFile.values()) {
+		for (const [variable, [sizeFrom, sizeTo]] of fileVariables.entries()) {
+			if (!wantedVariables.has(variable)) {
+				wantedVariables.set(variable, [sizeFrom, sizeTo]);
+			}
+		}
+	}
+
+	let css = ':root {\n';
+	for (const [variable, [minSize, maxSize]] of wantedVariables.entries()) {
+		css += `\t--fluid-${variable}: ${generateClamp(minSize, maxSize)};\n`;
+	}
+	css += '}';
+
+	return css;
+}
+
+async function findStyleFiles(dir: string, fileList: string[] = []): Promise<string[]> {
+	const entries = await fs.readdir(dir, { withFileTypes: true });
+	for (const entry of entries) {
+		const fullPath = path.join(dir, entry.name);
+		if (entry.isFile()) {
+			const ext = path.extname(entry.name);
+			if (ext === '.css' || ext === '.vue') {
+				fileList.push(normalizePath(fullPath));
+			}
+		} else if (entry.name !== 'node_modules') {
+			await findStyleFiles(fullPath, fileList);
+		}
+	}
+	return fileList;
+}
+
+// vite plugin maybe useful for just vue apps
 // import type { Plugin, ViteDevServer } from 'vite';
 // function vitePluginFluidVariables(): Plugin {
 // 	const variablesByFile: Map<string, IFileVariables> = new Map();
@@ -134,69 +210,3 @@ export default defineNuxtModule({
 // 		},
 // 	};
 // }
-
-type IFileVariables = Map<string, [number, number]>;
-
-const variableRegex = /--fluid-(\d+)-(\d+)/g;
-const minScreenWidth = 20;
-const maxScreenWidth = 120;
-const remInPx = 16;
-
-function generateClamp(sizeFrom: number, sizeTo: number): string {
-	sizeFrom = sizeFrom / remInPx;
-	sizeTo = sizeTo / remInPx;
-
-	const slope = (sizeTo - sizeFrom) / (maxScreenWidth - minScreenWidth);
-	const yAxisIntersection = -minScreenWidth * slope + sizeFrom;
-
-	return `clamp(${sizeFrom}rem, ${yAxisIntersection}rem + ${(slope * 100)}vw, ${sizeTo}rem)`;
-}
-
-async function extractFluidVariables(filePath: string): Promise<IFileVariables> {
-	const variables: IFileVariables = new Map();
-
-	const content = await fs.readFile(filePath, 'utf-8');
-	for (const match of content.matchAll(variableRegex)) {
-		const sizeFrom = Number(match[1]);
-		const sizeTo = Number(match[2]);
-		if (!Number.isNaN(sizeFrom) && !Number.isNaN(sizeTo) && !variables.has(`${sizeFrom}-${sizeTo}`)) {
-			variables.set(`${sizeFrom}-${sizeTo}`, [sizeFrom, sizeTo]);
-		}
-	}
-
-	return variables;
-}
-
-function generateCss(variablesByFile: Map<string, IFileVariables>) {
-	const wantedVariables: IFileVariables = new Map();
-	for (const fileVariables of variablesByFile.values()) {
-		for (const [variable, [sizeFrom, sizeTo]] of fileVariables.entries()) {
-			if (!wantedVariables.has(variable)) {
-				wantedVariables.set(variable, [sizeFrom, sizeTo]);
-			}
-		}
-	}
-
-	let css = ':root {\n';
-	for (const [variable, [minSize, maxSize]] of wantedVariables.entries()) {
-		css += `\t--fluid-${variable}: ${generateClamp(minSize, maxSize)};\n`;
-	}
-	css += '}';
-
-	return css;
-}
-
-async function findStyleFiles(dir: string, fileList: string[] = []): Promise<string[]> {
-	const entries = await fs.readdir(dir, { withFileTypes: true });
-	for (const entry of entries) {
-		const fullPath = path.join(dir, entry.name);
-		if (entry.isFile()) {
-			if (path.extname(entry.name) === '.css') {
-				fileList.push(normalizePath(fullPath));
-			}
-		} else if (entry.name !== 'node_modules') {
-			await findStyleFiles(fullPath, fileList);
-		}
-	}
-	return fileList;
-}
