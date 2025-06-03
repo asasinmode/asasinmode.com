@@ -5,10 +5,7 @@
 
 body {
 	font-family: 'Atkinson Hyperlegible Next', system-ui, sans-serif;
+	background: light-dark(#efefef, #050505);
 	color: var(--text-color);
-}
-
-body,
-#__nuxt {
 	min-height: 100vh;
 }

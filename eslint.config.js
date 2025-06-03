@@ -10,6 +10,7 @@ export default withNuxt(
 		rules: {
 			'curly': ['error', 'all'],
 			'style/brace-style': ['error', '1tbs'],
+			'vue/no-multiple-template-root': 'off',
 		},
 		formatters: true,
 	}),

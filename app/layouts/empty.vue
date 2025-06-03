@@ -1,7 +1,4 @@
 <template>
-	<header>
-		<TheLanguageSwitch />
-	</header>
 	<slot />
 </template>
 

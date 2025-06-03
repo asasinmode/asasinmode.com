@@ -71,7 +71,7 @@
 	left: 50%;
 	top: 0.55rem;
 	transform: translate(-50%, 0);
-	font-size: clamp(1.25rem, 1.05rem + 1vw, 2.25rem);
+	font-size: var(--fluid-20-36);
 	white-space: nowrap;
 	background: repeating-linear-gradient(
 		100deg,

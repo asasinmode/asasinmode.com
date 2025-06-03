@@ -1,6 +1,7 @@
 export default defineNuxtConfig({
 	compatibilityDate: '2025-05-12',
 	devtools: { enabled: true },
+	app: { rootTag: 'body' },
 	future: {
 		compatibilityVersion: 4,
 	},
@@ -29,6 +30,11 @@ export default defineNuxtConfig({
 	fonts: {
 		defaults: {
 			weights: [400, 700],
+		},
+	},
+	runtimeConfig: {
+		public: {
+			cvImage: '',
 		},
 	},
 });
