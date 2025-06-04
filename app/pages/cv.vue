@@ -236,6 +236,7 @@ body {
 	grid-template-rows: 55mm 1fr min-content;
 	color: black;
 	background: white;
+	z-index: 0;
 
 	&::after {
 		pointer-events: none;
@@ -338,8 +339,8 @@ aside {
 		position: absolute;
 		content: '';
 		width: 100%;
-		height: 120%;
-		top: -10mm;
+		height: 110%;
+		bottom: calc(-2mm - (0.625rem * 3 * 1.1));
 		left: 0;
 		background: var(--aside-bg);
 		z-index: 0;
@@ -450,7 +451,7 @@ h1 {
 
 footer {
 	grid-column: 1 / span 2;
-	font-size: 10px;
+	font-size: 0.625rem;
 	color: hsl(0 0% 30%);
 	padding-bottom: 2mm;
 	padding-inline: 3mm;
