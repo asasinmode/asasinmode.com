@@ -75,6 +75,9 @@ onMounted(() => {
 					<h2>Junior/mid web dev @ RemoteCraftsmen <span>2022-2025</span></h2>
 					<ul>
 						<I18nT tag="li" keypath="rmtDev1">
+							<template #saas>
+								<strong>SAAS</strong>
+							</template>
 							<template #productPage>
 								<strong>product page</strong>
 							</template>
@@ -179,7 +182,7 @@ onMounted(() => {
 		"experience": "Doświadczenie",
 		"freelancing1": "Praca na zlecenie, w tym spersonalizowany blog i CMS do zarządzania nim",
 		"freelancing2": "Montaż oraz edytowanie filmów",
-		"rmtDev1": "Praca samodzielna oraz w zespole nad systemem ATS, aplikacją do obstawiania, SAAS-ami oraz {productPage}/{cms}-y do nich",
+	"rmtDev1": "Praca samodzielna oraz w zespole nad systemem ATS, aplikacją do obstawiania, {saas}-ami oraz {productPage}/{cms}-y do nich",
 		"rmtDev2": "{progressiveEnhancement} istniejących projektów, w tym responsywność, {a11y} i {pwa}",
 		"rmtDev3": "{performanceRefactor} istniejących projektów",
 		"rmtDev4": "{toolsScripts} ułatwiające workflow",
@@ -453,6 +456,7 @@ footer {
 	padding-inline: 3mm;
 	z-index: 2;
 	line-height: 1.1;
+	text-align: justify;
 }
 
 @media print {
