@@ -5,7 +5,7 @@ definePageMeta({ layout: 'empty' });
 const { t } = useI18n({ useScope: 'local' });
 
 onMounted(() => {
-	document.getElementById('contact-email')?.append(
+	document.getElementById('header-email')?.append(
 		[115, 116, 97, 110, 105, 115, 108, 97, 119, 46, 112, 101, 114, 101, 107, 46, 117, 105, 64, 103, 109, 97, 105, 108, 46, 99, 111, 109].map(code => String.fromCharCode(code)).join(''),
 	);
 	document.getElementById('contact-phone')?.append(
@@ -21,7 +21,7 @@ onMounted(() => {
 		<div id="cv-image-container">
 			<img :src="$config.public.cvImage" crossorigin="anonymous">
 		</div>
-		<h1>Stanisław Perek</h1>
+		<h1>Stanisław Perek<span id="header-email" /></h1>
 		<I18nT tag="p" keypath="header1">
 			<b style="font-weight: 500">{{ t('headerMe') }}</b>
 		</I18nT>
@@ -31,27 +31,22 @@ onMounted(() => {
 	</header>
 
 	<aside>
-		<h1>{{ t('contact') }}</h1>
 		<ul>
-			<li id="contact-email">
-				<span class="sr-only">email</span>
-				<Icon size="1.5em" name="ph:envelope-simple" />
-			</li>
 			<li>
 				<span class="sr-only">strona</span>
-				<Icon size="1.5em" name="ph:globe-simple" /> asasinmode.com
-			</li>
-			<li>
-				<span class="sr-only">github</span>
-				<Icon size="1.5em" name="logos:github-icon" /> github.com/asasinmode
+				<Icon size="1.25em" name="ph:globe-simple" /> asasinmode.com
 			</li>
 			<li id="contact-phone">
 				<span class="sr-only">numer telefonu</span>
-				<Icon size="1.5em" name="ph:phone-fill" />
+				<Icon size="1.25em" name="ph:phone-fill" />
 			</li>
 			<li>
 				<span class="sr-only">lokalizacja:</span>
-				<Icon size="1.5em" name="ph:map-pin-fill" /> {{ t('location') }}
+				<Icon size="1.25em" name="ph:map-pin-fill" /> {{ t('location') }}
+			</li>
+			<li>
+				<span class="sr-only">github</span>
+				<Icon size="1.25em" name="logos:github-icon" /> github.com/asasinmode
 			</li>
 		</ul>
 		<hr>
@@ -62,18 +57,18 @@ onMounted(() => {
 	</aside>
 
 	<main>
-		<section>
+		<section id="section-experience">
 			<h1>{{ t('experience') }}</h1>
 			<ol>
 				<li>
-					<h2>Freelancing 2020-2022</h2>
+					<h2>Freelancing <span>2020-2022</span></h2>
 					<ul>
 						<li>{{ t('freelancing1') }}</li>
 						<li>{{ t('freelancing2') }}</li>
 					</ul>
 				</li>
 				<li>
-					<h2>JUNIOR/MID DEVELOPER @ RemoteCraftsmen 2022-2025</h2>
+					<h2>Junior/mid web dev @ RemoteCraftsmen <span>2022-2025</span></h2>
 					<ul>
 						<I18nT tag="li" keypath="rmtDev1">
 							<template #productPage>
@@ -85,25 +80,28 @@ onMounted(() => {
 						</I18nT>
 						<I18nT tag="li" keypath="rmtDev2">
 							<template #progressiveEnhancement>
-								<strong>product page</strong>
+								<strong>Progressive enhancement</strong>
+							</template>
+							<template #a11y>
+								<strong>a11y</strong>
 							</template>
 							<template #pwa>
-								<strong>CMS</strong>
+								<strong>PWA</strong>
 							</template>
 						</I18nT>
 						<I18nT tag="li" keypath="rmtDev3">
 							<template #performanceRefactor>
-								<strong>Poprawianie wydajności i refactor</strong>
+								<strong>{{ t('performanceRefactor') }}</strong>
 							</template>
 						</I18nT>
 						<I18nT tag="li" keypath="rmtDev4">
 							<template #toolsScripts>
-								<strong>Narzędzia/skrypty dla deweloperów</strong>
+								<strong>{{ t('toolsScripts') }}</strong>
 							</template>
 						</I18nT>
 						<I18nT tag="li" keypath="rmtDev5">
 							<template #thirdPartyIntegration>
-								<strong>Integracja z 3rd-party serwisami</strong>
+								<strong>{{ t('thirdPartyIntegration') }}</strong>
 							</template>
 						</I18nT>
 					</ul>
@@ -111,7 +109,7 @@ onMounted(() => {
 			</ol>
 		</section>
 
-		<section>
+		<section id="section-skills">
 			<h1>{{ t('skills') }}</h1>
 			<ul>
 				<I18nT tag="li" keypath="skills1">
@@ -125,7 +123,7 @@ onMounted(() => {
 			</ul>
 		</section>
 
-		<section>
+		<section id="section-technologies">
 			<h1>{{ t('technologies') }}</h1>
 			<ul>
 				<I18nT tag="li" keypath="technologies1">
@@ -170,7 +168,6 @@ onMounted(() => {
 		"headerMe": "Technik informatyk, programista, full stack web developer",
 		"header1": "{0}. Od 5 lat zajmuję się tworzeniem praktycznych stron internetowych i aplikacji webowych.",
 		"header2": "Odnajduję się zarówno na front jak i back-endzie, jednak preferuję frontend. Przykładam dużą uwagę do responsywności i dostępności ({0}) moich projektów i staram się dopilnować najmniejszych szczegółów.",
-		"contact": "Kontakt",
 		"location": "Kraków, 31-261",
 		"technikZsl": "Technik informatyk (ZSŁ)",
 		"english": "angielski",
@@ -179,10 +176,13 @@ onMounted(() => {
 		"freelancing1": "Praca na zlecenie, w tym spersonalizowany blog i CMS do zarządzania nim",
 		"freelancing2": "Montaż oraz edytowanie filmów",
 		"rmtDev1": "Praca samodzielna oraz w zespole nad systemem ATS, aplikacją do obstawiania, SAAS-ami oraz {productPage}/{cms}-y do nich",
-		"rmtDev2": "{progressiveEnhancement} istniejących projektów o responsywność, a11y i {pwa}",
+		"rmtDev2": "{progressiveEnhancement} istniejących projektów, w tym responsywność, {a11y} i {pwa}",
 		"rmtDev3": "{performanceRefactor} istniejących projektów",
 		"rmtDev4": "{toolsScripts} ułatwiające workflow",
 		"rmtDev5": "{thirdPartyIntegration} takimi jak OAuth, Stripe, Twilio, Geolocalization",
+		"performanceRefactor": "Poprawianie wydajności i refactor",
+		"toolsScripts": "Narzędzia/skrypty dla deweloperów",
+		"thirdPartyIntegration": "Integracja z 3rd-party serwisami",
 		"skills": "Umiejętności",
 		"skills1": "Implementowanie {pixelPerfect} designów",
 		"skills2": "Umiejętność pracy samemu i w zespole",
@@ -192,7 +192,7 @@ onMounted(() => {
 		"technologies1": "{0} - jeśli to strona internetowa to mogę ją napisać",
 		"technologies2": "{0} - używam praktycznie od początku i potrafię wykorzystać większość jego funkcjonalności",
 		"technologies3": "{0} - pracuję z obydwoma od ~4 lat i znam je jak własną dłoń. Jeśli chodzi o inne frameworki to jestem gotów użyć każdego ale najbardziej intuicyjnymi znajduję te dwa",
-		"technologies4": "{0} - największe doświadczenie mam w używaniu node.js ale sprawdzałem też pozostałe 2 i nie widzę przeszkód w przerzuceniu się na nie",
+		"technologies4": "{0} - najwięcej doświadczenie mam w używaniu node.js ale sprawdzałem też pozostałe 2 i nie widzę przeszkód w przerzuceniu się na nie",
 		"technologiesNote": "Poza wyżej wspomnianymi radzę sobie z bazami danych {sql}/{mongoDB} i umiem pracować z {dockerContainer}. Znam też {lua} i {java}.",
 		"dockerContainer": "docker kontenerami",
 		"footer": "Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO)."
@@ -201,7 +201,6 @@ onMounted(() => {
 		"headerMe": "IT technician, programmer, fullstack web developer",
 		"header1": "{0}. I've been working on practical websites and webapps for 5 years.",
 		"header2": "I'm comfortable both on the front and backend but I prefer frontend. I strive to make my projects responsive and accessible ({0}) and try to pay attention to the smallest details.",
-		"contact": "Contact",
 		"location": "Cracow, 31-261",
 		"technikZsl": "IT technician (ZSŁ)",
 		"english": "english",
@@ -254,7 +253,7 @@ header {
 	display: grid;
 	grid-template-columns: subgrid;
 	grid-template-rows: min-content min-content 1fr;
-	padding: 0 6mm 0 0 !important;
+	padding: 0 !important;
 	column-gap: 6mm;
 	background: var(--header-bg);
 
@@ -282,6 +281,11 @@ header {
 		line-height: 1;
 		font-weight: 700;
 		letter-spacing: 0.025em;
+		white-space: nowrap;
+	}
+
+	p {
+		padding-inline-end: 3mm;
 	}
 
 	p + p {
@@ -304,10 +308,17 @@ header {
 	}
 }
 
+#header-email {
+	font-size: 1.25rem;
+	margin-inline-start: 0.5rem;
+	color: hsl(0 0% 30%);
+}
+
 aside {
 	position: relative;
 	grid-row: 2 / -1;
 	padding-inline: 2mm;
+	padding-block: 2mm;
 
 	& > * {
 		z-index: 2;
@@ -338,6 +349,7 @@ aside {
 			grid-column: span 2 / span 2;
 			grid-template-columns: subgrid;
 			align-items: center;
+			white-space: nowrap;
 		}
 	}
 }
@@ -345,15 +357,79 @@ aside {
 main {
 	width: 100%;
 	grid-column: 2 / span 1;
+	padding-inline: 3mm;
+	padding-block: 3.5mm;
+
+	section + section {
+		margin-block-start: 1.25rem;
+	}
+}
+
+#section-experience ul > li,
+#section-skills li {
+	list-style-type: disc;
+	margin-left: 1.125rem;
+}
+
+#section-experience ul > li,
+#section-skills li,
+#section-technologies li {
+	line-height: 1.4;
+}
+
+#section-experience ul > li + li,
+#section-skills li + li,
+#section-technologies li + li {
+	margin-block-start: 0.2rem;
+}
+
+h1 {
+	font-size: 1.375rem;
+	font-weight: 700;
+	margin-block-end: 0.2rem;
+}
+
+#section-experience {
+	h1 {
+		font-size: 0.875rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		line-height: 1;
+		letter-spacing: 0.025em;
+		color: hsl(0 0% 35%);
+		margin-block-end: 0.125rem;
+	}
+
+	h2 {
+		font-size: 1.375rem;
+		font-weight: 700;
+		margin-block-end: 0.1rem;
+
+		span {
+			font-weight: 400;
+			color: var(--image-bg);
+		}
+	}
+
+	ol > li + li {
+		margin-top: 0.25rem;
+	}
+}
+
+#section-technologies {
+	& > p:last-child {
+		margin-block-start: 1rem;
+	}
 }
 
 footer {
 	grid-column: 1 / span 2;
 	font-size: 10px;
-	color: #101010;
+	color: hsl(0 0% 30%);
 	padding-bottom: 2mm;
 	padding-inline: 3mm;
 	z-index: 2;
+	line-height: 1.1;
 }
 
 @media print {
