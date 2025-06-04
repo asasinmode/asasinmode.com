@@ -55,10 +55,10 @@ onMounted(() => {
 			</li>
 		</ul>
 		<hr>
-		<p>technik informatyk (ZSŁ)</p>
+		<p>{{ t('technikZsl') }}</p>
 		<hr>
-		<p>angielski <span>c2</span></p>
-		<p>mandaryński <span>wip</span></p>
+		<p>{{ t('english') }} <span>c2</span></p>
+		<p>{{ t('mandarin') }} <span>wip</span></p>
 	</aside>
 
 	<main>
@@ -68,23 +68,44 @@ onMounted(() => {
 				<li>
 					<h2>Freelancing 2020-2022</h2>
 					<ul>
-						<li>Praca na zlecenie, w tym spersonalizowany blog i CMS do zarządzania nim</li>
-						<li>Montaż oraz edytowanie filmów</li>
+						<li>{{ t('freelancing1') }}</li>
+						<li>{{ t('freelancing2') }}</li>
 					</ul>
 				</li>
 				<li>
 					<h2>JUNIOR/MID DEVELOPER @ RemoteCraftsmen 2022-2025</h2>
 					<ul>
-						<li>
-							Praca samodzielna oraz w zespole nad systemem ATS, aplikacją do
-							obstawiania, SAAS-ami oraz <strong>product page</strong> i <strong>CMS</strong>-ami do nich
-						</li>
-						<li>
-							<strong>Progressive enhancement</strong> istniejących projektów o responsywność, a11y i <strong>PWA</strong>
-						</li>
-						<li><strong>Poprawianie wydajności i refactor</strong> istniejących projektów</li>
-						<li><strong>Narzędzia/skrypty dla deweloperów</strong> ułatwiające workflow</li>
-						<li><strong>Integracja z 3rd-party serwisami</strong> takimi jak OAuth, Stripe, Twilio, Geolocalization</li>
+						<I18nT tag="li" keypath="rmtDev1">
+							<template #productPage>
+								<strong>product page</strong>
+							</template>
+							<template #cms>
+								<strong>CMS</strong>
+							</template>
+						</I18nT>
+						<I18nT tag="li" keypath="rmtDev2">
+							<template #progressiveEnhancement>
+								<strong>product page</strong>
+							</template>
+							<template #pwa>
+								<strong>CMS</strong>
+							</template>
+						</I18nT>
+						<I18nT tag="li" keypath="rmtDev3">
+							<template #performanceRefactor>
+								<strong>Poprawianie wydajności i refactor</strong>
+							</template>
+						</I18nT>
+						<I18nT tag="li" keypath="rmtDev4">
+							<template #toolsScripts>
+								<strong>Narzędzia/skrypty dla deweloperów</strong>
+							</template>
+						</I18nT>
+						<I18nT tag="li" keypath="rmtDev5">
+							<template #thirdPartyIntegration>
+								<strong>Integracja z 3rd-party serwisami</strong>
+							</template>
+						</I18nT>
 					</ul>
 				</li>
 			</ol>
@@ -93,25 +114,50 @@ onMounted(() => {
 		<section>
 			<h1>{{ t('skills') }}</h1>
 			<ul>
-				<li>Implementowanie <strong>pixel perfect</strong> designów</li>
-				<li>Umiejętność pracy samemu i w zespole</li>
-				<li>Zdolność kierowania projektem i dzielenia obowiązków</li>
-				<li>Szybkie przyswajanie nowych technologii/języków programowania</li>
+				<I18nT tag="li" keypath="skills1">
+					<template #pixelPerfect>
+						<strong>pixel perfect</strong>
+					</template>
+				</I18nT>
+				<li>{{ t('skills2') }}</li>
+				<li>{{ t('skills3') }}</li>
+				<li>{{ t('skills4') }}</li>
 			</ul>
 		</section>
 
 		<section>
 			<h1>{{ t('technologies') }}</h1>
 			<ul>
-				<li><strong>html/css/javascript</strong> - jeśli to strona internetowa to mogę ją napisać</li>
-				<li><strong>typescript</strong> - używam praktycznie od początku i potrafię wykorzystać większość jego funkcjonalności</li>
-				<li><strong>vue/nuxt</strong> - pracuję z obydwoma od ~4 lat i znam je jak własną dłoń. Jeśli chodzi o inne frameworki to jestem gotów użyć każdego ale najbardziej intuicyjnymi znajduję te dwa</li>
-				<li><strong>node.js/deno/bun</strong> - największe doświadczenie mam w używaniu node.js ale sprawdzałem też pozostałe 2 i nie widzę przeszkód w przerzuceniu się na nie</li>
+				<I18nT tag="li" keypath="technologies1">
+					<strong>html/css/javascript</strong>
+				</I18nT>
+				<I18nT tag="li" keypath="technologies2">
+					<strong>typescript</strong>
+				</I18nT>
+				<I18nT tag="li" keypath="technologies3">
+					<strong>vue/nuxt</strong>
+				</I18nT>
+				<I18nT tag="li" keypath="technologies4">
+					<strong>node.js/deno/bun</strong>
+				</I18nT>
 			</ul>
-			<p>
-				Poza wyżej wspomnianymi radzę sobie z bazami danych <strong>SQL</strong>/<strong>MongoDB</strong> i umiem
-				pracować z <strong>docker kontenerami</strong>. Znam też <strong>Lua</strong> i <strong>Java</strong>.
-			</p>
+			<I18nT tag="p" keypath="technologiesNote">
+				<template #sql>
+					<strong>SQL</strong>
+				</template>
+				<template #mongoDB>
+					<strong>MongoDB</strong>
+				</template>
+				<template #dockerContainer>
+					<strong>{{ t('dockerContainer') }}</strong>
+				</template>
+				<template #lua>
+					<strong>Lua</strong>
+				</template>
+				<template #java>
+					<strong>Java</strong>
+				</template>
+			</I18nT>
 		</section>
 	</main>
 
@@ -126,9 +172,29 @@ onMounted(() => {
 		"header2": "Odnajduję się zarówno na front jak i back-endzie, jednak preferuję frontend. Przykładam dużą uwagę do responsywności i dostępności ({0}) moich projektów i staram się dopilnować najmniejszych szczegółów.",
 		"contact": "Kontakt",
 		"location": "Kraków, 31-261",
+		"technikZsl": "Technik informatyk (ZSŁ)",
+		"english": "angielski",
+		"mandarin": "mandaryński",
 		"experience": "Doświadczenie",
+		"freelancing1": "Praca na zlecenie, w tym spersonalizowany blog i CMS do zarządzania nim",
+		"freelancing2": "Montaż oraz edytowanie filmów",
+		"rmtDev1": "Praca samodzielna oraz w zespole nad systemem ATS, aplikacją do obstawiania, SAAS-ami oraz {productPage}/{cms}-y do nich",
+		"rmtDev2": "{progressiveEnhancement} istniejących projektów o responsywność, a11y i {pwa}",
+		"rmtDev3": "{performanceRefactor} istniejących projektów",
+		"rmtDev4": "{toolsScripts} ułatwiające workflow",
+		"rmtDev5": "{thirdPartyIntegration} takimi jak OAuth, Stripe, Twilio, Geolocalization",
 		"skills": "Umiejętności",
+		"skills1": "Implementowanie {pixelPerfect} designów",
+		"skills2": "Umiejętność pracy samemu i w zespole",
+		"skills3": "Zdolność kierowania projektem i dzielenia obowiązków",
+		"skills4": "Szybkie przyswajanie nowych technologii/języków programowania",
 		"technologies": "Technologie",
+		"technologies1": "{0} - jeśli to strona internetowa to mogę ją napisać",
+		"technologies2": "{0} - używam praktycznie od początku i potrafię wykorzystać większość jego funkcjonalności",
+		"technologies3": "{0} - pracuję z obydwoma od ~4 lat i znam je jak własną dłoń. Jeśli chodzi o inne frameworki to jestem gotów użyć każdego ale najbardziej intuicyjnymi znajduję te dwa",
+		"technologies4": "{0} - największe doświadczenie mam w używaniu node.js ale sprawdzałem też pozostałe 2 i nie widzę przeszkód w przerzuceniu się na nie",
+		"technologiesNote": "Poza wyżej wspomnianymi radzę sobie z bazami danych {sql}/{mongoDB} i umiem pracować z {dockerContainer}. Znam też {lua} i {java}.",
+		"dockerContainer": "docker kontenerami",
 		"footer": "Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO)."
 	},
 	"en": {
@@ -137,6 +203,9 @@ onMounted(() => {
 		"header2": "I'm comfortable both on the front and backend but I prefer frontend. I strive to make my projects responsive and accessible ({0}) and try to pay attention to the smallest details.",
 		"contact": "Contact",
 		"location": "Cracow, 31-261",
+		"technikZsl": "IT technician (ZSŁ)",
+		"english": "english",
+		"mandarin": "mandarin",
 		"experience": "Experience",
 		"footer": "I agree to the processing of personal data provided in this document for realising the recruitment process pursuant to the Personal Data Protection Act of 10 May 2018 (Journal of Laws 2018, item 1000) and in agreement with Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation)."
 	}
