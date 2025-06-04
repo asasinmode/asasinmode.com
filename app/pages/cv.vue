@@ -15,158 +15,161 @@ onMounted(() => {
 </script>
 
 <template>
-	<TheLanguageSwitch />
+	<div id="cv-wrapper">
+		<TheLanguageSwitch />
 
-	<header>
-		<div id="cv-image-container">
-			<img :src="$config.public.cvImage" crossorigin="anonymous">
-		</div>
-		<h1>Stanisław Perek<span id="header-email" /></h1>
-		<I18nT tag="p" keypath="header1">
-			<b style="font-weight: 500">{{ t('headerMe') }}</b>
-		</I18nT>
-		<I18nT tag="p" keypath="header2">
-			<strong>a11y</strong>
-		</I18nT>
-	</header>
+		<header>
+			<div id="cv-image-container">
+				<img :src="$config.public.cvImage" crossorigin="anonymous">
+			</div>
+			<h1>Stanisław Perek<span id="header-email" /></h1>
+			<I18nT tag="p" keypath="header1">
+				<b style="font-weight: 500">{{ t('headerMe') }}</b>
+			</I18nT>
+			<I18nT tag="p" keypath="header2">
+				<strong>a11y</strong>
+			</I18nT>
+		</header>
 
-	<aside>
-		<ul id="contact-list">
-			<li>
-				<span class="sr-only">strona</span>
-				<Icon size="1.25em" name="ph:globe-simple" /> asasinmode.com
-			</li>
-			<li id="contact-phone">
-				<span class="sr-only">numer telefonu</span>
-				<Icon size="1.25em" name="ph:phone-fill" />
-			</li>
-			<li>
-				<span class="sr-only">lokalizacja:</span>
-				<Icon size="1.25em" name="ph:map-pin-fill" /> {{ t('location') }}
-			</li>
-			<li>
-				<span class="sr-only">github</span>
-				<Icon size="1.25em" name="logos:github-icon" /> github.com/asasinmode
-			</li>
-		</ul>
-		<hr>
-		<p id="contact-title">
-			{{ t('technikZsl') }}
-		</p>
-		<hr>
-		<ul id="lang-list">
-			<li>{{ t('english') }} <span>C2</span></li>
-			<li>{{ t('mandarin') }} <span>A1</span></li>
-		</ul>
-	</aside>
-
-	<main>
-		<section id="section-experience">
-			<h1>{{ t('experience') }}</h1>
-			<ol>
+		<aside>
+			<ul id="contact-list">
 				<li>
-					<h2>Freelancing <span>2020-2022</span></h2>
-					<ul>
-						<li>{{ t('freelancing1') }}</li>
-						<li>{{ t('freelancing2') }}</li>
-					</ul>
+					<span class="sr-only">strona</span>
+					<Icon size="1.25em" name="ph:globe-simple" /> asasinmode.com
+				</li>
+				<li id="contact-phone">
+					<span class="sr-only">numer telefonu</span>
+					<Icon size="1.25em" name="ph:phone-fill" />
 				</li>
 				<li>
-					<h2>Junior/mid web dev @ RemoteCraftsmen <span>2022-2025</span></h2>
-					<ul>
-						<I18nT tag="li" keypath="rmtDev1">
-							<template #saas>
-								<strong>SAAS</strong>
-							</template>
-							<template #productPage>
-								<strong>product page</strong>
-							</template>
-							<template #cms>
-								<strong>CMS</strong>
-							</template>
-						</I18nT>
-						<I18nT tag="li" keypath="rmtDev2">
-							<template #progressiveEnhancement>
-								<strong>Progressive enhancement</strong>
-							</template>
-							<template #a11y>
-								<strong>a11y</strong>
-							</template>
-							<template #pwa>
-								<strong>PWA</strong>
-							</template>
-						</I18nT>
-						<I18nT tag="li" keypath="rmtDev3">
-							<template #performanceRefactor>
-								<strong>{{ t('performanceRefactor') }}</strong>
-							</template>
-						</I18nT>
-						<I18nT tag="li" keypath="rmtDev4">
-							<template #toolsScripts>
-								<strong>{{ t('toolsScripts') }}</strong>
-							</template>
-						</I18nT>
-						<I18nT tag="li" keypath="rmtDev5">
-							<template #thirdPartyIntegration>
-								<strong>{{ t('thirdPartyIntegration') }}</strong>
-							</template>
-						</I18nT>
-					</ul>
+					<span class="sr-only">lokalizacja:</span>
+					<Icon size="1.25em" name="ph:map-pin-fill" /> {{ t('location') }}
 				</li>
-			</ol>
-		</section>
+				<li>
+					<span class="sr-only">github</span>
+					<Icon size="1.25em" name="logos:github-icon" /> github.com/asasinmode
+				</li>
+			</ul>
+			<hr>
+			<p id="contact-title">
+				{{ t('technikZsl') }}
+			</p>
+			<hr>
+			<ul id="lang-list">
+				<li>{{ t('english') }} <span>C2</span></li>
+				<li>{{ t('mandarin') }} <span>A1</span></li>
+			</ul>
+		</aside>
 
-		<section id="section-skills">
-			<h1>{{ t('skills') }}</h1>
-			<ul>
-				<I18nT tag="li" keypath="skills1">
-					<template #pixelPerfect>
-						<strong>pixel perfect</strong>
+		<main>
+			<section id="section-experience">
+				<h1>{{ t('experience') }}</h1>
+				<ol>
+					<li>
+						<h2>Freelancing <span>2020-2022</span></h2>
+						<ul>
+							<li>{{ t('freelancing1') }}</li>
+							<li>{{ t('freelancing2') }}</li>
+						</ul>
+					</li>
+					<li>
+						<h2>Junior/mid web dev @ RemoteCraftsmen <span>2022-2025</span></h2>
+						<ul>
+							<I18nT tag="li" keypath="rmtDev1">
+								<template #saas>
+									<strong>SAAS</strong>
+								</template>
+								<template #productPage>
+									<strong>product page</strong>
+								</template>
+								<template #cms>
+									<strong>CMS</strong>
+								</template>
+							</I18nT>
+							<I18nT tag="li" keypath="rmtDev2">
+								<template #progressiveEnhancement>
+									<strong>Progressive enhancement</strong>
+								</template>
+								<template #a11y>
+									<strong>a11y</strong>
+								</template>
+								<template #pwa>
+									<strong>PWA</strong>
+								</template>
+							</I18nT>
+							<I18nT tag="li" keypath="rmtDev3">
+								<template #performanceRefactor>
+									<strong>{{ t('performanceRefactor') }}</strong>
+								</template>
+							</I18nT>
+							<I18nT tag="li" keypath="rmtDev4">
+								<template #toolsScripts>
+									<strong>{{ t('toolsScripts') }}</strong>
+								</template>
+							</I18nT>
+							<I18nT tag="li" keypath="rmtDev5">
+								<template #thirdPartyIntegration>
+									<strong>{{ t('thirdPartyIntegration') }}</strong>
+								</template>
+							</I18nT>
+						</ul>
+					</li>
+				</ol>
+			</section>
+
+			<section id="section-skills">
+				<h1>{{ t('skills') }}</h1>
+				<ul>
+					<I18nT tag="li" keypath="skills1">
+						<template #pixelPerfect>
+							<strong>pixel perfect</strong>
+						</template>
+					</I18nT>
+					<li>{{ t('skills2') }}</li>
+					<li>{{ t('skills3') }}</li>
+					<li>{{ t('skills4') }}</li>
+				</ul>
+			</section>
+
+			<section id="section-technologies">
+				<h1>{{ t('technologies') }}</h1>
+				<ul>
+					<I18nT tag="li" keypath="technologies1">
+						<strong>html/css/javascript</strong>
+					</I18nT>
+					<I18nT tag="li" keypath="technologies2">
+						<strong>typescript</strong>
+					</I18nT>
+					<I18nT tag="li" keypath="technologies3">
+						<strong>vue/nuxt</strong>
+					</I18nT>
+					<I18nT tag="li" keypath="technologies4">
+						<strong>node.js/deno/bun</strong>
+					</I18nT>
+				</ul>
+				<I18nT tag="p" keypath="technologiesNote">
+					<template #sql>
+						<strong>SQL</strong>
+					</template>
+					<template #mongoDB>
+						<strong>MongoDB</strong>
+					</template>
+					<template #dockerContainer>
+						<strong>{{ t('dockerContainer') }}</strong>
+					</template>
+					<template #lua>
+						<strong>Lua</strong>
+					</template>
+					<template #java>
+						<strong>Java</strong>
 					</template>
 				</I18nT>
-				<li>{{ t('skills2') }}</li>
-				<li>{{ t('skills3') }}</li>
-				<li>{{ t('skills4') }}</li>
-			</ul>
-		</section>
+			</section>
+		</main>
 
-		<section id="section-technologies">
-			<h1>{{ t('technologies') }}</h1>
-			<ul>
-				<I18nT tag="li" keypath="technologies1">
-					<strong>html/css/javascript</strong>
-				</I18nT>
-				<I18nT tag="li" keypath="technologies2">
-					<strong>typescript</strong>
-				</I18nT>
-				<I18nT tag="li" keypath="technologies3">
-					<strong>vue/nuxt</strong>
-				</I18nT>
-				<I18nT tag="li" keypath="technologies4">
-					<strong>node.js/deno/bun</strong>
-				</I18nT>
-			</ul>
-			<I18nT tag="p" keypath="technologiesNote">
-				<template #sql>
-					<strong>SQL</strong>
-				</template>
-				<template #mongoDB>
-					<strong>MongoDB</strong>
-				</template>
-				<template #dockerContainer>
-					<strong>{{ t('dockerContainer') }}</strong>
-				</template>
-				<template #lua>
-					<strong>Lua</strong>
-				</template>
-				<template #java>
-					<strong>Java</strong>
-				</template>
-			</I18nT>
-		</section>
-	</main>
-
-	<footer>{{ t('footer') }}</footer>
+		<footer><p>{{ t('footer') }}</p></footer>
+		<div />
+	</div>
 </template>
 
 <i18n lang="json">
@@ -219,41 +222,27 @@ onMounted(() => {
 </i18n>
 
 <style>
-:root {
+#cv-wrapper {
+	color: black;
+	margin-inline: auto;
+	width: 210mm;
+	height: 297mm;
+	display: grid;
+	grid-template-columns: 55mm 1fr;
+	grid-template-rows: 55mm 1fr min-content;
+	overflow: hidden;
+
 	--image-bg: #b9d4ee;
 	--header-bg: #d9eafd;
 	--aside-bg: #e8f1fb;
 	--accent: #4d7393;
-}
 
-body {
-	width: 210mm;
-	height: 297mm;
-	min-height: unset !important;
-	display: grid;
-	margin-inline: auto;
-	grid-template-columns: 55mm 1fr;
-	grid-template-rows: 55mm 1fr min-content;
-	color: black;
-	background: white;
-	z-index: 0;
-
-	&::after {
-		pointer-events: none;
-		position: absolute;
-		content: '';
-		width: calc(210mm + 4px);
-		height: calc(297mm + 4px);
-		transform: translate(-2px, -2px);
-		border: 2px solid black;
-		z-index: 10;
+	#language-switch {
+		color: var(--text-color);
+		position: fixed;
+		top: 0.25rem;
+		right: 0.75rem;
 	}
-}
-
-#language-switch {
-	position: absolute;
-	top: 0.25rem;
-	right: 0.75rem;
 }
 
 header {
@@ -386,6 +375,7 @@ main {
 	grid-column: 2 / span 1;
 	padding-inline: 3mm;
 	padding-block: 3.5mm;
+	background: white;
 
 	section + section {
 		margin-block-start: 1.25rem;
@@ -455,9 +445,14 @@ footer {
 	color: hsl(0 0% 30%);
 	padding-bottom: 2mm;
 	padding-inline: 3mm;
-	z-index: 2;
 	line-height: 1.1;
 	text-align: justify;
+	background: white;
+
+	& > * {
+		position: relative;
+		z-index: 2;
+	}
 }
 
 @media print {
