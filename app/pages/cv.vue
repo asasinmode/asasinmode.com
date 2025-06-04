@@ -56,6 +56,9 @@ onMounted(() => {
 			</p>
 			<hr>
 			<ul id="lang-list">
+				<li v-if="$i18n.locale === 'en'">
+					polish <span>native</span>
+				</li>
 				<li>{{ t('english') }} <span>C2</span></li>
 				<li>{{ t('mandarin') }} <span>A1</span></li>
 			</ul>
@@ -73,7 +76,7 @@ onMounted(() => {
 						</ul>
 					</li>
 					<li>
-						<h2>Junior/mid web dev @ RemoteCraftsmen <span>2022-2025</span></h2>
+						<h2>Mid web developer @ RemoteCraftsmen <span>2022-2025</span></h2>
 						<ul>
 							<I18nT tag="li" keypath="rmtDev1">
 								<template #saas>
@@ -95,6 +98,12 @@ onMounted(() => {
 								</template>
 								<template #pwa>
 									<strong>PWA</strong>
+								</template>
+								<template #jest>
+									<strong>jest</strong>
+								</template>
+								<template #vitest>
+									<strong>vitest</strong>
 								</template>
 							</I18nT>
 							<I18nT tag="li" keypath="rmtDev3">
@@ -185,11 +194,12 @@ onMounted(() => {
 		"experience": "Doświadczenie",
 		"freelancing1": "Praca na zlecenie, w tym spersonalizowany blog i CMS do zarządzania nim",
 		"freelancing2": "Montaż oraz edytowanie filmów",
-	"rmtDev1": "Praca samodzielna oraz w zespole nad systemem ATS, aplikacją do obstawiania, {saas}-ami oraz {productPage}/{cms}-y do nich",
-		"rmtDev2": "{progressiveEnhancement} istniejących projektów, w tym responsywność, {a11y} i {pwa}",
+		"rmtDev1": "Praca samodzielna oraz w zespole nad systemem ATS, aplikacją do obstawiania, {saas}-ami oraz {productPage}/{cms}-y do nich",
+	"rmtDev2": "{progressiveEnhancement} istniejących projektów, w tym responsywność, {a11y}, {pwa} i testy ({jest}/{vitest})",
 		"rmtDev3": "{performanceRefactor} istniejących projektów",
 		"rmtDev4": "{toolsScripts} ułatwiające workflow",
 		"rmtDev5": "{thirdPartyIntegration} takimi jak OAuth, Stripe, Twilio, Geolocalization",
+		"testSuite": "",
 		"performanceRefactor": "Poprawianie wydajności i refactor",
 		"toolsScripts": "Narzędzia/skrypty dla deweloperów",
 		"thirdPartyIntegration": "Integracja z 3rd-party serwisami",
@@ -203,7 +213,7 @@ onMounted(() => {
 		"technologies2": "{0} - używam praktycznie od początku i potrafię wykorzystać większość jego funkcjonalności",
 		"technologies3": "{0} - pracuję z obydwoma od ~4 lat i znam je jak własną dłoń. Jeśli chodzi o inne frameworki to jestem gotów użyć każdego ale najbardziej intuicyjnymi znajduję te dwa",
 		"technologies4": "{0} - najwięcej doświadczenie mam w używaniu node.js ale sprawdzałem też pozostałe 2 i nie widzę przeszkód w przerzuceniu się na nie",
-		"technologiesNote": "Poza wyżej wspomnianymi radzę sobie z bazami danych {sql}/{mongoDB} i umiem pracować z {dockerContainer}. Znam też {lua} i {java}.",
+	"technologiesNote": "Poza wyżej wspomnianymi radzę sobie z bazami danych {sql}/{mongoDB} i umiem pracować z {dockerContainer}. Znam też {lua} i {java}.",
 		"dockerContainer": "docker kontenerami",
 		"footer": "Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO)."
 	},
@@ -216,252 +226,29 @@ onMounted(() => {
 		"english": "english",
 		"mandarin": "mandarin",
 		"experience": "Experience",
+		"freelancing1": "Contract work including personalized blog and a CMS for it",
+		"freelancing2": "Video montage and editing",
+		"rmtDev1": "Individual and as part of a team work on an ATS system, betting app, {saas} applications and {productPage}/{cms} for them",
+		"rmtDev2": "{progressiveEnhancement} of existing projects including responsiveness, {a11y}, {pwa} and tests ({jest}/{vitest})",
+		"rmtDev3": "{performanceRefactor} of old projects",
+		"rmtDev4": "{toolsScripts} for easing the workflow",
+		"rmtDev5": "{thirdPartyIntegration} like OAuth, Stripe, Twilio, Geolocalization",
+		"performanceRefactor": "Improving the performance and refactoring",
+		"toolsScripts": "Developer tools and scripts",
+		"thirdPartyIntegration": "Third party integrations",
+		"skills": "Skills",
+		"skills1": "Implementing {pixelPerfect} designs",
+		"skills2": "Working both individually and on a team",
+		"skills3": "Ability to lead a project and assign tasks",
+		"skills4": "Fast learning and adoption of new technologies/programming languages",
+		"technologies": "Technologies",
+		"technologies1": "{0} - if it's a website, I can write it",
+		"technologies2": "{0} - I'm using it basically since the beginning and can take advantage of most of its functionality",
+		"technologies3": "{0} - I've worked with both for ~4 years now and know them like the back of my hand. When it comes to other frameworks I'm ok with using any but I find these 2 the most intuitive",
+		"technologies4": "{0} - I have the most experience with node.js but I've checked out the other 2 and I don't see any issues with adopting them",
+	"technologiesNote": "Besides the above I'm also familiar with {sql}/{mongoDB} databases and can use {dockerContainer}. Additionally I know {lua} and {java}.",
+		"dockerContainer": "docker containers",
 		"footer": "I agree to the processing of personal data provided in this document for realising the recruitment process pursuant to the Personal Data Protection Act of 10 May 2018 (Journal of Laws 2018, item 1000) and in agreement with Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation)."
 	}
 }
 </i18n>
-
-<style>
-#cv-wrapper {
-	color: black;
-	margin-inline: auto;
-	width: 210mm;
-	height: 297mm;
-	display: grid;
-	grid-template-columns: 55mm 1fr;
-	grid-template-rows: 55mm 1fr min-content;
-	overflow: hidden;
-
-	--image-bg: #b9d4ee;
-	--header-bg: #d9eafd;
-	--aside-bg: #e8f1fb;
-	--accent: #4d7393;
-
-	#language-switch {
-		color: var(--text-color);
-		position: fixed;
-		top: 0.25rem;
-		right: 0.75rem;
-	}
-}
-
-header {
-	position: relative !important;
-	grid-column: span 2 / span 2;
-	display: grid;
-	grid-template-columns: subgrid;
-	grid-template-rows: min-content min-content 1fr;
-	padding: 0 !important;
-	column-gap: 6mm;
-	background: var(--header-bg);
-
-	& > * {
-		grid-column: 2 / span 1;
-		z-index: 2;
-	}
-
-	&::after {
-		pointer-events: none;
-		position: absolute;
-		content: '';
-		background: var(--image-bg);
-		width: 100%;
-		height: calc(100% * sqrt(2));
-		left: 0;
-		transform: translate(calc(-50% - 2mm), -2mm) rotate(-45deg);
-		transform-origin: 50% 0;
-		z-index: 1;
-	}
-
-	h1 {
-		margin-block: 4mm 0.5rem;
-		font-size: 2rem;
-		line-height: 1;
-		font-weight: 700;
-		letter-spacing: 0.025em;
-		white-space: nowrap;
-	}
-
-	p {
-		padding-inline-end: 3mm;
-	}
-
-	p + p {
-		text-indent: 1rem;
-	}
-}
-
-#cv-image-container {
-	aspect-ratio: 1;
-	height: 100%;
-	overflow: hidden;
-	position: relative;
-	grid-column: 1 / span 1;
-	grid-row: 1 / -1;
-	clip-path: polygon(2mm 2mm, 55mm 2mm, 55mm 85%, 85% 55mm, 2mm 55mm);
-
-	img {
-		position: absolute;
-		object-fit: cover;
-	}
-}
-
-#header-email {
-	font-size: 1.25rem;
-	margin-inline-start: 0.5rem;
-	color: var(--accent);
-}
-
-aside {
-	position: relative;
-	grid-row: 2 / -1;
-	padding-inline: 2mm;
-	padding-block: 2mm;
-
-	& > * {
-		z-index: 2;
-		position: relative;
-	}
-
-	&::before {
-		pointer-events: none;
-		position: absolute;
-		content: '';
-		width: 100%;
-		height: 110%;
-		bottom: calc(-2mm - (0.625rem * 3 * 1.1));
-		left: 0;
-		background: var(--aside-bg);
-		z-index: 0;
-	}
-
-	#contact-list {
-		display: grid;
-		grid-template-columns: min-content 1fr;
-		grid-auto-rows: min-content;
-		column-gap: 0.4em;
-		row-gap: 0.25em;
-		margin-block-end: 0.5rem;
-
-		li {
-			display: grid;
-			grid-column: span 2 / span 2;
-			grid-template-columns: subgrid;
-			align-items: center;
-			white-space: nowrap;
-		}
-	}
-
-	#contact-title {
-		margin-block: 0.5rem;
-	}
-
-	#lang-list {
-		margin-block-start: 0.5rem;
-
-		li {
-			display: flex;
-			justify-content: space-between;
-
-			span {
-				font-weight: 500;
-			}
-		}
-	}
-}
-
-main {
-	width: 100%;
-	grid-column: 2 / span 1;
-	padding-inline: 3mm;
-	padding-block: 3.5mm;
-	background: white;
-
-	section + section {
-		margin-block-start: 1.25rem;
-	}
-}
-
-#section-experience ul > li,
-#section-skills li {
-	list-style-type: disc;
-	margin-left: 1.125rem;
-}
-
-#section-experience ul > li,
-#section-skills li,
-#section-technologies li {
-	line-height: 1.4;
-}
-
-#section-experience ul > li + li,
-#section-skills li + li,
-#section-technologies li + li {
-	margin-block-start: 0.2rem;
-}
-
-h1 {
-	font-size: 1.375rem;
-	font-weight: 700;
-	margin-block-end: 0.2rem;
-}
-
-#section-experience {
-	h1 {
-		font-size: 0.875rem;
-		font-weight: 700;
-		text-transform: uppercase;
-		line-height: 1;
-		letter-spacing: 0.025em;
-		color: var(--accent);
-		margin-block-end: 0.125rem;
-	}
-
-	h2 {
-		font-size: 1.375rem;
-		font-weight: 700;
-		margin-block-end: 0.1rem;
-
-		span {
-			font-weight: 400;
-			color: var(--accent);
-		}
-	}
-
-	ol > li + li {
-		margin-top: 0.25rem;
-	}
-}
-
-#section-technologies {
-	& > p:last-child {
-		margin-block-start: 1rem;
-	}
-}
-
-footer {
-	grid-column: 1 / span 2;
-	font-size: 0.625rem;
-	color: hsl(0 0% 30%);
-	padding-bottom: 2mm;
-	padding-inline: 3mm;
-	line-height: 1.1;
-	text-align: justify;
-	background: white;
-
-	& > * {
-		position: relative;
-		z-index: 2;
-	}
-}
-
-@media print {
-	body::after {
-		display: none;
-	}
-
-	#language-switch {
-		display: none !important;
-	}
-}
-</style>
