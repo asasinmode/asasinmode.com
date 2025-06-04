@@ -31,7 +31,7 @@ onMounted(() => {
 	</header>
 
 	<aside>
-		<ul>
+		<ul id="contact-list">
 			<li>
 				<span class="sr-only">strona</span>
 				<Icon size="1.25em" name="ph:globe-simple" /> asasinmode.com
@@ -50,10 +50,14 @@ onMounted(() => {
 			</li>
 		</ul>
 		<hr>
-		<p>{{ t('technikZsl') }}</p>
+		<p id="contact-title">
+			{{ t('technikZsl') }}
+		</p>
 		<hr>
-		<p>{{ t('english') }} <span>c2</span></p>
-		<p>{{ t('mandarin') }} <span>wip</span></p>
+		<ul id="lang-list">
+			<li>{{ t('english') }} <span>C2</span></li>
+			<li>{{ t('mandarin') }} <span>A1</span></li>
+		</ul>
 	</aside>
 
 	<main>
@@ -169,7 +173,7 @@ onMounted(() => {
 		"header1": "{0}. Od 5 lat zajmuję się tworzeniem praktycznych stron internetowych i aplikacji webowych.",
 		"header2": "Odnajduję się zarówno na front jak i back-endzie, jednak preferuję frontend. Przykładam dużą uwagę do responsywności i dostępności ({0}) moich projektów i staram się dopilnować najmniejszych szczegółów.",
 		"location": "Kraków, 31-261",
-		"technikZsl": "Technik informatyk (ZSŁ)",
+		"technikZsl": "technik informatyk (ZSŁ)",
 		"english": "angielski",
 		"mandarin": "mandaryński",
 		"experience": "Doświadczenie",
@@ -213,9 +217,10 @@ onMounted(() => {
 
 <style>
 :root {
-	--image-bg: #5f7161;
-	--header-bg: #6d8b74;
-	--aside-bg: #efead8;
+	--image-bg: #b9d4ee;
+	--header-bg: #d9eafd;
+	--aside-bg: #e8f1fb;
+	--accent: #4d7393;
 }
 
 body {
@@ -311,7 +316,7 @@ header {
 #header-email {
 	font-size: 1.25rem;
 	margin-inline-start: 0.5rem;
-	color: hsl(0 0% 30%);
+	color: var(--accent);
 }
 
 aside {
@@ -337,12 +342,13 @@ aside {
 		z-index: 0;
 	}
 
-	ul {
+	#contact-list {
 		display: grid;
 		grid-template-columns: min-content 1fr;
 		grid-auto-rows: min-content;
 		column-gap: 0.4em;
 		row-gap: 0.25em;
+		margin-block-end: 0.5rem;
 
 		li {
 			display: grid;
@@ -350,6 +356,23 @@ aside {
 			grid-template-columns: subgrid;
 			align-items: center;
 			white-space: nowrap;
+		}
+	}
+
+	#contact-title {
+		margin-block: 0.5rem;
+	}
+
+	#lang-list {
+		margin-block-start: 0.5rem;
+
+		li {
+			display: flex;
+			justify-content: space-between;
+
+			span {
+				font-weight: 500;
+			}
 		}
 	}
 }
@@ -396,7 +419,7 @@ h1 {
 		text-transform: uppercase;
 		line-height: 1;
 		letter-spacing: 0.025em;
-		color: hsl(0 0% 35%);
+		color: var(--accent);
 		margin-block-end: 0.125rem;
 	}
 
@@ -407,7 +430,7 @@ h1 {
 
 		span {
 			font-weight: 400;
-			color: var(--image-bg);
+			color: var(--accent);
 		}
 	}
 
