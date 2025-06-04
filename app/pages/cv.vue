@@ -15,19 +15,23 @@ onMounted(() => {
 </script>
 
 <template>
+	<TheLanguageSwitch />
+
 	<header>
 		<div id="cv-image-container">
 			<img :src="$config.public.cvImage" crossorigin="anonymous">
 		</div>
 		<h1>Stanisław Perek</h1>
-		<p>{{ t('header1') }}</p>
+		<I18nT tag="p" keypath="header1">
+			<b style="font-weight: 500">{{ t('headerMe') }}</b>
+		</I18nT>
 		<I18nT tag="p" keypath="header2">
 			<strong>a11y</strong>
 		</I18nT>
 	</header>
 
 	<aside>
-		<h3>{{ t('contact') }}</h3>
+		<h1>{{ t('contact') }}</h1>
 		<ul>
 			<li id="contact-email">
 				<span class="sr-only">email</span>
@@ -50,10 +54,65 @@ onMounted(() => {
 				<Icon size="1.5em" name="ph:map-pin-fill" /> {{ t('location') }}
 			</li>
 		</ul>
+		<hr>
+		<p>technik informatyk (ZSŁ)</p>
+		<hr>
+		<p>angielski <span>c2</span></p>
+		<p>mandaryński <span>wip</span></p>
 	</aside>
 
 	<main>
-		<h3>{{ t('experience') }}</h3>
+		<section>
+			<h1>{{ t('experience') }}</h1>
+			<ol>
+				<li>
+					<h2>Freelancing 2020-2022</h2>
+					<ul>
+						<li>Praca na zlecenie, w tym spersonalizowany blog i CMS do zarządzania nim</li>
+						<li>Montaż oraz edytowanie filmów</li>
+					</ul>
+				</li>
+				<li>
+					<h2>JUNIOR/MID DEVELOPER @ RemoteCraftsmen 2022-2025</h2>
+					<ul>
+						<li>
+							Praca samodzielna oraz w zespole nad systemem ATS, aplikacją do
+							obstawiania, SAAS-ami oraz <strong>product page</strong> i <strong>CMS</strong>-ami do nich
+						</li>
+						<li>
+							<strong>Progressive enhancement</strong> istniejących projektów o responsywność, a11y i <strong>PWA</strong>
+						</li>
+						<li><strong>Poprawianie wydajności i refactor</strong> istniejących projektów</li>
+						<li><strong>Narzędzia/skrypty dla deweloperów</strong> ułatwiające workflow</li>
+						<li><strong>Integracja z 3rd-party serwisami</strong> takimi jak OAuth, Stripe, Twilio, Geolocalization</li>
+					</ul>
+				</li>
+			</ol>
+		</section>
+
+		<section>
+			<h1>{{ t('skills') }}</h1>
+			<ul>
+				<li>Implementowanie <strong>pixel perfect</strong> designów</li>
+				<li>Umiejętność pracy samemu i w zespole</li>
+				<li>Zdolność kierowania projektem i dzielenia obowiązków</li>
+				<li>Szybkie przyswajanie nowych technologii/języków programowania</li>
+			</ul>
+		</section>
+
+		<section>
+			<h1>{{ t('technologies') }}</h1>
+			<ul>
+				<li><strong>html/css/javascript</strong> - jeśli to strona internetowa to mogę ją napisać</li>
+				<li><strong>typescript</strong> - używam praktycznie od początku i potrafię wykorzystać większość jego funkcjonalności</li>
+				<li><strong>vue/nuxt</strong> - pracuję z obydwoma od ~4 lat i znam je jak własną dłoń. Jeśli chodzi o inne frameworki to jestem gotów użyć każdego ale najbardziej intuicyjnymi znajduję te dwa</li>
+				<li><strong>node.js/deno/bun</strong> - największe doświadczenie mam w używaniu node.js ale sprawdzałem też pozostałe 2 i nie widzę przeszkód w przerzuceniu się na nie</li>
+			</ul>
+			<p>
+				Poza wyżej wspomnianymi radzę sobie z bazami danych <strong>SQL</strong>/<strong>MongoDB</strong> i umiem
+				pracować z <strong>docker kontenerami</strong>. Znam też <strong>Lua</strong> i <strong>Java</strong>.
+			</p>
+		</section>
 	</main>
 
 	<footer>{{ t('footer') }}</footer>
@@ -62,16 +121,20 @@ onMounted(() => {
 <i18n lang="json">
 {
 	"pl": {
-		"header1": "Technik informatyk i fullstack web developer. Od 4 lat zajmuję się tworzeniem praktycznych stron internetowych i aplikacji webowych.",
-		"header2": "Odnajduję się zarówno we front jak i back-endzie, jednak preferuję frontend. Przykładam dużą uwagę do responsywności i dostępności ({0}) moich projektów.",
+		"headerMe": "Technik informatyk, programista, full stack web developer",
+		"header1": "{0}. Od 5 lat zajmuję się tworzeniem praktycznych stron internetowych i aplikacji webowych.",
+		"header2": "Odnajduję się zarówno na front jak i back-endzie, jednak preferuję frontend. Przykładam dużą uwagę do responsywności i dostępności ({0}) moich projektów i staram się dopilnować najmniejszych szczegółów.",
 		"contact": "Kontakt",
 		"location": "Kraków, 31-261",
 		"experience": "Doświadczenie",
+		"skills": "Umiejętności",
+		"technologies": "Technologie",
 		"footer": "Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO)."
 	},
 	"en": {
-		"header1": "Technik informatyk i fullstack web developer. Od 4 lat zajmuję się tworzeniem praktycznych stron internetowych i aplikacji webowych.",
-		"header2": "Odnajduję się zarówno we front jak i back-endzie, jednak preferuję frontend. Przykładam dużą uwagę do responsywności i dostępności ({0}) moich projektów.",
+		"headerMe": "IT technician, programmer, fullstack web developer",
+		"header1": "{0}. I've been working on practical websites and webapps for 5 years.",
+		"header2": "I'm comfortable both on the front and backend but I prefer frontend. I strive to make my projects responsive and accessible ({0}) and try to pay attention to the smallest details.",
 		"contact": "Contact",
 		"location": "Cracow, 31-261",
 		"experience": "Experience",
@@ -110,6 +173,12 @@ body {
 	}
 }
 
+#language-switch {
+	position: absolute;
+	top: 0.25rem;
+	right: 0.75rem;
+}
+
 header {
 	position: relative !important;
 	grid-column: span 2 / span 2;
@@ -137,6 +206,18 @@ header {
 		transform-origin: 50% 0;
 		z-index: 1;
 	}
+
+	h1 {
+		margin-block: 4mm 0.5rem;
+		font-size: 2rem;
+		line-height: 1;
+		font-weight: 700;
+		letter-spacing: 0.025em;
+	}
+
+	p + p {
+		text-indent: 1rem;
+	}
 }
 
 #cv-image-container {
@@ -157,6 +238,7 @@ header {
 aside {
 	position: relative;
 	grid-row: 2 / -1;
+	padding-inline: 2mm;
 
 	& > * {
 		z-index: 2;
@@ -170,6 +252,7 @@ aside {
 		width: 100%;
 		height: 120%;
 		top: -10mm;
+		left: 0;
 		background: var(--aside-bg);
 		z-index: 0;
 	}
