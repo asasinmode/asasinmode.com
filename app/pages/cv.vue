@@ -163,6 +163,9 @@ onMounted(() => {
 					<template #mongoDB>
 						<strong>MongoDB</strong>
 					</template>
+					<template #orm>
+						<strong>ORM</strong>
+					</template>
 					<template #dockerContainer>
 						<strong>{{ t('dockerContainer') }}</strong>
 					</template>
@@ -213,7 +216,7 @@ onMounted(() => {
 		"technologies2": "{0} - używam praktycznie od początku i potrafię wykorzystać większość jego funkcjonalności",
 		"technologies3": "{0} - pracuję z obydwoma od ~4 lat i znam je jak własną dłoń. Jeśli chodzi o inne frameworki to jestem gotów użyć każdego ale najbardziej intuicyjnymi znajduję te dwa",
 		"technologies4": "{0} - najwięcej doświadczenie mam w używaniu node.js ale sprawdzałem też pozostałe 2 i nie widzę przeszkód w przerzuceniu się na nie",
-	"technologiesNote": "Poza wyżej wspomnianymi radzę sobie z bazami danych {sql}/{mongoDB} i umiem pracować z {dockerContainer}. Znam też {lua} i {java}.",
+	"technologiesNote": "Poza wyżej wspomnianymi radzę sobie z bazami danych {sql}/{mongoDB} (przez {orm} też) i umiem pracować z {dockerContainer}. Dodatkowo znam {lua} i {java}.",
 		"dockerContainer": "docker kontenerami",
 		"footer": "Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO)."
 	},
@@ -246,7 +249,7 @@ onMounted(() => {
 		"technologies2": "{0} - I'm using it basically since the beginning and can take advantage of most of its functionality",
 		"technologies3": "{0} - I've worked with both for ~4 years now and know them like the back of my hand. When it comes to other frameworks I'm ok with using any but I find these 2 the most intuitive",
 		"technologies4": "{0} - I have the most experience with node.js but I've checked out the other 2 and I don't see any issues with adopting them",
-	"technologiesNote": "Besides the above I'm also familiar with {sql}/{mongoDB} databases and can use {dockerContainer}. Additionally I know {lua} and {java}.",
+	"technologiesNote": "Besides the above I'm also familiar with {sql}/{mongoDB} (through an {orm} too) databases and can use {dockerContainer}. Additionally I know {lua} and {java}.",
 		"dockerContainer": "docker containers",
 		"footer": "I agree to the processing of personal data provided in this document for realising the recruitment process pursuant to the Personal Data Protection Act of 10 May 2018 (Journal of Laws 2018, item 1000) and in agreement with Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation)."
 	}
