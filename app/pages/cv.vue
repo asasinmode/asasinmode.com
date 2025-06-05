@@ -1,6 +1,16 @@
 <script setup lang="ts">
-useHead({ link: [{ rel: 'stylesheet', href: '/cv.css' }] });
 definePageMeta({ layout: 'empty' });
+
+let linkElement: HTMLLinkElement;
+
+onMounted(() => {
+	linkElement = Object.assign(document.createElement('link'), { rel: 'stylesheet', href: '/cv.css' });
+	document.head.appendChild(linkElement);
+});
+
+onBeforeUnmount(() => {
+	linkElement.remove();
+});
 
 const { t } = useI18n({ useScope: 'local' });
 
