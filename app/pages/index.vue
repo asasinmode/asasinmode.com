@@ -1,8 +1,45 @@
+<script setup lang="ts">
+const canvas = useTemplateRef('nameCanvas');
+
+const rem = 16;
+function clamp(min: number, value: number, max: number) {
+	return value < min ? min : value > max ? max : value;
+}
+
+onMounted(() => {
+	const context = canvas.value!.getContext('2d')!;
+	const dropCanvas = document.createElement('canvas');
+	const dropContext = dropCanvas.getContext('2d')!;
+	const textCanvas = document.createElement('canvas');
+
+	const dpi = window.devicePixelRatio;
+
+	dropCanvas.height = textCanvas.height = canvas.value!.height = canvas.value!.offsetHeight * dpi;
+	dropCanvas.width = textCanvas.width = canvas.value!.width = canvas.value!.offsetWidth * dpi;
+
+	const fontSize = Math.round(clamp(2.5 * rem, rem + 7.5 * (window.innerWidth / 100), 10 * rem));
+	const textContext = Object.assign(textCanvas.getContext('2d')!, {
+		fillStyle: 'white',
+		textAlign: 'center',
+		textBaseline: 'middle',
+		font: `700 ${fontSize * dpi}px Atkinson Hyperlegible Next`,
+	} satisfies Partial<CanvasRenderingContext2D>);
+	textContext.fillText('Stanisław Perek', textCanvas.width / 2, textCanvas.height / 2);
+
+	context.clearRect(0, 0, canvas.value!.width, canvas.value!.height);
+	context.drawImage(textCanvas, 0, 0);
+	context.globalCompositeOperation = 'source-in';
+});
+</script>
+
 <template>
 	<main>
 		<span id="wip">{{ $t('index.wip') }}</span>
 		<h1 id="name-header">
-			Stanisław Perek
+			<span id="name-header-text">
+				Stanisław Perek
+				<canvas id="name-header-canvas" ref="nameCanvas" aria-hidden="true" />
+			</span>
 		</h1>
 		<ul id="me-tokens">
 			<li>web developer</li>

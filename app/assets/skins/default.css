@@ -51,6 +51,20 @@ main {
 	line-height: 1;
 }
 
+#name-header-text {
+	display: inline-block;
+	position: relative;
+	color: transparent;
+}
+
+#name-header-canvas {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	pointer-events: none;
+}
+
 #me-tokens {
 	display: flex;
 	justify-content: center;
