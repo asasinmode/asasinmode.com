@@ -45,19 +45,19 @@ onMounted(() => {
 			<ul id="contact-list">
 				<li>
 					<span class="sr-only">strona</span>
-					<Icon size="1.25em" name="ph:globe-simple" /> asasinmode.com
+					<Icon size="1.25em" mode="svg" name="ph:globe-simple" /> asasinmode.com
 				</li>
 				<li id="contact-phone">
 					<span class="sr-only">numer telefonu</span>
-					<Icon size="1.25em" name="ph:phone-fill" />
+					<Icon size="1.25em" mode="svg" name="ph:phone-fill" />
 				</li>
 				<li>
 					<span class="sr-only">lokalizacja:</span>
-					<Icon size="1.25em" name="ph:map-pin-fill" /> {{ t('location') }}
+					<Icon size="1.25em" mode="svg" name="ph:map-pin-fill" /> {{ t('location') }}
 				</li>
 				<li>
 					<span class="sr-only">github</span>
-					<Icon size="1.25em" name="logos:github-icon" /> github.com/asasinmode
+					<Icon size="1.25em" mode="svg" name="logos:github-icon" /> github.com/asasinmode
 				</li>
 			</ul>
 			<hr>
@@ -129,6 +129,17 @@ onMounted(() => {
 							<I18nT tag="li" keypath="rmtDev5">
 								<template #thirdPartyIntegration>
 									<strong>{{ t('thirdPartyIntegration') }}</strong>
+								</template>
+							</I18nT>
+							<I18nT tag="li" keypath="rmtDev6">
+								<template #fullstack>
+									<strong>Fullstack</strong>
+								</template>
+								<template #restApi>
+									<strong>REST api</strong>
+								</template>
+								<template #multitenancy>
+									<strong>{{ t('multitenancy') }}</strong>
 								</template>
 							</I18nT>
 						</ul>
@@ -212,7 +223,8 @@ onMounted(() => {
 		"rmtDev3": "{performanceRefactor} istniejących projektów",
 		"rmtDev4": "{toolsScripts} ułatwiające workflow",
 		"rmtDev5": "{thirdPartyIntegration} takimi jak OAuth, Stripe, Twilio, Geolocalization",
-		"testSuite": "",
+		"rmtDev6": "{fullstack} w tym {restApi} i zarządzanie {multitenancy} bazą danych",
+		"multitenancy": "multitenant",
 		"performanceRefactor": "Poprawianie wydajności i refactor",
 		"toolsScripts": "Narzędzia/skrypty dla deweloperów",
 		"thirdPartyIntegration": "Integracja z 3rd-party serwisami",
@@ -226,7 +238,7 @@ onMounted(() => {
 		"technologies2": "{0} - używam praktycznie od początku i potrafię wykorzystać większość jego funkcjonalności",
 		"technologies3": "{0} - pracuję z obydwoma od ~4 lat i znam je jak własną dłoń. Jeśli chodzi o inne frameworki to jestem gotów użyć każdego ale najbardziej intuicyjnymi znajduję te dwa",
 		"technologies4": "{0} - najwięcej doświadczenie mam w używaniu node.js ale sprawdzałem też pozostałe 2 i nie widzę przeszkód w przerzuceniu się na nie",
-	"technologiesNote": "Poza wyżej wspomnianymi radzę sobie z bazami danych {sql}/{mongoDB} (przez {orm} też) i umiem pracować z {dockerContainer}. Dodatkowo znam {lua} i {java}.",
+		"technologiesNote": "Poza wyżej wspomnianymi radzę sobie z bazami danych {sql}/{mongoDB} (przez {orm} też) i umiem pracować z {dockerContainer}. Dodatkowo znam {lua} i {java}.",
 		"dockerContainer": "docker kontenerami",
 		"footer": "Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO)."
 	},
@@ -246,6 +258,8 @@ onMounted(() => {
 		"rmtDev3": "{performanceRefactor} of old projects",
 		"rmtDev4": "{toolsScripts} for easing the workflow",
 		"rmtDev5": "{thirdPartyIntegration} like OAuth, Stripe, Twilio, Geolocalization",
+		"rmtDev6": "{fullstack} including {restApi} and database management with {multitenancy}",
+		"multitenancy": "multitenancy",
 		"performanceRefactor": "Improving the performance and refactoring",
 		"toolsScripts": "Developer tools and scripts",
 		"thirdPartyIntegration": "Third party integrations",
