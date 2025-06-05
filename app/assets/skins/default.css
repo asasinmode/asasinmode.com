@@ -54,7 +54,6 @@ main {
 #name-header-text {
 	display: inline-block;
 	position: relative;
-	color: transparent;
 }
 
 #name-header-canvas {
@@ -67,10 +66,11 @@ main {
 
 #me-tokens {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	gap: 2.5rem;
-	font-size: 2rem;
+	column-gap: 2.5rem;
+	font-size: var(--fluid-20-32);
 	padding-block-end: 0.5rem;
 	line-height: 1;
 	color: light-dark(#44403c, #d4d4d4);
@@ -85,7 +85,6 @@ main {
 		pointer-events: none;
 		position: absolute;
 		top: 50%;
-		content: '\2022';
 	}
 
 	:nth-child(2)::before {
@@ -96,5 +95,14 @@ main {
 	:nth-child(2)::after {
 		right: -1.25rem;
 		transform: translate(50%, -50%);
+	}
+
+	@media (min-width: 540px) {
+		flex-direction: row;
+
+		:nth-child(2)::before,
+		:nth-child(2)::after {
+			content: '\2022';
+		}
 	}
 }
