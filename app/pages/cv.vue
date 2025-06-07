@@ -3,24 +3,22 @@ definePageMeta({ layout: 'empty' });
 
 let linkElement: HTMLLinkElement;
 
-onMounted(() => {
-	linkElement = Object.assign(document.createElement('link'), { rel: 'stylesheet', href: '/cv.css' });
-	document.head.appendChild(linkElement);
-});
-
-onBeforeUnmount(() => {
-	linkElement.remove();
-});
-
 const { t } = useI18n({ useScope: 'local' });
 
 onMounted(() => {
+	linkElement = Object.assign(document.createElement('link'), { rel: 'stylesheet', href: '/cv.css' });
+	document.head.appendChild(linkElement);
+
 	document.getElementById('header-email')?.append(
 		[115, 116, 97, 110, 105, 115, 108, 97, 119, 46, 112, 101, 114, 101, 107, 46, 117, 105, 64, 103, 109, 97, 105, 108, 46, 99, 111, 109].map(code => String.fromCharCode(code)).join(''),
 	);
 	document.getElementById('contact-phone')?.append(
 		[54, 54, 55, 32, 49, 53, 56, 32, 55, 55, 50].map(code => String.fromCharCode(code)).join(''),
 	);
+});
+
+onBeforeUnmount(() => {
+	linkElement.remove();
 });
 </script>
 
@@ -219,7 +217,7 @@ onMounted(() => {
 		"freelancing1": "Praca na zlecenie, w tym spersonalizowany blog i CMS do zarządzania nim",
 		"freelancing2": "Montaż oraz edytowanie filmów",
 		"rmtDev1": "Praca samodzielna oraz w zespole nad systemem ATS, aplikacją do obstawiania, {saas}-ami oraz {productPage}/{cms}-y do nich",
-	"rmtDev2": "{progressiveEnhancement} istniejących projektów, w tym responsywność, {a11y}, {pwa} i testy ({jest}/{vitest})",
+		"rmtDev2": "{progressiveEnhancement} istniejących projektów, w tym responsywność, {a11y}, {pwa} i testy ({jest}/{vitest})",
 		"rmtDev3": "{performanceRefactor} istniejących projektów",
 		"rmtDev4": "{toolsScripts} ułatwiające workflow",
 		"rmtDev5": "{thirdPartyIntegration} takimi jak OAuth, Stripe, Twilio, Geolocalization",
@@ -273,7 +271,7 @@ onMounted(() => {
 		"technologies2": "{0} - I'm using it basically since the beginning and can take advantage of most of its functionality",
 		"technologies3": "{0} - I've worked with both for ~4 years now and know them like the back of my hand. When it comes to other frameworks I'm ok with using any but I find these 2 the most intuitive",
 		"technologies4": "{0} - I have the most experience with node.js but I've checked out the other 2 and I don't see any issues with adopting them",
-	"technologiesNote": "Besides the above I'm also familiar with {sql}/{mongoDB} (through an {orm} too) databases and can use {dockerContainer}. Additionally I know {lua} and {java}.",
+		"technologiesNote": "Besides the above I'm also familiar with {sql}/{mongoDB} (through an {orm} too) databases and can use {dockerContainer}. Additionally I know {lua} and {java}.",
 		"dockerContainer": "docker containers",
 		"footer": "I agree to the processing of personal data provided in this document for realising the recruitment process pursuant to the Personal Data Protection Act of 10 May 2018 (Journal of Laws 2018, item 1000) and in agreement with Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation)."
 	}
