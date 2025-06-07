@@ -49,6 +49,7 @@ main {
 	font-size: var(--fluid-40-160);
 	font-weight: 700;
 	line-height: 1;
+	cursor: default;
 }
 
 #name-header-text {

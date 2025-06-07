@@ -1,11 +1,41 @@
+<script setup lang="ts">
+const localePath = useLocalePath();
+</script>
+
 <template>
 	<header>
+		<menu>
+			<li>
+				<NuxtLink :to="localePath('index')">
+					home
+				</NuxtLink>
+			</li>
+			<li>
+				<NuxtLink :to="localePath('blog')">
+					blog
+				</NuxtLink>
+			</li>
+			<li>
+				<NuxtLink :to="localePath('cv')">
+					cv
+				</NuxtLink>
+			</li>
+		</menu>
 		<TheLanguageSwitch />
 	</header>
 	<slot />
 </template>
 
 <style>
+menu {
+	display: flex;
+	column-gap: 0.5rem;
+
+	.router-link-exact-active {
+		background: #4f4f4f;
+	}
+}
+
 header {
 	position: fixed;
 	top: 0;
