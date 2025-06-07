@@ -1,52 +1,7 @@
 <script setup lang="ts">
-const rem = 16;
-function clamp(min: number, value: number, max: number) {
-	return value < min ? min : value > max ? max : value;
-}
+import defaultSkin from '~/composables/skins/index/default';
 
-onMounted(() => {
-	const canvas = document.getElementById('name-header-canvas') as HTMLCanvasElement;
-	const context = canvas.getContext('2d')!;
-	const dropCanvas = document.createElement('canvas');
-	const dropContext = dropCanvas.getContext('2d')!;
-	const textCanvas = document.createElement('canvas');
-
-	const dpi = window.devicePixelRatio;
-
-	dropCanvas.height = textCanvas.height = canvas.height = canvas.offsetHeight * dpi;
-	dropCanvas.width = textCanvas.width = canvas.width = canvas.offsetWidth * dpi;
-
-	updateTextContext();
-
-	document.getElementById('name-header-text')!.style = 'color: transparent;';
-	context.clearRect(0, 0, canvas.width, canvas.height);
-	context.drawImage(textCanvas, 0, canvas.height * 0.08);
-	context.globalCompositeOperation = 'source-in';
-
-	window.addEventListener('resize', handleResize);
-
-	function handleResize() {
-		dropCanvas.height = textCanvas.height = canvas.height = canvas.offsetHeight * dpi;
-		dropCanvas.width = textCanvas.width = canvas.width = canvas.offsetWidth * dpi;
-
-		updateTextContext();
-
-		context.clearRect(0, 0, canvas.width, canvas.height);
-		context.drawImage(textCanvas, 0, canvas.height * 0.08);
-	}
-
-	function updateTextContext() {
-		const fontSize = Math.round(clamp(2.5 * rem, rem + 7.5 * (window.innerWidth / 100), 10 * rem));
-		const textContext = Object.assign(textCanvas.getContext('2d')!, {
-			fillStyle: 'white',
-			textAlign: 'center',
-			textBaseline: 'middle',
-			font: `700 ${fontSize * dpi}px Atkinson Hyperlegible Next`,
-		} satisfies Partial<CanvasRenderingContext2D>);
-		textContext.clearRect(0, 0, textCanvas.width, textCanvas.height);
-		textContext.fillText('Stanisław Perek', textCanvas.width / 2, textCanvas.height / 2);
-	}
-});
+useSkin(defaultSkin);
 </script>
 
 <template>
@@ -55,7 +10,6 @@ onMounted(() => {
 		<h1 id="name-header">
 			<span id="name-header-text">
 				Stanisław Perek
-				<canvas id="name-header-canvas" ref="nameCanvas" aria-hidden="true" />
 			</span>
 		</h1>
 		<ul id="me-tokens">

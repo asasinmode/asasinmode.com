@@ -1,6 +1,7 @@
 :root {
 	color-scheme: dark light;
 	--text-color: light-dark(black, white);
+	--max-width: 120rem;
 }
 
 body {

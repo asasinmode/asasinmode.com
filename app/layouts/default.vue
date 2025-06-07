@@ -4,6 +4,7 @@ const localePath = useLocalePath();
 
 <template>
 	<header>
+		<TheLanguageSwitch />
 		<menu>
 			<li>
 				<NuxtLink :to="localePath('index')">
@@ -21,7 +22,7 @@ const localePath = useLocalePath();
 				</NuxtLink>
 			</li>
 		</menu>
-		<TheLanguageSwitch />
+		<TheSkinSwitch />
 	</header>
 	<slot />
 </template>
