@@ -7,6 +7,7 @@ export default defineNuxtConfig({
 	},
 	experimental: {
 		typedPages: true,
+		watcher: 'parcel',
 	},
 	features: {
 		inlineStyles: false,
