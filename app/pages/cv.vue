@@ -32,10 +32,14 @@ onBeforeUnmount(() => {
 			</div>
 			<h1>Stanisław Perek<span id="header-email" /></h1>
 			<I18nT tag="p" keypath="header1">
-				<b style="font-weight: 500">{{ t('headerMe') }}</b>
+				<template #me>
+					<b style="font-weight: 500">{{ t('headerMe') }}</b>
+				</template>
 			</I18nT>
 			<I18nT tag="p" keypath="header2">
-				<strong>a11y</strong>
+				<template #a11y>
+					<strong>a11y</strong>
+				</template>
 			</I18nT>
 		</header>
 
@@ -163,16 +167,24 @@ onBeforeUnmount(() => {
 				<h1>{{ t('technologies') }}</h1>
 				<ul>
 					<I18nT tag="li" keypath="technologies1">
-						<strong>html/css/javascript</strong>
+						<template #point>
+							<strong>html/css/javascript</strong>
+						</template>
 					</I18nT>
 					<I18nT tag="li" keypath="technologies2">
-						<strong>typescript</strong>
+						<template #point>
+							<strong>typescript</strong>
+						</template>
 					</I18nT>
 					<I18nT tag="li" keypath="technologies3">
-						<strong>vue/nuxt</strong>
+						<template #point>
+							<strong>vue/nuxt</strong>
+						</template>
 					</I18nT>
 					<I18nT tag="li" keypath="technologies4">
-						<strong>node.js/deno/bun</strong>
+						<template #point>
+							<strong>node.js/deno/bun</strong>
+						</template>
 					</I18nT>
 				</ul>
 				<I18nT tag="p" keypath="technologiesNote">
@@ -199,7 +211,6 @@ onBeforeUnmount(() => {
 		</main>
 
 		<footer><p>{{ t('footer') }}</p></footer>
-		<div />
 	</div>
 </template>
 
@@ -207,8 +218,8 @@ onBeforeUnmount(() => {
 {
 	"pl": {
 		"headerMe": "Technik informatyk, programista, full stack web developer",
-		"header1": "{0}. Od 5 lat zajmuję się tworzeniem praktycznych stron internetowych i aplikacji webowych.",
-		"header2": "Odnajduję się zarówno na front jak i back-endzie, jednak preferuję frontend. Przykładam dużą uwagę do responsywności i dostępności ({0}) moich projektów i staram się dopilnować najmniejszych szczegółów.",
+		"header1": "{me}. Od 5 lat zajmuję się tworzeniem praktycznych stron internetowych i aplikacji webowych.",
+		"header2": "Odnajduję się zarówno na front jak i back-endzie, jednak preferuję frontend. Przykładam dużą uwagę do responsywności i dostępności ({a11y}) moich projektów i staram się dopilnować najmniejszych szczegółów.",
 		"location": "Kraków, 31-261",
 		"technikZsl": "technik informatyk (ZSŁ)",
 		"english": "angielski",
@@ -232,18 +243,18 @@ onBeforeUnmount(() => {
 		"skills3": "Zdolność kierowania projektem i dzielenia obowiązków",
 		"skills4": "Szybkie przyswajanie nowych technologii/języków programowania",
 		"technologies": "Technologie",
-		"technologies1": "{0} - jeśli to strona internetowa to mogę ją napisać",
-		"technologies2": "{0} - używam praktycznie od początku i potrafię wykorzystać większość jego funkcjonalności",
-		"technologies3": "{0} - pracuję z obydwoma od ~4 lat i znam je jak własną dłoń. Jeśli chodzi o inne frameworki to jestem gotów użyć każdego ale najbardziej intuicyjnymi znajduję te dwa",
-		"technologies4": "{0} - najwięcej doświadczenie mam w używaniu node.js ale sprawdzałem też pozostałe 2 i nie widzę przeszkód w przerzuceniu się na nie",
+		"technologies1": "{point} - jeśli to strona internetowa to mogę ją napisać",
+		"technologies2": "{point} - używam praktycznie od początku i potrafię wykorzystać większość jego funkcjonalności",
+		"technologies3": "{point} - pracuję z obydwoma od ~4 lat i znam je jak własną dłoń. Jeśli chodzi o inne frameworki to jestem gotów użyć każdego ale najbardziej intuicyjnymi znajduję te dwa",
+		"technologies4": "{point} - najwięcej doświadczenie mam w używaniu node.js ale sprawdzałem też pozostałe 2 i nie widzę przeszkód w przerzuceniu się na nie",
 		"technologiesNote": "Poza wyżej wspomnianymi radzę sobie z bazami danych {sql}/{mongoDB} (przez {orm} też) i umiem pracować z {dockerContainer}. Dodatkowo znam {lua} i {java}.",
 		"dockerContainer": "docker kontenerami",
 		"footer": "Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO)."
 	},
 	"en": {
 		"headerMe": "IT technician, programmer, fullstack web developer",
-		"header1": "{0}. I've been working on practical websites and webapps for 5 years.",
-		"header2": "I'm comfortable both on the front and backend but I prefer frontend. I strive to make my projects responsive and accessible ({0}) and try to pay attention to the smallest details.",
+		"header1": "{me}. I've been working on practical websites and webapps for 5 years.",
+		"header2": "I'm comfortable both on the front and backend but I prefer frontend. I strive to make my projects responsive and accessible ({a11y}) and try to pay attention to the smallest details.",
 		"location": "Cracow, 31-261",
 		"technikZsl": "IT technician (ZSŁ)",
 		"english": "english",
@@ -267,10 +278,10 @@ onBeforeUnmount(() => {
 		"skills3": "Ability to lead a project and assign tasks",
 		"skills4": "Fast learning and adoption of new technologies/programming languages",
 		"technologies": "Technologies",
-		"technologies1": "{0} - if it's a website, I can write it",
-		"technologies2": "{0} - I'm using it basically since the beginning and can take advantage of most of its functionality",
-		"technologies3": "{0} - I've worked with both for ~4 years now and know them like the back of my hand. When it comes to other frameworks I'm ok with using any but I find these 2 the most intuitive",
-		"technologies4": "{0} - I have the most experience with node.js but I've checked out the other 2 and I don't see any issues with adopting them",
+		"technologies1": "{point} - if it's a website, I can write it",
+		"technologies2": "{point} - I'm using it basically since the beginning and can take advantage of most of its functionality",
+		"technologies3": "{point} - I've worked with both for ~4 years now and know them like the back of my hand. When it comes to other frameworks I'm ok with using any but I find these 2 the most intuitive",
+		"technologies4": "{point} - I have the most experience with node.js but I've checked out the other 2 and I don't see any issues with adopting them",
 		"technologiesNote": "Besides the above I'm also familiar with {sql}/{mongoDB} (through an {orm} too) databases and can use {dockerContainer}. Additionally I know {lua} and {java}.",
 		"dockerContainer": "docker containers",
 		"footer": "I agree to the processing of personal data provided in this document for realising the recruitment process pursuant to the Personal Data Protection Act of 10 May 2018 (Journal of Laws 2018, item 1000) and in agreement with Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation)."
