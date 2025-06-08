@@ -2,35 +2,111 @@ const rem = 16;
 
 export default new Skin('index-default', () => {
 	const canvas = Object.assign(document.createElement('canvas'), { id: 'name-header-canvas' });
-	const dropCanvas = document.createElement('canvas');
 	const textCanvas = document.createElement('canvas');
+	const dropCanvas = document.createElement('canvas');
+	let context = canvas.getContext('2d')!;
+	let dropContext = dropCanvas.getContext('2d')!;
 
 	const dpi = window.devicePixelRatio;
+	let fontSize = rem;
 
 	const headerText = document.getElementById('name-header-text')!;
 	headerText.appendChild(canvas);
 	headerText.style = 'color: transparent;';
 
+	const drops: Drop[] = [];
+	const idsToRemove: string[] = [];
+	let lastFrameTime = performance.now();
+
 	handleResize();
 
 	window.addEventListener('resize', handleResize);
+	headerText.addEventListener('click', clickAddDrop);
+
+	// randomDrop();
+	// setTimeout(randomDrop, 300);
+
+	animate();
 
 	function handleResize() {
 		dropCanvas.height = textCanvas.height = canvas.height = canvas.offsetHeight * dpi;
 		dropCanvas.width = textCanvas.width = canvas.width = canvas.offsetWidth * dpi;
 
-		updateTextContext(textCanvas, dpi);
+		context = canvas.getContext('2d')!;
+		dropContext = dropCanvas.getContext('2d')!;
 
-		const context = canvas.getContext('2d')!;
+		fontSize = updateTextContext(textCanvas, dpi);
 
+		drawDrops(context, 0);
+	}
+
+	function drawDrops(context: CanvasRenderingContext2D, msPassed: number) {
+		context.globalCompositeOperation = 'source-over';
 		context.clearRect(0, 0, canvas.width, canvas.height);
 		context.drawImage(textCanvas, 0, canvas.height * 0.08);
-		context.globalCompositeOperation = 'source-in';
+		context.globalCompositeOperation = 'source-atop';
+
+		for (const drop of drops) {
+			const shouldRemove = drop.update(msPassed);
+			shouldRemove && idsToRemove.push(drop.id);
+		}
+		while (idsToRemove.length) {
+			const dropIndex = drops.findIndex(drop => drop.id === idsToRemove.pop());
+			~dropIndex && drops.splice(dropIndex, 1);
+		}
+
+		dropContext.clearRect(0, 0, dropCanvas.width, dropCanvas.height);
+		for (const drop of drops) {
+			dropContext.beginPath();
+			dropContext.arc(drop.x, drop.y, drop.size, 0, 2 * Math.PI);
+			dropContext.fillStyle = drop.color;
+			dropContext.fill();
+		}
+
+		context.drawImage(dropCanvas, 0, 0);
+	}
+
+	function animate() {
+		const currentTime = performance.now();
+		const msPassed = currentTime - lastFrameTime;
+
+		drawDrops(context, msPassed);
+
+		lastFrameTime = currentTime;
+		requestAnimationFrame(animate);
+	}
+
+	function clickAddDrop(event: MouseEvent | TouchEvent) {
+		const { left, top } = headerText.getBoundingClientRect();
+
+		let eventX: number, eventY: number;
+		if ('touches' in event && event.touches.length) {
+			const [touch] = event.touches;
+			eventX = touch!.pageX;
+			eventY = touch!.pageY;
+		} else {
+			eventX = (event as MouseEvent).pageX;
+			eventY = (event as MouseEvent).pageY;
+		}
+
+		const elementX = left + window.pageXOffset;
+		const elementY = top + window.pageYOffset;
+		const x = eventX - elementX;
+		const y = eventY - elementY;
+
+		drops.push(new Drop(dropCanvas.width, dropCanvas.height, dpi, fontSize, `click-${performance.now()}`, x * dpi, y * dpi));
+	}
+
+	// store timeouts and remove unmounted
+	function randomDrop() {
+		drops.push(new Drop(canvas.width, canvas.height, dpi, fontSize));
+		setTimeout(randomDrop, randomInt(1250, 2500));
 	}
 
 	return () => {
 		console.log('unmounting DEFAULT index');
 
+		headerText.removeEventListener('click', clickAddDrop);
 		window.removeEventListener('resize', handleResize);
 	};
 });
@@ -39,16 +115,19 @@ function clamp(min: number, value: number, max: number) {
 	return value < min ? min : value > max ? max : value;
 }
 
-function updateTextContext(textCanvas: HTMLCanvasElement, dpi: number) {
+function updateTextContext(textCanvas: HTMLCanvasElement, dpi: number): number {
 	const fontSize = Math.round(clamp(2.5 * rem, rem + 7.5 * (window.innerWidth / 100), 10 * rem));
+
 	const textContext = Object.assign(textCanvas.getContext('2d')!, {
-		fillStyle: 'white',
+		fillStyle: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'white' : 'black',
 		textAlign: 'center',
 		textBaseline: 'middle',
 		font: `700 ${fontSize * dpi}px Atkinson Hyperlegible Next`,
 	} satisfies Partial<CanvasRenderingContext2D>);
 	textContext.clearRect(0, 0, textCanvas.width, textCanvas.height);
 	textContext.fillText('Stanisław Perek', textCanvas.width / 2, textCanvas.height / 2);
+
+	return fontSize;
 }
 
 function randomInt(min: number, max: number) {
@@ -63,12 +142,13 @@ class Drop {
 	constructor(
 		canvasWidth: number,
 		canvasHeight: number,
-		public readonly id = performance.now(),
+		dpi: number,
+		fontSize: number,
+		public readonly id = performance.now().toString(),
 		public readonly x = randomInt(0, canvasWidth),
 		public readonly y = randomInt(0, canvasHeight),
-		public readonly size = randomInt(2, 5),
-		public readonly lifespan = randomInt(50, 70),
-		public readonly disappearDuration = randomInt(20, 50),
+		public readonly size = Math.max(0.05, Math.random() / 5) * fontSize * dpi,
+		public readonly lifespan = randomInt(200, 300) * 50,
 	) {
 		this.timeAlive = 0;
 
@@ -81,51 +161,19 @@ class Drop {
 		this.color = `${this.colorPrefix})`;
 	}
 
-	public update(msPassed: number, idsToRemove: number[]) {
+	public update(msPassed: number): boolean {
 		this.timeAlive += msPassed;
-		let colorSuffix = ')';
 
-		const disappearTime = this.timeAlive - this.lifespan + this.disappearDuration + 5 * this.size;
-		if (disappearTime > 0) {
-			if (disappearTime >= this.disappearDuration) {
-				idsToRemove.push(this.id);
-				return;
-			}
-			const x = Math.max(0, 1 - disappearTime / this.disappearDuration);
-			colorSuffix = `/ ${x})`;
+		if (this.timeAlive >= this.lifespan) {
+			this.color = `${this.colorPrefix} / 0)`;
+			return true;
 		}
 
-		this.color = this.colorPrefix + colorSuffix;
+		const lifetimePassedPercentage = this.timeAlive / this.lifespan;
+		const colorSuffix = 1 - lifetimePassedPercentage;
+
+		this.color = `${this.colorPrefix} / ${colorSuffix.toFixed(4)})`;
+
+		return false;
 	}
 }
-
-// let drops: Drop[] = [];
-// let idsToRemove: number[] = [];
-// let lastFrameTime = performance.now();
-
-// function animate() {
-// 	const currentTime = performance.now();
-// 	const msPassed = currentTime - lastFrameTime;
-
-// 	dropContext.clearRect(0, 0, canvas.width, canvas.height);
-// 	for (const ripple of ripples) {
-// 		ripple.draw(msPassed);
-// 	}
-// 	if (idsToRemove.length) {
-// 		ripples = ripples.filter(ripple => !idsToRemove.includes(ripple.id));
-// 		idsToRemove = [];
-// 	}
-
-// 	lastFrameTime = currentTime;
-// 	requestAnimationFrame(animate);
-// }
-
-// animate();
-
-// function randomRipple() {
-// 	ripples.push(new Ripple());
-// 	setTimeout(randomRipple, randomInt(1250, 2500));
-// }
-
-// randomRipple();
-// setTimeout(randomRipple, 300);
