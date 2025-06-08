@@ -29,6 +29,9 @@ export default new Skin('index-default', () => {
 	randomDrop(0);
 	randomDrop(1);
 	randomDrop(2);
+	dropTimeouts[3] = setTimeout(() => randomDrop(3), 10_000);
+	dropTimeouts[4] = setTimeout(() => randomDrop(4), 15_000);
+	dropTimeouts[5] = setTimeout(() => randomDrop(5), 17_500);
 
 	animate();
 
@@ -102,7 +105,7 @@ export default new Skin('index-default', () => {
 	}
 
 	function randomDrop(timeoutIndex: number) {
-		const intensityPercentage = 1 - Math.min(0.7, lastFrameTime / MAX_DROP_INTENSITY_TIME);
+		const intensityPercentage = 1 - Math.min(0.8, lastFrameTime / MAX_DROP_INTENSITY_TIME);
 		drops.push(new Drop(canvas.width, canvas.height, dpi, fontSize));
 		dropTimeouts[timeoutIndex] = setTimeout(() => randomDrop(timeoutIndex), Math.round(randomInt(1250, 2500) * intensityPercentage));
 	}
@@ -154,7 +157,7 @@ class Drop {
 		public readonly x = randomInt(0, canvasWidth),
 		public readonly y = randomInt(canvasHeight * 0.05, canvasHeight * 0.75),
 		public readonly size = Math.max(0.05, Math.random() / 5) * fontSize * dpi,
-		public readonly lifespan = randomInt(1000, 2500),
+		public readonly lifespan = randomInt(800, 1800),
 	) {
 		this.timeAlive = 0;
 
@@ -172,7 +175,7 @@ class Drop {
 		}
 
 		const lifetimePassedPercentage = this.timeAlive / this.lifespan;
-		const colorSuffix = 1 - lifetimePassedPercentage;
+		const colorSuffix = 1 - lifetimePassedPercentage ** 3;
 
 		this.color = `${this.colorPrefix} / ${colorSuffix.toFixed(4)})`;
 
