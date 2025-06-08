@@ -64,6 +64,7 @@ export default async function useSkin(defaultSkin: Skin) {
 		}
 
 		const key: ISkinKey = `${page}-${skin}`;
+		// TODO maybe add loading indicator?
 		skinCache[key] ||= await import(`./skins/${page}/${skin}.ts`).then(mod => mod.default);
 
 		return skinCache[key]!;
