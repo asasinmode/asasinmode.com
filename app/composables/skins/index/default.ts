@@ -113,6 +113,8 @@ export default new Skin('index-default', () => {
 	return () => {
 		headerText.removeEventListener('click', clickAddDrop);
 		window.removeEventListener('resize', handleResize);
+		headerText.style.color = '';
+		canvas.remove();
 
 		for (const timeout of dropTimeouts) {
 			timeout !== undefined && clearTimeout(timeout);
