@@ -1,4 +1,5 @@
-const rem = 16;
+const REM = 16;
+const MAX_DROP_INTENSITY_TIME = 20_000;
 
 export default new Skin('index-default', () => {
 	const canvas = Object.assign(document.createElement('canvas'), { id: 'name-header-canvas' });
@@ -8,7 +9,7 @@ export default new Skin('index-default', () => {
 	let dropContext = dropCanvas.getContext('2d')!;
 
 	const dpi = window.devicePixelRatio;
-	let fontSize = rem;
+	let fontSize = REM;
 
 	const headerText = document.getElementById('name-header-text')!;
 	headerText.appendChild(canvas);
@@ -23,8 +24,11 @@ export default new Skin('index-default', () => {
 	window.addEventListener('resize', handleResize);
 	headerText.addEventListener('click', clickAddDrop);
 
-	// randomDrop();
-	// setTimeout(randomDrop, 300);
+	const dropTimeouts: NodeJS.Timeout[] = [];
+
+	randomDrop(0);
+	randomDrop(1);
+	randomDrop(2);
 
 	animate();
 
@@ -97,17 +101,19 @@ export default new Skin('index-default', () => {
 		drops.push(new Drop(dropCanvas.width, dropCanvas.height, dpi, fontSize, `click-${performance.now()}`, x * dpi, y * dpi));
 	}
 
-	// store timeouts and remove unmounted
-	function randomDrop() {
+	function randomDrop(timeoutIndex: number) {
+		const intensityPercentage = 1 - Math.min(0.7, lastFrameTime / MAX_DROP_INTENSITY_TIME);
 		drops.push(new Drop(canvas.width, canvas.height, dpi, fontSize));
-		setTimeout(randomDrop, randomInt(1250, 2500));
+		dropTimeouts[timeoutIndex] = setTimeout(() => randomDrop(timeoutIndex), Math.round(randomInt(1250, 2500) * intensityPercentage));
 	}
 
 	return () => {
-		console.log('unmounting DEFAULT index');
-
 		headerText.removeEventListener('click', clickAddDrop);
 		window.removeEventListener('resize', handleResize);
+
+		for (const timeout of dropTimeouts) {
+			timeout !== undefined && clearTimeout(timeout);
+		}
 	};
 });
 
@@ -116,7 +122,7 @@ function clamp(min: number, value: number, max: number) {
 }
 
 function updateTextContext(textCanvas: HTMLCanvasElement, dpi: number): number {
-	const fontSize = Math.round(clamp(2.5 * rem, rem + 7.5 * (window.innerWidth / 100), 10 * rem));
+	const fontSize = Math.round(clamp(2.5 * REM, REM + 7.5 * (window.innerWidth / 100), 10 * REM));
 
 	const textContext = Object.assign(textCanvas.getContext('2d')!, {
 		fillStyle: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'white' : 'black',
@@ -146,9 +152,9 @@ class Drop {
 		fontSize: number,
 		public readonly id = performance.now().toString(),
 		public readonly x = randomInt(0, canvasWidth),
-		public readonly y = randomInt(0, canvasHeight),
+		public readonly y = randomInt(canvasHeight * 0.05, canvasHeight * 0.75),
 		public readonly size = Math.max(0.05, Math.random() / 5) * fontSize * dpi,
-		public readonly lifespan = randomInt(200, 300) * 50,
+		public readonly lifespan = randomInt(200, 300) * 20,
 	) {
 		this.timeAlive = 0;
 
