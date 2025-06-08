@@ -154,16 +154,12 @@ class Drop {
 		public readonly x = randomInt(0, canvasWidth),
 		public readonly y = randomInt(canvasHeight * 0.05, canvasHeight * 0.75),
 		public readonly size = Math.max(0.05, Math.random() / 5) * fontSize * dpi,
-		public readonly lifespan = randomInt(200, 300) * 20,
+		public readonly lifespan = randomInt(1000, 2500),
 	) {
 		this.timeAlive = 0;
 
-		const colorRandom = Math.random();
-		this.colorPrefix = colorRandom < 0.33
-			? 'hsl(205 100% 65%'
-			: colorRandom < 0.66
-				? 'hsl(205 100% 70%'
-				: 'hsl(205 100% 75%';
+		const hue = randomInt(0, 11) * 30;
+		this.colorPrefix = `hsl(${hue} 100% 50%`;
 		this.color = `${this.colorPrefix})`;
 	}
 
