@@ -44,12 +44,21 @@ main {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	min-height: min(calc(100vh - 2.5rem), 90rem);
-	max-height: 90rem;
 	font-size: var(--fluid-40-160);
+	min-height: 16rem;
 	font-weight: 700;
 	line-height: 1;
 	cursor: default;
+	--me-tokens-height: 2.5rem;
+
+	@media (orientation: landscape) {
+		min-height: min(calc(100vh - var(--me-tokens-height)), 90rem);
+		max-height: 90rem;
+	}
+
+	@media (max-width: 539px) {
+		--me-tokens-height: calc(var(--fluid-20-32) * 3);
+	}
 }
 
 #name-header-text {
@@ -106,4 +115,35 @@ main {
 			content: '\2022';
 		}
 	}
+}
+
+#stuff-header {
+	text-align: center;
+	margin-block-start: max(var(--fluid-24-48), 10vh);
+}
+
+#stuff-header-text {
+	position: relative;
+	display: inline-block;
+	line-height: 1;
+	font-size: var(--fluid-32-48);
+	font-weight: 700;
+	letter-spacing: 0.025em;
+	color: var(--bg-color);
+}
+
+#stuff-header-rainbow {
+	z-index: -1;
+	top: 0;
+	left: 0;
+	background: linear-gradient(to bottom right, #de350b, #0065ff);
+	position: absolute;
+	width: 100%;
+}
+
+.stuff-header-star {
+	--stuff-star-color-1: light-dark(#00ff00, #ff00ff);
+	position: absolute;
+	width: 50px;
+	height: auto;
 }

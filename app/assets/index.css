@@ -1,12 +1,13 @@
 :root {
 	color-scheme: dark light;
+	--bg-color: light-dark(#efefef, #050505);
 	--text-color: light-dark(black, white);
 	--max-width: 120rem;
 }
 
 body {
 	font-family: 'Atkinson Hyperlegible Next', system-ui, sans-serif;
-	background: light-dark(#efefef, #050505);
+	background: var(--bg-color);
 	color: var(--text-color);
 	min-height: 100vh;
 }

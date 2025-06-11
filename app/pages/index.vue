@@ -17,7 +17,20 @@ useSkin(defaultSkin);
 			<li>programmer</li>
 			<li>i like coding</li>
 		</ul>
-		<h3>stuff</h3>
+		<h3 id="stuff-header">
+			<span id="stuff-header-text">
+				<svg id="stuff-header-rainbow" mlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+					<defs>
+						<linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+							<stop offset="0%" stop-color="#ad3" />
+							<stop offset="100%" stop-color="#add" />
+						</linearGradient>
+					</defs>
+					<path fill="url(#grad)" d="M0 10 C30 28 38 0 64 10 L64 0 L0 0 Z" />
+				</svg>
+				stuff
+			</span>
+		</h3>
 		<ul>
 			<li>
 				<h5>fullstack blog cms</h5>
