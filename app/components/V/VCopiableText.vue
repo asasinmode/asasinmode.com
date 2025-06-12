@@ -24,23 +24,25 @@ function resetInfo() {
 </template>
 
 <style>
-.v-copiable-text {
-	position: relative;
+@layer component {
+	.v-copiable-text {
+		position: relative;
 
-	.info {
-		position: absolute;
-		left: 50%;
-		top: 0;
-		transform: translate(-50%, -100%);
-	}
+		.info {
+			position: absolute;
+			left: 50%;
+			top: 0;
+			transform: translate(-50%, -100%);
+		}
 
-	.copy {
-		display: none;
-	}
+		.copy {
+			display: none;
+		}
 
-	&:hover .copy,
-	&:focus-visible .copy {
-		display: block;
+		&:hover .copy,
+		&:focus-visible .copy {
+			display: block;
+		}
 	}
 }
 </style>

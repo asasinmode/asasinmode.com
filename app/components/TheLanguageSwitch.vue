@@ -15,22 +15,24 @@ const { locales } = useI18n();
 </template>
 
 <style>
-#language-switch {
-	display: flex;
-	column-gap: 0.4em;
-	font-size: 1.5rem;
+@layer component {
+	#language-switch {
+		display: flex;
+		column-gap: 0.4em;
+		font-size: 1.5rem;
 
-	a {
-		color: currentColor;
-		text-decoration-line: none;
+		a {
+			color: currentColor;
+			text-decoration-line: none;
 
-		&:hover,
-		&:focus-visible {
-			text-decoration-line: underline;
-		}
+			&:hover,
+			&:focus-visible {
+				text-decoration-line: underline;
+			}
 
-		&.router-link-active {
-			color: var(--color);
+			&.router-link-active {
+				color: var(--color);
+			}
 		}
 	}
 }

@@ -19,22 +19,24 @@ const availableSkins = computed<ISkinName[]>(() => route.meta.enabledSkins || ['
 </template>
 
 <style>
-#skin-switch {
-	display: flex;
-	column-gap: 0.4em;
-	font-size: 1.5rem;
+@layer component {
+	#skin-switch {
+		display: flex;
+		column-gap: 0.4em;
+		font-size: 1.5rem;
 
-	a {
-		color: currentColor;
-		text-decoration-line: none;
+		a {
+			color: currentColor;
+			text-decoration-line: none;
 
-		&:hover,
-		&:focus-visible {
-			text-decoration-line: underline;
-		}
+			&:hover,
+			&:focus-visible {
+				text-decoration-line: underline;
+			}
 
-		&.router-link-active {
-			color: var(--color);
+			&.router-link-active {
+				color: var(--color);
+			}
 		}
 	}
 }

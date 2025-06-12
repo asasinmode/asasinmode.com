@@ -28,19 +28,21 @@ const localePath = useLocalePath();
 </template>
 
 <style>
-menu {
-	display: flex;
-	column-gap: 0.5rem;
+@layer layout {
+	menu {
+		display: flex;
+		column-gap: 0.5rem;
 
-	.router-link-exact-active {
-		background: #4f4f4f;
+		.router-link-exact-active {
+			background: #4f4f4f;
+		}
 	}
-}
 
-header {
-	position: fixed;
-	top: 0;
-	right: 0;
-	padding: 0.3rem 0.75rem;
+	header {
+		position: fixed;
+		top: 0;
+		right: 0;
+		padding: 0.3rem 0.75rem;
+	}
 }
 </style>

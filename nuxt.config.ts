@@ -27,7 +27,7 @@ export default defineNuxtConfig({
 		defaultLocale: 'en',
 		baseUrl: 'https://asasinmode.com',
 	},
-	css: ['~/assets/reset.css', '~/assets/index.css', '~/assets/rainbow.css', '#build/asasinmode:fluid-variables.css'],
+	css: ['~/assets/index.css', '~/assets/reset.css', '#build/asasinmode:fluid-variables.css'],
 	fonts: {
 		defaults: {
 			weights: [400, 500, 700],

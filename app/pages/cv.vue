@@ -1,24 +1,17 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'empty' });
 
-let linkElement: HTMLLinkElement;
+useHead({ link: [{ rel: 'stylesheet', href: '/cv.css' }] });
 
 const { t } = useI18n({ useScope: 'local' });
 
 onMounted(() => {
-	linkElement = Object.assign(document.createElement('link'), { rel: 'stylesheet', href: '/cv.css' });
-	document.head.appendChild(linkElement);
-
 	document.getElementById('header-email')?.append(
 		[115, 116, 97, 110, 105, 115, 108, 97, 119, 46, 112, 101, 114, 101, 107, 46, 117, 105, 64, 103, 109, 97, 105, 108, 46, 99, 111, 109].map(code => String.fromCharCode(code)).join(''),
 	);
 	document.getElementById('contact-phone')?.append(
 		[54, 54, 55, 32, 49, 53, 56, 32, 55, 55, 50].map(code => String.fromCharCode(code)).join(''),
 	);
-});
-
-onBeforeUnmount(() => {
-	linkElement.remove();
 });
 </script>
 
