@@ -19,14 +19,33 @@ useSkin(defaultSkin);
 		</ul>
 		<h3 id="stuff-header">
 			<span id="stuff-header-text">
-				<svg id="stuff-header-rainbow" mlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+				<svg
+					id="stuff-header-rainbow"
+					mlns="http://www.w3.org/2000/svg"
+					preserveAspectRatio="xMidYMid slice"
+					width="200"
+					height="103"
+					x="0"
+					y="0"
+					viewBox="0 -3 200 100"
+				>
 					<defs>
-						<linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-							<stop offset="0%" stop-color="#ad3" />
-							<stop offset="100%" stop-color="#add" />
+						<linearGradient id="grad-red" x1="0%" y1="10%" x2="100%" y2="20%">
+							<stop offset="0%" stop-color="#f00" />
+							<stop offset="100%" stop-color="#800" />
+						</linearGradient>
+						<linearGradient id="grad-orange" x1="0%" y1="20%" x2="100%" y2="30%">
+							<stop offset="0%" stop-color="#ffa500" />
+							<stop offset="100%" stop-color="#ff00ff" />
 						</linearGradient>
 					</defs>
-					<path fill="url(#grad)" d="M0 10 C30 28 38 0 64 10 L64 0 L0 0 Z" />
+					<path fill="violet" d="M 0 80 C 100 110 100 60 200 80 L 200 69 C 100 49 100 99 0 69 Z" />
+					<path fill="indigo" d="M 0 70 C 100 100 100 50 200 70 L 200 59 C 100 39 100 89 0 59 Z" />
+					<path fill="blue" d="M 0 60 C 100 90 100 40 200 60 L 200 49 C 100 29 100 79 0 49 Z" />
+					<path fill="green" d="M 0 50 C 100 80 100 30 200 50 L 200 39 C 100 19 100 69 0 39 Z" />
+					<path fill="yellow" d="M 0 40 C 100 70 100 20 200 40 L 200 29 C 100 9 100 59 0 29 Z" />
+					<path fill="url(#grad-orange)" d="M 0 30 C 100 60 100 10 200 30 L 200 19 C 100 -1 100 49 0 19 Z" />
+					<path fill="url(#grad-red)" d="M 0 20 C 100 50 100 0 200 20 L 200 10 C 100 -10 100 40 0 10 Z" />
 				</svg>
 				stuff
 			</span>

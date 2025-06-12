@@ -110,7 +110,7 @@ export default new Skin('index-default', () => {
 		dropTimeouts[timeoutIndex] = setTimeout(() => randomDrop(timeoutIndex), Math.round(randomInt(1250, 2500) * intensityPercentage));
 	}
 
-	document.getElementById('stuff-header-text')?.appendChild(createStar());
+	// document.getElementById('stuff-header-text')?.appendChild(createStar());
 
 	return () => {
 		headerText.removeEventListener('click', clickAddDrop);

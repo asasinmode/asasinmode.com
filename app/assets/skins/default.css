@@ -131,11 +131,11 @@
 
 	#stuff-header-rainbow {
 		z-index: -1;
-		top: 0;
-		left: 0;
-		background: linear-gradient(to bottom right, #de350b, #0065ff);
+		top: -0.1lh;
+		left: -10%;
 		position: absolute;
-		width: 100%;
+		width: 120%;
+		height: 1.2lh;
 	}
 
 	.stuff-header-star {
