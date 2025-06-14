@@ -197,8 +197,8 @@ class Drop {
 
 function createStar() {
 	const star = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-	star.classList.add('stuff-header-star');
-	star.style = `fill: var(--stuff-star-color-${1})`;
+	star.classList.add('stuff-header-star', `variant-${randomInt(1, 4)}`);
+	star.style = `fill: #ff00ff`;
 	star.setAttribute('width', '100');
 	star.setAttribute('height', '100');
 	star.setAttribute('aria-hidden', 'true');

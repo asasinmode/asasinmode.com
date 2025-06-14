@@ -31,7 +31,7 @@ const { locales } = useI18n();
 			}
 
 			&.router-link-active {
-				color: var(--color);
+				color: var(--clr-rainbow);
 			}
 		}
 	}

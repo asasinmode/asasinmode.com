@@ -2,17 +2,17 @@
 	a,
 	.v-copiable-text {
 		transition: text-decoration-thickness 50ms linear;
-		color: var(--color);
+		color: var(--clr-rainbow);
 		text-decoration-line: underline;
 		text-decoration-thickness: 0.1em;
-		text-decoration-color: var(--color);
+		text-decoration-color: var(--clr-rainbow);
 		text-decoration-skip-ink: auto;
 
 		&:hover,
 		&:focus-visible {
 			outline: none;
 			text-decoration-thickness: 0.25em;
-			text-decoration-color: var(--color-next);
+			text-decoration-color: var(--clr-rainbow-next);
 			text-decoration-skip-ink: none;
 		}
 	}
@@ -27,12 +27,12 @@
 		}
 
 		.copy {
-			color: var(--text-color);
+			color: var(--clr-page-text);
 		}
 	}
 
 	main {
-		max-width: var(--max-width);
+		max-width: var(--size-page-max-width);
 		margin-inline: auto;
 	}
 
@@ -46,15 +46,15 @@
 		font-weight: 700;
 		line-height: 1;
 		cursor: default;
-		--me-tokens-height: 2.5rem;
+		--size-me-tokens-height: 2.5rem;
 
 		@media (orientation: landscape) {
-			min-height: min(calc(100vh - var(--me-tokens-height)), 90rem);
+			min-height: min(calc(100vh - var(--size-me-tokens-height)), 90rem);
 			max-height: 90rem;
 		}
 
 		@media (max-width: 539px) {
-			--me-tokens-height: calc(var(--fluid-20-32) * 3);
+			--size-me-tokens-height: calc(var(--fluid-20-32) * 3);
 		}
 	}
 
@@ -126,7 +126,7 @@
 		font-size: var(--fluid-32-48);
 		font-weight: 700;
 		letter-spacing: 0.025em;
-		color: var(--bg-color);
+		color: var(--clr-page-bg);
 	}
 
 	#stuff-header-rainbow {
@@ -144,5 +144,11 @@
 		position: absolute;
 		width: 50px;
 		height: auto;
+	}
+
+	#stuff-list {
+		> :nth-child(odd) {
+			background: light-dark();
+		}
 	}
 }

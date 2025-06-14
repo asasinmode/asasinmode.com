@@ -10,7 +10,7 @@ const availableSkins = computed<ISkinName[]>(() => route.meta.enabledSkins || ['
 		<button
 			v-for="name in availableSkins"
 			:key="name"
-			:style="name === skinName ? 'color: var(--color)' : undefined"
+			:style="name === skinName ? 'color: var(--clr-rainbow)' : undefined"
 			@click="skinName = name"
 		>
 			{{ name }}
@@ -35,7 +35,7 @@ const availableSkins = computed<ISkinName[]>(() => route.meta.enabledSkins || ['
 			}
 
 			&.router-link-active {
-				color: var(--color);
+				color: var(--clr-rainbow);
 			}
 		}
 	}
