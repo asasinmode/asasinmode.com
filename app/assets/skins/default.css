@@ -111,7 +111,7 @@
 
 	#stuff-header {
 		text-align: center;
-		margin-block: max(var(--fluid-24-48), 10vh) 2.5rem;
+		margin-block: max(var(--fluid-24-48), 10vh) 3rem;
 	}
 
 	#stuff-header-text {
@@ -188,6 +188,11 @@
 			grid-template-areas:
 				'img header'
 				'img description';
+			margin-block-end: 2rem;
+
+			&:last {
+				margin-block-end: 0;
+			}
 
 			&:nth-child(odd) {
 				position: relative;
@@ -199,7 +204,7 @@
 					transform: translate(0%, -50%);
 					height: 100%;
 					width: 100vmax;
-					background: light-dark(#e0e0e0, #191919);
+					background: light-dark(#e0e0e0, #141414);
 					z-index: -1;
 					left: -1.5rem;
 					border-radius: 0.5rem;
@@ -221,7 +226,7 @@
 
 				img {
 					margin-inline: 1.5rem -1.5rem;
-					border-radius: 0 0.5rem 0.5rem 0;
+					border-radius: 0.5rem;
 				}
 
 				p {
