@@ -129,14 +129,14 @@
 		color: var(--clr-page-bg);
 	}
 
-	#stuff-header-rainbow {
+	#stuff-header-brush {
 		z-index: -1;
 		top: 50%;
-		left: -10%;
+		left: 50%;
 		position: absolute;
-		transform: translate(0%, -50%);
-		width: 120%;
-		height: auto;
+		transform: translate(-50%, -47%);
+		width: auto;
+		height: 120%;
 	}
 
 	.stuff-header-star {
