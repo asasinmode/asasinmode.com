@@ -62,12 +62,12 @@ const localePath = useLocalePath();
 						</clipPath>
 					</defs>
 					<g clip-path="url('#brush-clip')">
-						<path fill="url(#grad-violet)" d="M 0 310 C 346 253 727 244 1000 299 L 1000 252 C 739 208 282 212 0 262 Z" />
-						<path fill="url(#grad-indigo)" d="M 0 273 C 346 216 727 207 1000 262 L 1000 215 C 739 171 282 175 0 225 Z" />
-						<path fill="url(#grad-blue)" d="M 0 236 C 346 179 727 170 1000 225 L 1000 178 C 739 134 282 138 0 188 Z" />
-						<path fill="url(#grad-green)" d="M 0 199 C 346 142 727 133 1000 188 L 1000 141 C 739 97 282 101 0 151 Z" />
-						<path fill="url(#grad-yellow)" d="M 0 162 C 346 105 727 96 1000 151 L 1000 104 C 739 60 282 64 0 114 Z" />
-						<path fill="url(#grad-orange)" d="M 0 125 C 346 68 727 59 1000 114 L 1000 67 C 739 23 282 27 0 77 Z" />
+						<path fill="url(#grad-violet)" d="M 0 305 C 346 248 727 239 1000 294 L 1000 247 C 739 203 282 207 0 257 Z" />
+						<path fill="url(#grad-indigo)" d="M 0 268 C 346 211 727 202 1000 257 L 1000 210 C 739 166 282 170 0 220 Z" />
+						<path fill="url(#grad-blue)" d="M 0 232 C 346 175 727 166 1000 221 L 1000 174 C 739 130 282 134 0 184 Z" />
+						<path fill="url(#grad-green)" d="M 0 196 C 346 139 727 130 1000 185 L 1000 138 C 739 94 282 98 0 148 Z" />
+						<path fill="url(#grad-yellow)" d="M 0 160 C 346 103 727 94 1000 149 L 1000 102 C 739 58 282 62 0 112 Z" />
+						<path fill="url(#grad-orange)" d="M 0 124 C 346 67 727 58 1000 113 L 1000 66 C 739 22 282 26 0 76 Z" />
 						<path fill="url(#grad-red)" d="M 0 88 C 346 31 727 22 1000 77 L 1000 30 C 739 -14 282 -10 0 40 Z" />
 					</g>
 				</svg>
@@ -76,18 +76,22 @@ const localePath = useLocalePath();
 		</h2>
 		<ul id="stuff-list">
 			<li>
+				<img src="https://picsum.photos/300?cache=1" width="300" height="300">
 				<h3>fullstack blog cms</h3>
 				<p>featuring an html and css editor, custom file and image management with automatically generated responsive picture variants and seo tools</p>
 			</li>
 			<li>
+				<img src="https://picsum.photos/300?cache=2" width="300" height="300">
 				<h3>a minecraft mod</h3>
 				<p>adding a wheelbarrow that you can use to transport mobs around</p>
 			</li>
 			<li>
+				<img src="https://picsum.photos/300?cache=3" width="300" height="300">
 				<h3>warframe offering prices scraper</h3>
 				<p>in form of a cli tool. It lists and finds the most expensive warframe syndicate offerings</p>
 			</li>
 			<li>
+				<img src="https://picsum.photos/300?cache=4" width="300" height="300">
 				<h3>league of legends damage calculator</h3>
 				<p>unfortunately not updated, but in its glory days it accurately showed the damage difference between champions and builds</p>
 			</li>

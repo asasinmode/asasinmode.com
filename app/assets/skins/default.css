@@ -42,16 +42,11 @@
 		align-items: center;
 		text-align: center;
 		font-size: var(--fluid-40-160);
-		min-height: 16rem;
+		min-height: min(calc(100vh - var(--size-me-tokens-height)), 90rem);
 		font-weight: 700;
 		line-height: 1;
 		cursor: default;
 		--size-me-tokens-height: 2.5rem;
-
-		@media (orientation: landscape) {
-			min-height: min(calc(100vh - var(--size-me-tokens-height)), 90rem);
-			max-height: 90rem;
-		}
 
 		@media (max-width: 539px) {
 			--size-me-tokens-height: calc(var(--fluid-20-32) * 3);
@@ -123,10 +118,25 @@
 		position: relative;
 		display: inline-block;
 		line-height: 1;
-		font-size: var(--fluid-32-64);
+		font-size: var(--fluid-40-64);
 		font-weight: 700;
 		letter-spacing: 0.025em;
 		color: var(--clr-page-bg);
+		text-shadow:
+			0.02em 0.02em 0 var(--clr-page-text),
+			-0.02em -0.02em 0 var(--clr-page-text),
+			-0.02em 0.02em 0 var(--clr-page-text),
+			0.02em -0.02em 0 var(--clr-page-text),
+			0 0.02em 0 var(--clr-page-text),
+			0 -0.02em 0 var(--clr-page-text),
+			-0.02em 0 0 var(--clr-page-text),
+			0.02em 0 0 var(--clr-page-text);
+
+		@supports (-webkit-text-stroke: var(--clr-page-text) 0.05em) and (paint-order: stroke fill) {
+			-webkit-text-stroke: var(--clr-page-text) 0.05em;
+			paint-order: stroke fill;
+			text-shadow: none;
+		}
 	}
 
 	#stuff-header-brush {
@@ -146,20 +156,39 @@
 	}
 
 	#stuff-list {
+		img {
+			margin-inline: -1.5rem 1.5rem;
+			height: 12rem;
+			width: auto;
+			grid-area: img;
+			border-radius: 0.5rem 0 0 0.5rem;
+		}
+
 		h3 {
 			font-size: 1.75rem;
 			font-weight: 500;
 			padding-block-start: 1.25rem;
-			margin-block-end: 0.5rem;
+			grid-area: header;
+			align-self: end;
 		}
 
 		p {
 			font-size: 1.25rem;
 			line-height: 1.25;
 			padding-block-end: 1.25rem;
+			grid-area: description;
 		}
 
 		& > * {
+			display: grid;
+			grid-auto-flow: column;
+			row-gap: 0.5rem;
+			grid-template-rows: min-content min-content;
+			grid-template-columns: max-content 1fr;
+			grid-template-areas:
+				'img header'
+				'img description';
+
 			&:nth-child(odd) {
 				position: relative;
 
@@ -183,11 +212,20 @@
 			}
 
 			&:nth-child(even) {
+				justify-items: end;
+				grid-template-columns: 1fr max-content;
+				grid-template-areas:
+					'header img'
+					'description img';
 				text-align: end;
+
+				img {
+					margin-inline: 1.5rem -1.5rem;
+					border-radius: 0 0.5rem 0.5rem 0;
+				}
 
 				p {
 					text-align: end;
-					margin-inline-start: auto;
 				}
 			}
 
@@ -206,7 +244,8 @@
 		border-radius: 0.5rem;
 		padding: 1rem 1.5rem;
 		max-width: 60rem;
-		margin-block-start: 2rem;
+		margin-block-start: 4rem;
+		margin-block-end: 10rem;
 		margin-inline: auto;
 		line-height: 1.4;
 
