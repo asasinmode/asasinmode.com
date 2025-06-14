@@ -17,12 +17,13 @@ export default new Skin('index-default', () => {
 
 	const drops: Drop[] = [];
 	const idsToRemove: string[] = [];
-	let lastFrameTime = performance.now();
+	let lastFrameTime = 0;
 
 	handleResize();
 
 	window.addEventListener('resize', handleResize);
 	headerText.addEventListener('click', clickAddDrop);
+	document.addEventListener('visibilitychange', cleanupOldDrops);
 
 	const dropTimeouts: NodeJS.Timeout[] = [];
 
@@ -33,7 +34,7 @@ export default new Skin('index-default', () => {
 	dropTimeouts[4] = setTimeout(() => randomDrop(4), 15_000);
 	dropTimeouts[5] = setTimeout(() => randomDrop(5), 17_500);
 
-	animate();
+	animate(0);
 
 	function handleResize() {
 		dropCanvas.height = textCanvas.height = canvas.height = canvas.offsetHeight * dpi;
@@ -73,13 +74,12 @@ export default new Skin('index-default', () => {
 		context.drawImage(dropCanvas, 0, 0);
 	}
 
-	function animate() {
-		const currentTime = performance.now();
-		const msPassed = currentTime - lastFrameTime;
+	function animate(timestamp: number) {
+		const msPassed = timestamp - lastFrameTime;
 
 		drawDrops(context, msPassed);
 
-		lastFrameTime = currentTime;
+		lastFrameTime = timestamp;
 		requestAnimationFrame(animate);
 	}
 
@@ -110,9 +110,17 @@ export default new Skin('index-default', () => {
 		dropTimeouts[timeoutIndex] = setTimeout(() => randomDrop(timeoutIndex), Math.round(randomInt(1250, 2500) * intensityPercentage));
 	}
 
+	function cleanupOldDrops() {
+		if (!document.hidden) {
+			drops.length = 0;
+			idsToRemove.length = 0;
+		}
+	}
+
 	// document.getElementById('stuff-header-text')?.appendChild(createStar());
 
 	return () => {
+		document.removeEventListener('visibilitychange', cleanupOldDrops);
 		headerText.removeEventListener('click', clickAddDrop);
 		window.removeEventListener('resize', handleResize);
 		headerText.style.color = '';
