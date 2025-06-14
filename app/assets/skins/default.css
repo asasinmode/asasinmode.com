@@ -116,7 +116,7 @@
 
 	#stuff-header {
 		text-align: center;
-		margin-block: max(var(--fluid-24-48), 10vh) 1rem;
+		margin-block: max(var(--fluid-24-48), 10vh) 2.5rem;
 	}
 
 	#stuff-header-text {
@@ -193,10 +193,6 @@
 
 			&:nth-child(1) p {
 				max-width: 50ch;
-			}
-
-			&:nth-child(2) p {
-				max-width: 40ch;
 			}
 
 			&:nth-child(4) p {

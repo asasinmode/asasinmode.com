@@ -58,16 +58,16 @@ const localePath = useLocalePath();
 				<p>featuring an html and css editor, custom file and image management with automatically generated responsive picture variants and seo tools</p>
 			</li>
 			<li>
-				<h3>a wheelbarrow</h3>
-				<p>vanilla friendly minecraft mod adding a wheelbarrow that you can use to transport mobs around</p>
+				<h3>a minecraft mod</h3>
+				<p>adding a wheelbarrow that you can use to transport mobs around</p>
 			</li>
 			<li>
 				<h3>warframe offering prices scraper</h3>
-				<p>a small cli tool for listing and finding the most expensive warframe syndicate offerings</p>
+				<p>in form of a cli tool. It lists and finds the most expensive warframe syndicate offerings</p>
 			</li>
 			<li>
 				<h3>league of legends damage calculator</h3>
-				<p>unfortunately not updated, but in its glory days it accurately showed the damage difference between different builds</p>
+				<p>unfortunately not updated, but in its glory days it accurately showed the damage difference between champions and builds</p>
 			</li>
 		</ul>
 		<div id="stuff-note">
@@ -77,7 +77,7 @@ const localePath = useLocalePath();
 				</NuxtLink>
 			</p>
 			<p>
-				personally, i enjoy creating user-facing stuff that someone can interact with or creating complicated logic that make me feel smart. Despite it, i understand that not all of programming can be exciting and sometimes a job needs to get done. I'm here for those times too
+				personally, i enjoy creating user-facing stuff that someone can interact with, or creating complicated logic that makes me feel smart. Despite it, i understand that not all of programming can be exciting and sometimes a job needs to get done
 			</p>
 		</div>
 		<h2>experience</h2>
