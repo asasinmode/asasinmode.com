@@ -2,6 +2,8 @@
 import defaultSkin from '~/composables/skins/index/default';
 
 useSkin(defaultSkin);
+
+const localePath = useLocalePath();
 </script>
 
 <template>
@@ -50,7 +52,7 @@ useSkin(defaultSkin);
 				stuff
 			</span>
 		</h3>
-		<ul>
+		<ul id="stuff-list">
 			<li>
 				<h5>fullstack blog cms</h5>
 				<p>featuring an html and css editor, custom file and image management with automatically generated responsive picture variants, seo tools and more</p>
@@ -69,11 +71,13 @@ useSkin(defaultSkin);
 			</li>
 		</ul>
 		<p>
-			big or small, web, game or cli - doesn't matter. if it sounds fun or useful, i'll do it
+			big or small, web, game or cli - doesn't matter. if it sounds fun or useful, i'll do it. more of the stuff I made can be found on the <NuxtLink :to="localePath('projects')">
+				projects page
+			</NuxtLink>
 		</p>
 		<p>
 			personally, i enjoy creating user-facing stuff that someone can interact with or creating complicated logic that make me feel smart<br>
-			despite that, i understand that not all of programming can be exciting and sometimes a job needs to get done. i'm here for those times too
+			despite that, i understand that not all of programming can be exciting and sometimes a job needs to get done. I'm here for those times too
 		</p>
 		<h3>experience</h3>
 		<ol>

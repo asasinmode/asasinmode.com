@@ -21,6 +21,11 @@ const localePath = useLocalePath();
 					cv
 				</NuxtLink>
 			</li>
+			<li>
+				<NuxtLink :to="localePath('cv')">
+					projects
+				</NuxtLink>
+			</li>
 		</menu>
 		<TheSkinSwitch />
 	</header>
