@@ -23,10 +23,9 @@ export default defineNuxtModule({
 		});
 
 		async function processFile(file: string, isVue = file.endsWith('.vue')) {
-			if (file.endsWith('assets/rainbow.css') || file.endsWith('assets/reset.css')) {
-				return;
+			if (!file.endsWith('assets/reset.css')) {
+				variablesByFile.set(file, await extractFluidVariables(file, isVue));
 			}
-			variablesByFile.set(file, await extractFluidVariables(file, isVue));
 		}
 
 		nuxt.hook('builder:watch', async (_event, path) => {
@@ -44,7 +43,7 @@ type IFileVariables = Map<string, [number, number]>;
 
 const variableRegex = /--fluid-(\d+)-(\d+)/g;
 const minScreenWidth = 20;
-const maxScreenWidth = 120;
+const maxScreenWidth = 90;
 const remInPx = 16;
 
 function generateClamp(sizeFrom: number, sizeTo: number): string {
