@@ -8,7 +8,6 @@ const localePath = useLocalePath();
 
 <template>
 	<main>
-		<span id="wip">{{ $t('index.wip') }}</span>
 		<h1 id="name-header">
 			<span id="name-header-text">
 				Stanisław Perek
@@ -97,13 +96,16 @@ const localePath = useLocalePath();
 			</li>
 		</ul>
 		<div id="stuff-note">
-			<p>
-				big or small, web, game or cli - doesn't matter. if it sounds fun or useful, i'll do it. More of the stuff I made can be found on the <NuxtLink :to="localePath('projects')">
+			<h3>
+				<NuxtLink :to="localePath('projects')">
 					projects page
 				</NuxtLink>
+			</h3>
+			<p>
+				big or small, web, game or cli - doesn't matter. if it sounds fun or useful, i'll do it
 			</p>
 			<p>
-				personally, i enjoy creating user-facing stuff that someone can interact with, or creating complicated logic that makes me feel smart. Despite it, i understand that not all of programming can be exciting and sometimes a job needs to get done
+				i enjoy creating user-facing stuff that someone can interact with, or creating complicated logic that makes me feel smart. Despite it, i understand that not all of programming can be exciting and sometimes a job needs to get done
 			</p>
 		</div>
 		<h2>experience</h2>
@@ -134,44 +136,3 @@ const localePath = useLocalePath();
 		</p>
 	</main>
 </template>
-
-<style>
-@layer page {
-	#wip {
-		text-transform: uppercase;
-		position: absolute;
-		left: 50%;
-		top: 0.55rem;
-		transform: translate(-50%, 0);
-		font-size: var(--fluid-20-36);
-		white-space: nowrap;
-		background: repeating-linear-gradient(
-			100deg,
-			black,
-			hsl(50 100% 50%) 0.05em,
-			hsl(30 100% 60%) 0.65em,
-			black 0.7em,
-			black 1.3em
-		);
-		border-radius: 6px;
-		padding-inline: 0.6rem;
-		font-weight: 700;
-		letter-spacing: -0.025em;
-		animation: wip-blink steps(2, jump-start) 1s infinite;
-	}
-
-	@keyframes wip-blink {
-		from {
-			color: hsl(0 100% 100% / 0);
-		}
-		to {
-			color: hsl(0 100% 100% / 1);
-			text-shadow:
-				2px 2px green,
-				4px 4px purple,
-				-2px -2px blue,
-				-4px -4px red;
-		}
-	}
-}
-</style>
