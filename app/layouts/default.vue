@@ -3,7 +3,10 @@ const localePath = useLocalePath();
 </script>
 
 <template>
-	<header>
+	<header id="wip">
+		{{ $t('index.wip') }}
+	</header>
+	<nav>
 		<TheLanguageSwitch />
 		<menu>
 			<li>
@@ -28,29 +31,12 @@ const localePath = useLocalePath();
 			</li>
 		</menu>
 		<TheSkinSwitch />
-	</header>
-	<span id="wip">{{ $t('index.wip') }}</span>
+	</nav>
 	<slot />
 </template>
 
 <style>
 @layer layout {
-	menu {
-		display: flex;
-		column-gap: 0.5rem;
-
-		.router-link-exact-active {
-			background: #4f4f4f;
-		}
-	}
-
-	header {
-		position: fixed;
-		top: 0;
-		right: 0;
-		padding: 0.3rem 0.75rem;
-	}
-
 	#wip {
 		text-transform: uppercase;
 		position: absolute;
@@ -72,6 +58,23 @@ const localePath = useLocalePath();
 		font-weight: 700;
 		letter-spacing: -0.025em;
 		animation: wip-blink steps(2, jump-start) 1s infinite;
+		width: min-content;
+	}
+
+	nav {
+		position: fixed;
+		top: 0;
+		right: 0;
+		padding: 0.3rem 0.75rem;
+	}
+
+	menu {
+		display: flex;
+		column-gap: 0.5rem;
+
+		.router-link-exact-active {
+			background: #4f4f4f;
+		}
 	}
 
 	@keyframes wip-blink {

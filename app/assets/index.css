@@ -10,7 +10,7 @@
 		--size-page-px: var(--fluid-8-24);
 
 		@media (min-width: 90rem) {
-			/* 24-0, wind down padding since margin-inline will take care of it at max width */
+			/* 24->0, wind down padding since margin-inline will take care of it at max width */
 			--size-page-px: clamp(0rem, 91.5rem + -100vw, 1.5rem);
 		}
 	}
@@ -20,6 +20,7 @@
 		background: var(--clr-page-bg);
 		color: var(--clr-page-text);
 		min-height: 100dvh;
+		overflow-x: hidden;
 	}
 
 	main {
