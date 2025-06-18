@@ -12,6 +12,9 @@
 		--outline-size: max(2px, 0.08em);
 		--outline-style: solid;
 		--outline-color: var(--clr-rainbow-next);
+		--size-page-computed-px: calc(
+			var(--size-page-px) + max(0px, calc((100vw - var(--size-page-max-w)) / 2) - var(--size-page-px))
+		);
 	}
 
 	*:focus,
