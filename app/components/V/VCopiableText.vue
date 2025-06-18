@@ -33,6 +33,7 @@ function resetInfo() {
 			left: 50%;
 			top: 0;
 			transform: translate(-50%, -100%);
+			background-color: var(--clr-page-bg);
 		}
 
 		.copy {

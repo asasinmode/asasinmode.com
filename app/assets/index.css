@@ -7,13 +7,17 @@
 		--clr-page-bg: light-dark(#efefef, #050505);
 		--clr-page-text: light-dark(black, white);
 		--clr-page-text-light: light-dark(#050505, #e0e0e0);
-		--size-page-max-width: 90rem;
+		--size-page-max-w: 90rem;
 		--size-page-px: var(--fluid-8-24);
+		--outline-size: max(2px, 0.08em);
+		--outline-style: solid;
+		--outline-color: var(--clr-rainbow-next);
+	}
 
-		@media (width >= 90rem) {
-			/* 24->0, wind down padding since margin-inline will take care of it at max width */
-			--size-page-px: clamp(0rem, 91.5rem + -100vw, 1.5rem);
-		}
+	*:focus,
+	*:focus-visible {
+		outline: var(--outline-size) var(--outline-style) var(--outline-color);
+		outline-offset: var(--outline-offset, var(--outline-size));
 	}
 
 	body {
@@ -24,10 +28,16 @@
 	}
 
 	main {
-		max-width: var(--size-page-max-width);
-		margin-inline: auto;
-		padding-inline: var(--size-page-px);
-		overflow-x: hidden;
+		display: grid;
+		grid-template-columns:
+			[page-start] minmax(var(--size-page-px), 1fr)
+			[content-start] minmax(min(calc(100vw - 2 * var(--size-page-px)), var(--size-page-max-w)), 1fr)
+			[content-end] minmax(var(--size-page-px), 1fr)
+			[page-end];
+
+		& > * {
+			grid-column: content;
+		}
 	}
 
 	.sr-only {

@@ -49,7 +49,9 @@ const localePath = useLocalePath();
 			<li>
 				<img src="https://picsum.photos/300?cache=1" width="300" height="300">
 				<h3>fullstack blog cms</h3>
-				<p>featuring an html and css editor, custom file and image management with automatically generated responsive picture variants and seo tools</p>
+				<p style="--size-stuff-max-w: 50ch">
+					featuring an html and css editor, custom file and image management with automatically generated responsive picture variants and seo tools
+				</p>
 			</li>
 			<li>
 				<img src="https://picsum.photos/300?cache=2" width="300" height="300">
@@ -64,7 +66,9 @@ const localePath = useLocalePath();
 			<li>
 				<img src="https://picsum.photos/300?cache=4" width="300" height="300">
 				<h3>league of legends damage calculator</h3>
-				<p>unfortunately not updated, but in its glory days it accurately showed the damage difference between champions and builds</p>
+				<p style="--size-stuff-max-w: 45ch">
+					unfortunately not updated, but in its glory days it accurately showed the damage difference between champions and builds
+				</p>
 			</li>
 		</ul>
 		<div id="stuff-note">
