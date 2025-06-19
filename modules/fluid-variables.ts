@@ -53,7 +53,7 @@ function generateClamp(sizeFrom: number, sizeTo: number): string {
 	const slope = (sizeTo - sizeFrom) / (maxScreenWidth - minScreenWidth);
 	const yAxisIntersection = -minScreenWidth * slope + sizeFrom;
 
-	return `clamp(${sizeFrom}rem, ${yAxisIntersection}rem + ${(slope * 100)}vw, ${sizeTo}rem)`;
+	return `clamp(${sizeFrom}rem, ${yAxisIntersection.toFixed(3)}rem + ${(slope * 100).toFixed(3)}vw, ${sizeTo}rem)`;
 }
 
 async function extractFluidVariables(filePath: string, isVue: boolean): Promise<IFileVariables> {
