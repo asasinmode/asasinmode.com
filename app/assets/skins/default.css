@@ -1,5 +1,5 @@
 @layer skin {
-	a,
+	a:not(.no-underline),
 	.v-copiable-text {
 		transition: text-decoration-thickness 50ms linear;
 		color: var(--clr-rainbow);
@@ -159,17 +159,28 @@
 		grid-column: page;
 		grid-template-columns: subgrid;
 
-		img {
+		a {
+			--outline-size: 3px;
+			display: block;
 			height: 10rem;
 			width: min(100%, 20rem);
 			grid-area: img;
 			border-radius: 0.5rem;
+			overflow: hidden;
 			margin-inline: auto;
 			object-fit: cover;
+			text-align: start;
+			font-size: 0.875em;
+
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
 
 			@media (width >= 38rem) {
 				margin-inline: unset;
-				width: auto;
+				width: clamp(10rem, 13vi, 15rem);
 			}
 		}
 
@@ -231,6 +242,7 @@
 				grid-auto-flow: column;
 				padding-block: 1.5rem;
 				grid-template-rows: min-content min-content;
+				align-items: center;
 				grid-template-columns: max-content 1fr;
 				grid-template-areas:
 					'img header'

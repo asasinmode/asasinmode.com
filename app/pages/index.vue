@@ -47,24 +47,38 @@ const localePath = useLocalePath();
 		</h2>
 		<ul id="stuff-list">
 			<li>
-				<img src="https://picsum.photos/300?cache=1" width="300" height="300">
+				<nuxt-link to="https://github.com/asasinmode/humbak/?tab=readme-ov-file#humbak" target="_blank" class="no-underline">
+					<img src="https://picsum.photos/300?cache=1" width="300" height="300">
+				</nuxt-link>
 				<h3>fullstack blog cms</h3>
 				<p style="--size-stuff-max-w: 50ch">
 					featuring an html and css editor, custom file and image management with automatically generated responsive picture variants and seo tools
 				</p>
 			</li>
 			<li>
-				<img src="https://picsum.photos/300?cache=2" width="300" height="300">
+				<nuxt-link to="https://modrinth.com/mod/wheelbarrow" target="_blank" class="no-underline">
+					<img
+						src="/images/home/wheelbarrow_thumbnail.webp"
+						width="300"
+						height="300"
+						style="object-position: 50% 20%"
+						alt="On the left, a screenshot of minecraft characters next to wheelbarrows. On the right, a screenshot of the wheelbarrow crafting recipe"
+					>
+				</nuxt-link>
 				<h3>a minecraft mod</h3>
 				<p>adding a wheelbarrow that you can use to transport mobs around</p>
 			</li>
 			<li>
-				<img src="https://picsum.photos/300?cache=3" width="300" height="300">
+				<nuxt-link to="https://github.com/asasinmode/warframe-syndicate-offerings-scraper?tab=readme-ov-file#warframe-syndicate-offerings-price-scraper" target="_blank" class="no-underline">
+					<img src="https://picsum.photos/300?cache=3" width="300" height="300">
+				</nuxt-link>
 				<h3>warframe offering prices scraper</h3>
 				<p>in form of a cli tool. It lists and finds the most expensive warframe syndicate offerings</p>
 			</li>
 			<li>
-				<img src="https://picsum.photos/300?cache=4" width="300" height="300">
+				<nuxt-link to="https://github.com/asasinmode/collector/wiki#welcome-to-the-collector-wiki" target="_blank" class="no-underline">
+					<img src="https://picsum.photos/300?cache=4" width="300" height="300">
+				</nuxt-link>
 				<h3>league of legends damage calculator</h3>
 				<p style="--size-stuff-max-w: 45ch">
 					unfortunately not updated, but in its glory days it accurately showed the damage difference between champions and builds

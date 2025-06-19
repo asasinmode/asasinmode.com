@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
 	compatibilityDate: '2025-05-12',
-	devtools: { enabled: false },
+	devtools: { enabled: true },
 	app: { rootTag: 'body' },
 	future: {
 		compatibilityVersion: 4,
