@@ -3,9 +3,9 @@ type IComputedOptions = { text: string; value: T }[];
 
 const props = defineProps<{
 	id: string;
+	label: string;
 	options: T[] | IComputedOptions;
 	transformOptions?: boolean;
-	ariaLabelledBy?: string;
 }>();
 
 const modelValue = defineModel<T>({ required: true });
@@ -22,6 +22,8 @@ const computedOptions = computed<IComputedOptions>(() => {
 
 const isExpanded = ref(false);
 const cursoredOverIndex = ref<number>();
+const combobox = useTemplateRef('combobox');
+const listbox = useTemplateRef('listbox');
 
 watch(modelValue, (value) => {
 	cursoredOverIndex.value = undefined;
@@ -33,68 +35,86 @@ watch(modelValue, (value) => {
 	}
 }, { immediate: true });
 
+// TODO should also scroll to option
 function moveCursor(value: number) {
-	cursoredOverIndex.value = Math.max(
-		0,
-		Math.min(
-			(cursoredOverIndex.value ?? 0) + value,
-			computedOptions.value.length - 1,
-		),
-	);
-	selectOption(cursoredOverIndex.value, false);
-}
-
-function setCursor(value: number) {
-	cursoredOverIndex.value = value;
-	selectOption(cursoredOverIndex.value, false);
-}
-
-function selectOption(index: number, collapse = true) {
-	modelValue.value = computedOptions.value[index]!.value;
-
-	if (collapse) {
-		isExpanded.value = false;
+	if (cursoredOverIndex.value === undefined) {
+		cursoredOverIndex.value = 0;
+	} else {
+		cursoredOverIndex.value = Math.max(
+			0,
+			Math.min(
+				cursoredOverIndex.value + value,
+				computedOptions.value.length - 1,
+			),
+		);
 	}
 }
 
-function onFocus() {
+function confirmOptionAndCollapse(index?: number) {
+	if (index !== undefined) {
+		modelValue.value = computedOptions.value[index]!.value;
+	}
+	isExpanded.value = false;
+}
+
+function expandAndCursorOver(first: boolean) {
+	isExpanded.value = true;
 	if (cursoredOverIndex.value === undefined) {
-		setCursor(0);
+		cursoredOverIndex.value = first ? 0 : computedOptions.value.length - 1;
+	}
+}
+
+function expandOrSelectAndCollapse() {
+	if (isExpanded.value) {
+		confirmOptionAndCollapse(cursoredOverIndex.value);
+	} else {
+		isExpanded.value = true;
+	}
+}
+
+function onBlur(event: FocusEvent) {
+	if (isExpanded.value && !listbox.value?.contains(event.relatedTarget as Node)) {
+		confirmOptionAndCollapse(cursoredOverIndex.value);
 	}
 }
 
 function onKeydown(e: KeyboardEvent) {
 	let preventDefault = true;
 
-	if (e.key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
-		if (e.key === ' ') {
-			isExpanded.value = true;
-		} else {
-			handleTypeahead(e.key);
-		}
+	if (e.key.length === 1 && e.key !== ' ' && !e.ctrlKey && !e.altKey && !e.metaKey) {
+		handleTypeahead(e.key);
 		e.preventDefault();
 		return;
 	}
 
 	switch (e.key) {
-		case 'Enter':
 		case 'Escape': {
 			isExpanded.value = false;
 			break;
+		}
+		case ' ':
+		case 'Enter': {
+			expandOrSelectAndCollapse();
+			break;
 		} case 'ArrowDown': {
-			moveCursor(1);
+			if (e.altKey) {
+				isExpanded.value = true;
+			} else {
+				isExpanded.value ? moveCursor(1) : expandAndCursorOver(true);
+			}
 			break;
 		} case 'ArrowUp': {
-			moveCursor(-1);
+			if (e.altKey && isExpanded.value) {
+				expandOrSelectAndCollapse();
+			} else {
+				isExpanded.value ? moveCursor(-1) : expandAndCursorOver(false);
+			}
 			break;
 		} case 'Home': {
-			setCursor(0);
+			cursoredOverIndex.value = 0;
 			break;
 		} case 'End': {
-			setCursor(computedOptions.value.length - 1);
-			break;
-		} case ' ': {
-			isExpanded.value = true;
+			cursoredOverIndex.value = computedOptions.value.length - 1;
 			break;
 		} default: {
 			preventDefault = false;
@@ -113,7 +133,7 @@ function handleTypeahead(key: string) {
 
 	const index = computedOptions.value.findIndex(option => option.text.toLowerCase().startsWith(typeaheadBuffer));
 	if (~index) {
-		setCursor(index);
+		cursoredOverIndex.value = index;
 	}
 
 	typeaheadTimeout = setTimeout(() => {
@@ -136,34 +156,42 @@ const activeDescendantId = computed(() => cursoredOverIndex.value !== undefined
 </script>
 
 <template>
-	<div :id>
+	<div :id class="combobox-container">
+		<span :id="`${id}-lbl`" @click="combobox?.focus()">
+			{{ label }}
+		</span>
 		<div
 			:id="`${id}-combobox`"
-			:aria-expanded="isExpanded"
-			:aria-controls="`${id}-listbox`"
-			:aria-labelled-by="ariaLabelledBy"
-			:aria-activedescendant="activeDescendantId"
+			ref="combobox"
 			aria-haspopup="listbox"
 			role="combobox"
 			tabindex="0"
-			@focus="onFocus"
+			:aria-expanded="isExpanded"
+			:aria-controls="`${id}-listbox`"
+			:aria-labelledby="`${id}-lbl`"
+			:aria-activedescendant="isExpanded ? activeDescendantId : ''"
 			@keydown="onKeydown"
+			@click="isExpanded = !isExpanded"
+			@blur="onBlur"
 		>
 			{{ selectedOptionText }}
 		</div>
 		<ul
 			:id="`${id}-listbox`"
-			:aria-labelled-by="ariaLabelledBy"
+			ref="listbox"
 			tabindex="-1"
 			role="listbox"
+			:aria-labelled-by="`${id}-lbl`"
+			:hidden="!isExpanded"
 		>
 			<li
 				v-for="(option, index) in computedOptions"
 				:id="`${id}-opt-${index}`"
 				:key="index"
 				:aria-selected="(modelValue === option.value) || undefined"
+				:data-focused="(cursoredOverIndex === index) || undefined"
 				role="option"
-				@click="selectOption(index)"
+				@click.stop="confirmOptionAndCollapse(index)"
 			>
 				{{ option.text }}
 			</li>
@@ -173,8 +201,23 @@ const activeDescendantId = computed(() => cursoredOverIndex.value !== undefined
 
 <style>
 @layer components {
-	li[role='option'][aria-selected='true'] {
-		background-color: var(--clr-page-bg-dark);
+	.combobox-container {
+		position: relative;
+
+		[role='combobox'] {
+			cursor: pointer;
+			display: inline-block;
+		}
+
+		ul {
+			position: absolute;
+			top: 100%;
+			left: 0;
+		}
+
+		li[role='option'][data-focused='true'] {
+			background-color: var(--clr-page-bg-dark);
+		}
 	}
 }
 </style>

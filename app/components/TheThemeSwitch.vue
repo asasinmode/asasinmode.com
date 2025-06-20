@@ -41,19 +41,14 @@ function setColorScheme(name: string) {
 				{{ name }}
 			</button>
 		</div>
-		<div>
-			<label id="color-scheme-listbox-lbl">
-				theme:
-			</label>
-			<VCombobox
-				id="color-scheme"
-				v-model="colorScheme"
-				aria-labelledby="color-scheme-listbox-lbl"
-				transform-options
-				:options="availableColorSchemes"
-				@update:model-value="setColorScheme"
-			/>
-		</div>
+		<VCombobox
+			id="color-scheme"
+			v-model="colorScheme"
+			label="theme:"
+			transform-options
+			:options="availableColorSchemes"
+			@update:model-value="setColorScheme"
+		/>
 	</div>
 </template>
 
@@ -83,10 +78,6 @@ function setColorScheme(name: string) {
 	.theme-ctrls-group button[aria-pressed='true'],
 	#color-scheme-listbox li[aria-selected='true'] {
 		color: var(--clr-rainbow);
-	}
-
-	#color-scheme {
-		display: inline-block;
 	}
 }
 </style>
