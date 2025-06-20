@@ -7,7 +7,7 @@ const availableSkins = computed<ISkinName[]>(() => route.meta.enabledSkins || ['
 const colorScheme = ref('auto');
 
 onMounted(() => {
-	colorScheme.value = document.documentElement.dataset.colorScheme ?? 'auto';
+	colorScheme.value = document.documentElement.dataset.colorScheme!;
 });
 
 function setColorScheme(name: string) {
