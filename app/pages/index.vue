@@ -119,7 +119,9 @@ const localePath = useLocalePath();
 		</p>
 		<h2>contact</h2>
 		<p>
-			get in touch through email (<a href="mailto:stanislaw.perek.ui@gmail.com">stanislaw.perek.ui@gmail.com</a>) or a discord dm (username: <v-copiable-text text="asasinmode" />). Whether business related or something i yapped about on <strong>TODO blog</strong>, i'm happy to talk
+			get in touch through email (<a href="mailto:stanislaw.perek.ui@gmail.com">stanislaw.perek.ui@gmail.com</a>) or a discord dm (username: <v-copiable-text text="asasinmode" />). Whether business related or something i yapped about on <nuxt-link to="/blog">
+				<!-- eslint-disable-next-line vue/multiline-html-element-content-newline -->
+				blog</nuxt-link>, i'm happy to talk
 		</p>
 	</main>
 </template>
