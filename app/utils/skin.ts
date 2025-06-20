@@ -14,6 +14,7 @@ export class Skin {
 	) {
 		if (setup) {
 			this.onMounted = () => {
+				window.skinUpdateColorScheme = undefined;
 				this.onBeforeUnmount = setup() || undefined;
 			};
 		}

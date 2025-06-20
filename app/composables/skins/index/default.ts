@@ -119,6 +119,10 @@ export default new Skin('index-default', () => {
 
 	const stuffHeaderBg = setupSectionStuff();
 
+	window.skinUpdateColorScheme = () => {
+		updateTextContext(textCanvas, dpi);
+	};
+
 	return () => {
 		document.removeEventListener('visibilitychange', cleanupOldDrops);
 		headerText.removeEventListener('click', clickAddDrop);
@@ -141,7 +145,9 @@ function updateTextContext(textCanvas: HTMLCanvasElement, dpi: number): number {
 	const fontSize = Math.round(clamp(2.5 * REM, REM + 7.5 * (window.innerWidth / 100), 10 * REM));
 
 	const textContext = Object.assign(textCanvas.getContext('2d')!, {
-		fillStyle: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'white' : 'black',
+		fillStyle: skinIsDarkMode()
+			? 'white'
+			: 'black',
 		textAlign: 'center',
 		textBaseline: 'middle',
 		font: `700 ${fontSize * dpi}px Atkinson Hyperlegible Next`,

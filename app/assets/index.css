@@ -2,7 +2,6 @@
 
 @layer base {
 	:root {
-		/* TODO maybe can toggle light/dark mode by changing this to just light/dark? */
 		color-scheme: light dark;
 		--clr-page-bg: light-dark(#efefef, #050505);
 		--clr-page-text: light-dark(black, white);
@@ -16,6 +15,14 @@
 		--outline-size: max(2px, 0.08em);
 		--outline-style: solid;
 		--outline-color: var(--clr-rainbow-next);
+
+		&[data-color-scheme='light'] {
+			color-scheme: light;
+		}
+
+		&[data-color-scheme='dark'] {
+			color-scheme: dark;
+		}
 	}
 
 	*:focus-visible {

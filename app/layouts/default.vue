@@ -30,7 +30,7 @@ const localePath = useLocalePath();
 				</NuxtLink>
 			</li>
 		</menu>
-		<TheSkinSwitch />
+		<TheThemeSwitch />
 	</nav>
 	<slot />
 </template>

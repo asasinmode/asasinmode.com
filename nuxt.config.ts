@@ -1,7 +1,17 @@
 export default defineNuxtConfig({
 	compatibilityDate: '2025-05-12',
 	devtools: { enabled: true },
-	app: { rootTag: 'body' },
+	app: {
+		rootTag: 'body',
+		head: {
+			script: [
+				{
+					innerHTML: 'const colorScheme = localStorage.getItem(\'color-scheme\'); if (colorScheme) { document.documentElement.dataset.colorScheme = colorScheme }; function skinIsDarkMode() { return document.documentElement.dataset.colorScheme === \'dark\' || (document.documentElement.dataset.colorScheme === \'auto\' && window.matchMedia && window.matchMedia(\'(prefers-color-scheme: dark)\').matches) }',
+					tagPriority: 0,
+				},
+			],
+		},
+	},
 	future: {
 		compatibilityVersion: 4,
 	},
