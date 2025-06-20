@@ -45,7 +45,7 @@ function setColorScheme(name: string) {
 			<label id="color-scheme-listbox-lbl">
 				theme:
 			</label>
-			<VListbox
+			<VCombobox
 				id="color-scheme"
 				v-model="colorScheme"
 				aria-labelledby="color-scheme-listbox-lbl"
@@ -83,6 +83,10 @@ function setColorScheme(name: string) {
 	.theme-ctrls-group button[aria-pressed='true'],
 	#color-scheme-listbox li[aria-selected='true'] {
 		color: var(--clr-rainbow);
+	}
+
+	#color-scheme {
+		display: inline-block;
 	}
 }
 </style>

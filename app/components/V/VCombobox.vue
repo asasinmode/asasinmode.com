@@ -5,6 +5,7 @@ const props = defineProps<{
 	id: string;
 	options: T[] | IComputedOptions;
 	transformOptions?: boolean;
+	ariaLabelledBy?: string;
 }>();
 
 const modelValue = defineModel<T>({ required: true });
@@ -108,9 +109,9 @@ let typeaheadBuffer = '';
 
 function handleTypeahead(key: string) {
 	clearTimeout(typeaheadTimeout);
-	typeaheadBuffer += key.toLocaleLowerCase();
+	typeaheadBuffer += key.toLowerCase();
 
-	const index = computedOptions.value.findIndex(option => option.text.toLocaleLowerCase().startsWith(typeaheadBuffer));
+	const index = computedOptions.value.findIndex(option => option.text.toLowerCase().startsWith(typeaheadBuffer));
 	if (~index) {
 		setCursor(index);
 	}
@@ -124,32 +125,50 @@ onBeforeUnmount(() => {
 	clearTimeout(typeaheadTimeout);
 });
 
+const selectedOptionText = computed(() => {
+	const selectedOptionIndex = computedOptions.value.findIndex(option => option.value === modelValue.value);
+	return computedOptions.value[selectedOptionIndex]?.text ?? modelValue.value;
+});
+
 const activeDescendantId = computed(() => cursoredOverIndex.value !== undefined
 	? `${props.id}-opt-${cursoredOverIndex.value}`
 	: undefined);
 </script>
 
 <template>
-	<ul
-		:id="`${id}-listbox`"
-		tabindex="0"
-		role="listbox"
-		:data-expanded="isExpanded"
-		:aria-activedescendant="activeDescendantId"
-		@focus="onFocus"
-		@keydown="onKeydown"
-	>
-		<li
-			v-for="(option, index) in computedOptions"
-			:id="`${id}-opt-${index}`"
-			:key="index"
-			:aria-selected="(modelValue === option.value) || undefined"
-			role="option"
-			@click="selectOption(index)"
+	<div :id>
+		<div
+			:id="`${id}-combobox`"
+			:aria-expanded="isExpanded"
+			:aria-controls="`${id}-listbox`"
+			:aria-labelled-by="ariaLabelledBy"
+			:aria-activedescendant="activeDescendantId"
+			aria-haspopup="listbox"
+			role="combobox"
+			tabindex="0"
+			@focus="onFocus"
+			@keydown="onKeydown"
 		>
-			{{ option.text }}
-		</li>
-	</ul>
+			{{ selectedOptionText }}
+		</div>
+		<ul
+			:id="`${id}-listbox`"
+			:aria-labelled-by="ariaLabelledBy"
+			tabindex="-1"
+			role="listbox"
+		>
+			<li
+				v-for="(option, index) in computedOptions"
+				:id="`${id}-opt-${index}`"
+				:key="index"
+				:aria-selected="(modelValue === option.value) || undefined"
+				role="option"
+				@click="selectOption(index)"
+			>
+				{{ option.text }}
+			</li>
+		</ul>
+	</div>
 </template>
 
 <style>
