@@ -25,57 +25,61 @@ const localePath = useLocalePath();
 		</h2>
 		<ul id="stuff-list">
 			<li>
-				<nuxt-link to="https://github.com/asasinmode/humbak/?tab=readme-ov-file#humbak" target="_blank" class="no-underline">
-					<img
-						src="/images/home/humbak_thumbnail.webp"
-						width="640"
-						height="320"
-						alt="Thumbnail with a screenshot of the humbak cms showcasing the pages table along with the meta and code editor and the html preview"
-					>
-				</nuxt-link>
-				<h3>fullstack blog cms</h3>
+				<h3 id="stuff-humbak">
+					fullstack blog cms
+				</h3>
+				<nuxt-link to="https://github.com/asasinmode/humbak/?tab=readme-ov-file#humbak" target="_blank" class="no-underline" aria-labelledby="stuff-humbak" />
 				<p style="--size-stuff-max-w: 50ch">
 					featuring an html and css editor, custom file and image management with automatically generated responsive picture variants and seo tools
 				</p>
+				<img
+					src="/images/home/humbak_thumbnail.webp"
+					width="640"
+					height="320"
+					alt="Thumbnail with a screenshot of the humbak cms showcasing the pages table along with the meta and code editor and the html preview"
+				>
 			</li>
 			<li>
-				<nuxt-link to="https://modrinth.com/mod/wheelbarrow" target="_blank" class="no-underline">
-					<img
-						src="/images/home/wheelbarrow_thumbnail.webp"
-						width="640"
-						height="320"
-						alt="Thumbnail with, on the left, a screenshot of minecraft characters next to wheelbarrows. On the right, a screenshot of the wheelbarrow crafting recipe"
-					>
-				</nuxt-link>
-				<h3>a minecraft mod</h3>
+				<h3 id="stuff-wheelbarrow">
+					a minecraft mod
+				</h3>
+				<nuxt-link to="https://modrinth.com/mod/wheelbarrow" target="_blank" class="no-underline" aria-labelledby="stuff-wheelbarrow" />
 				<p>adding a wheelbarrow that you can use to transport mobs around</p>
+				<img
+					src="/images/home/wheelbarrow_thumbnail.webp"
+					width="640"
+					height="320"
+					alt="Thumbnail with, on the left, a screenshot of minecraft characters next to wheelbarrows. On the right, a screenshot of the wheelbarrow crafting recipe"
+				>
 			</li>
 			<li>
-				<nuxt-link to="https://github.com/asasinmode/warframe-syndicate-offerings-scraper?tab=readme-ov-file#warframe-syndicate-offerings-price-scraper" target="_blank" class="no-underline">
-					<img
-						src="/images/home/warframe_scraper_thumbnail.webp"
-						width="640"
-						height="320"
-						alt="Thumbnail with a screenshot of terminal output for the offerings scraper showing the syndicate selection and scraping output"
-						style="object-position: left;"
-					>
-				</nuxt-link>
-				<h3>warframe offering prices scraper</h3>
+				<h3 id="stuff-warframe-scraper">
+					warframe offering prices scraper
+				</h3>
+				<nuxt-link to="https://github.com/asasinmode/warframe-syndicate-offerings-scraper?tab=readme-ov-file#warframe-syndicate-offerings-price-scraper" target="_blank" class="no-underline" aria-labelledby="stuff-warframe-scraper" />
 				<p>in form of a cli tool. It lists and finds the most expensive warframe syndicate offerings</p>
+				<img
+					src="/images/home/warframe_scraper_thumbnail.webp"
+					width="640"
+					height="320"
+					alt="Thumbnail with a screenshot of terminal output for the offerings scraper showing the syndicate selection and scraping output"
+					style="object-position: left;"
+				>
 			</li>
 			<li>
-				<nuxt-link to="https://github.com/asasinmode/collector/wiki#welcome-to-the-collector-wiki" target="_blank" class="no-underline">
-					<img
-						src="/images/home/collector_thumbnail.webp"
-						width="640"
-						height="320"
-						alt="Thumbnail with a screenshot of the collector damage calculator page with Jinx and Vi selected and some items chosen. Their calculated stats can be seen"
-					>
-				</nuxt-link>
-				<h3>league of legends damage calculator</h3>
+				<h3 id="stuff-collector">
+					league of legends damage calculator
+				</h3>
+				<nuxt-link to="https://github.com/asasinmode/collector/wiki#welcome-to-the-collector-wiki" target="_blank" class="no-underline" aria-labelledby="stuff-collector" />
 				<p style="--size-stuff-max-w: 45ch">
 					unfortunately not updated, but in its glory days it accurately showed the damage difference between champions and builds
 				</p>
+				<img
+					src="/images/home/collector_thumbnail.webp"
+					width="640"
+					height="320"
+					alt="Thumbnail with a screenshot of the collector damage calculator page with Jinx and Vi selected and some items chosen. Their calculated stats can be seen"
+				>
 			</li>
 		</ul>
 		<div id="stuff-note">
