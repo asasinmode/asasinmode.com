@@ -5,9 +5,16 @@ const skinName = useState<ISkinName>('skinName', () => 'default');
 const availableSkins = computed<ISkinName[]>(() => route.meta.enabledSkins || ['default', 'minimal']);
 
 const colorScheme = ref('auto');
+const availableColorSchemes = ['light', 'auto', 'dark'];
 
 onMounted(() => {
 	colorScheme.value = document.documentElement.dataset.colorScheme!;
+
+	window
+		.matchMedia('(prefers-color-scheme: dark)')
+		.addEventListener('change', ({ matches }) => {
+			setColorScheme(matches ? 'dark' : 'light');
+		});
 });
 
 function setColorScheme(name: string) {
@@ -34,19 +41,18 @@ function setColorScheme(name: string) {
 				{{ name }}
 			</button>
 		</div>
-		<div class="theme-ctrls-group" role="group">
-			<span id="theme-lbl">{{ colorScheme }} theme</span>
-			:
-			<button
-				v-for="name in ['light', 'dark', 'auto']"
-				:id="`theme-${name}`"
-				:key="name"
-				:aria-pressed="colorScheme === name"
-				:aria-labelledby="`theme-lbl theme-${name}`"
-				@click="setColorScheme(name)"
-			>
-				{{ name }}
-			</button>
+		<div>
+			<label id="color-scheme-listbox-lbl">
+				theme:
+			</label>
+			<VListbox
+				id="color-scheme"
+				v-model="colorScheme"
+				aria-labelledby="color-scheme-listbox-lbl"
+				transform-options
+				:options="availableColorSchemes"
+				@update:model-value="setColorScheme"
+			/>
 		</div>
 	</div>
 </template>
@@ -57,20 +63,26 @@ function setColorScheme(name: string) {
 		display: flex;
 		column-gap: 0.4em;
 		font-size: 1.5rem;
+	}
 
-		button {
-			color: currentColor;
-			text-decoration-line: none;
+	#color-scheme-listbox li {
+		cursor: pointer;
+	}
 
-			&:hover,
-			&:focus-visible {
-				text-decoration-line: underline;
-			}
+	.theme-ctrls-group button,
+	#color-scheme-listbox li {
+		color: currentColor;
+		text-decoration-line: none;
 
-			&[aria-pressed='true'] {
-				color: var(--clr-rainbow);
-			}
+		&:hover,
+		&:focus-visible {
+			text-decoration-line: underline;
 		}
+	}
+
+	.theme-ctrls-group button[aria-pressed='true'],
+	#color-scheme-listbox li[aria-selected='true'] {
+		color: var(--clr-rainbow);
 	}
 }
 </style>

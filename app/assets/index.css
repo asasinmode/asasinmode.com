@@ -4,6 +4,7 @@
 	:root {
 		color-scheme: light dark;
 		--clr-page-bg: light-dark(#efefef, #050505);
+		--clr-page-bg-dark: light-dark(#e0e0e0, #161616);
 		--clr-page-text: light-dark(black, white);
 		--clr-page-text-light: light-dark(#050505, #e0e0e0);
 		--size-page-max-w: 90rem;
