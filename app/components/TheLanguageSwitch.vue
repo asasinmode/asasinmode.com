@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { locales } = useI18n();
+const switchLocalePath = useSwitchLocalePath();
 </script>
 
 <template>
@@ -7,7 +8,7 @@ const { locales } = useI18n();
 		<NuxtLink
 			v-for="locale in locales"
 			:key="locale.code"
-			:to="$switchLocalePath(locale.code)"
+			:to="switchLocalePath(locale.code)"
 		>
 			{{ locale.code }}
 		</NuxtLink>
@@ -20,20 +21,6 @@ const { locales } = useI18n();
 		display: flex;
 		column-gap: 0.4em;
 		font-size: 1.5rem;
-
-		a {
-			color: currentColor;
-			text-decoration-line: none;
-
-			&:hover,
-			&:focus-visible {
-				text-decoration-line: underline;
-			}
-
-			&.router-link-active {
-				color: var(--clr-rainbow);
-			}
-		}
 	}
 }
 </style>

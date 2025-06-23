@@ -4,6 +4,7 @@ import defaultSkin from '~/composables/skins/index/default';
 useSkin(defaultSkin);
 
 const localePath = useLocalePath();
+const locale = useI18n().locale;
 </script>
 
 <template>
@@ -95,11 +96,33 @@ const localePath = useLocalePath();
 				i enjoy creating user-facing stuff that someone can interact with, or creating complicated logic that makes me feel smart. Despite it, i understand that not all of programming can be exciting and sometimes a job needs to get done
 			</p>
 		</div>
-		<h2>experience</h2>
-		<ol>
+		<h2 id="experience-header">
+			<svg viewBox="0 0 525 80" xmlns="http://www.w3.org/2000/svg">
+				<defs>
+					<path
+						id="experience-path"
+						fill="none"
+						:d="locale === 'en'
+							? 'M 77 55 C 138 40 143 35 205 34 C 260 34 269 50 320 50 C 398 52 401 44 448 34'
+							: 'M 14 52 C 65 43 110 33 175 32 C 240 32 285 52 350 52 C 415 52 460 32 511 32'"
+					/>
+				</defs>
+				<text fill="currentColor" :textLength="locale === 'en' ? '92.5%' : '125%'">
+					<textPath
+						href="#experience-path"
+						startOffset="50%"
+						text-anchor="middle"
+						dominant-baseline="middle"
+					>
+						{{ $t('index.experience') }}
+					</textPath>
+				</text>
+			</svg>
+		</h2>
+		<ol style="display: flex;">
 			<li>4 years of polish <i>technikum</i> (vocational IT school), in the middle of which i started freelance work</li>
 			<li>internship that turned into 4 years of junior, then mid fullstack web developer position</li>
-			<li>? - excited for what future holds</li>
+			<li>i'm working on it :c</li>
 		</ol>
 		<h3>web dev</h3>
 		<p>
