@@ -35,7 +35,7 @@
 		font-family: 'Atkinson Hyperlegible Next', system-ui, sans-serif;
 		background: var(--clr-page-bg);
 		color: var(--clr-page-text);
-		min-height: 100dvh;
+		min-height: 100vh;
 	}
 
 	main {

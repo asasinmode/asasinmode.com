@@ -358,6 +358,26 @@
 		}
 	}
 
+	.experience-path {
+		stroke-width: 4;
+		stroke-dasharray: 12, 170; /* 156 + 14, 7 colors +[2] for each, offset in elements is (length * 2 + [2]) */
+		stroke-dashoffset: var(--offset);
+		animation: experience-path 8s linear infinite;
+
+		@media (prefers-reduced-motion: reduce) {
+			animation: experience-path 8s steps(7) infinite;
+		}
+	}
+
+	@keyframes experience-path {
+		from {
+			stroke-dashoffset: var(--offset);
+		}
+		to {
+			stroke-dashoffset: var(--animation-offset);
+		}
+	}
+
 	#experience-header {
 		font-size: 4rem;
 		font-weight: 700;

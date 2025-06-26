@@ -98,16 +98,27 @@ const locale = useI18n().locale;
 		</div>
 		<h2 id="experience-header">
 			<svg viewBox="0 0 525 80" xmlns="http://www.w3.org/2000/svg">
-				<defs>
-					<path
-						id="experience-path"
-						fill="none"
-						:d="locale === 'en'
-							? 'M 77 55 C 138 40 143 35 205 34 C 260 34 269 50 320 50 C 398 52 401 44 448 34'
-							: 'M 14 52 C 65 43 110 33 175 32 C 240 32 285 52 350 52 C 415 52 460 32 511 32'"
-					/>
-				</defs>
-				<text fill="currentColor" :textLength="locale === 'en' ? '92.5%' : '125%'">
+				<path
+					v-for="(stroke, index) in [
+						'#de0000',
+						'#fe622c',
+						'#fef600',
+						'#00bc00',
+						'#009cfe',
+						'#000084',
+						'#2c009c',
+					]"
+					:id="stroke === '#de0000' ? 'experience-path' : undefined"
+					:key="stroke"
+					class="experience-path"
+					fill="none"
+					:style="`--offset: ${index * -(24 + 2)}; --animation-offset: ${index * -(24 + 2) - 182}`"
+					:stroke
+					:d="locale === 'en'
+						? 'M 77 55 C 138 40 143 35 205 34 C 260 34 269 50 320 50 C 398 52 401 44 448 34'
+						: 'M 14 52 C 65 43 110 33 175 32 C 240 32 285 52 350 52 C 415 52 460 32 511 32'"
+				/>
+				<text fill="currentColor" :textLength="locale === 'en' ? '5.5em' : '7.25em'">
 					<textPath
 						href="#experience-path"
 						startOffset="50%"
