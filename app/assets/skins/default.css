@@ -50,7 +50,7 @@
 		justify-content: center;
 		align-items: center;
 		text-align: center;
-		font-size: var(--fluid-40-160);
+		font-size: var(--fluid-60-160);
 		height: min(calc(100vh - var(--size-me-tokens-height)), 90rem);
 		font-weight: 700;
 		line-height: 1;

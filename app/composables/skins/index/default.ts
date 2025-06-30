@@ -51,7 +51,7 @@ export default new Skin('index-default', () => {
 	function drawDrops(context: CanvasRenderingContext2D, msPassed: number) {
 		context.globalCompositeOperation = 'source-over';
 		context.clearRect(0, 0, canvas.width, canvas.height);
-		context.drawImage(textCanvas, 0, canvas.height * 0.08);
+		context.drawImage(textCanvas, 0, canvas.height * 0.05);
 		context.globalCompositeOperation = 'source-atop';
 
 		for (const drop of drops) {
@@ -137,12 +137,10 @@ export default new Skin('index-default', () => {
 	};
 });
 
-function clamp(min: number, value: number, max: number) {
-	return value < min ? min : value > max ? max : value;
-}
-
 function updateTextContext(textElement: HTMLElement, textCanvas: HTMLCanvasElement, dpr: number): number {
-	const fontSize = Math.round(clamp(2.5 * REM, REM + 7.5 * (window.innerWidth / 100), 10 * REM));
+	const lines = nodeTextLines(textElement.childNodes.item(0));
+	const style = getComputedStyle(textElement);
+	const fontSize = Number(style.fontSize.slice(0, -2));
 
 	const textContext = Object.assign(textCanvas.getContext('2d')!, {
 		fillStyle: skinIsDarkMode()
@@ -153,9 +151,47 @@ function updateTextContext(textElement: HTMLElement, textCanvas: HTMLCanvasEleme
 		font: `700 ${fontSize * dpr}px Atkinson Hyperlegible Next`,
 	} satisfies Partial<CanvasRenderingContext2D>);
 	textContext.clearRect(0, 0, textCanvas.width, textCanvas.height);
-	textContext.fillText('Stanisław Perek', textCanvas.width / 2, textCanvas.height / 2);
+
+	if (lines.length === 1) {
+		textContext.fillText(lines[0]!, textCanvas.width / 2, textCanvas.height / 2);
+	} else {
+		textContext.fillText(lines[0]!, textCanvas.width / 2, textCanvas.height / 2 - fontSize * 0.5 * dpr);
+		textContext.fillText(lines[1]!, textCanvas.width / 2, textCanvas.height / 2 + fontSize * 0.5 * dpr);
+	}
 
 	return fontSize;
+}
+
+function nodeTextLines(node: Node): string[] {
+	const lines: string[] = [];
+
+	const str = node.textContent!;
+	const range = document.createRange();
+	range.setStart(node, 0);
+
+	let { bottom: prevBottom } = range.getBoundingClientRect();
+	let index = 1;
+	let lastIndex = 0;
+	let top = 0;
+
+	while (index <= str.length) {
+		range.setStart(node, index);
+		if (index < str.length - 1) {
+			range.setEnd(node, index + 1);
+		}
+		const rangeRect = range.getBoundingClientRect();
+		top = rangeRect.bottom;
+		if (top > prevBottom) {
+			lines.push(str.slice(lastIndex, index - lastIndex).trim());
+			prevBottom = top;
+			lastIndex = index;
+		}
+		index++;
+	}
+
+	lines.push(str.slice(lastIndex).trim());
+
+	return lines;
 }
 
 function randomInt(min: number, max: number) {
@@ -174,7 +210,7 @@ class Drop {
 		fontSize: number,
 		public readonly id = performance.now().toString(),
 		public readonly x = randomInt(0, canvasWidth),
-		public readonly y = randomInt(canvasHeight * 0.05, canvasHeight * 0.75),
+		public readonly y = randomInt(canvasHeight * 0.05, canvasHeight * 0.9),
 		public readonly size = Math.max(0.05, Math.random() / 5) * fontSize * dpr,
 		public readonly lifespan = randomInt(800, 1800),
 	) {
