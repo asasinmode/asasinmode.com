@@ -8,7 +8,7 @@ export default new Skin('index-default', () => {
 	let context = canvas.getContext('2d')!;
 	let dropContext = dropCanvas.getContext('2d')!;
 
-	const dpi = window.devicePixelRatio;
+	const dpr = window.devicePixelRatio;
 	let fontSize = REM;
 
 	const headerText = document.getElementById('name-header-text')!;
@@ -37,13 +37,13 @@ export default new Skin('index-default', () => {
 	animate(0);
 
 	function handleResize() {
-		dropCanvas.height = textCanvas.height = canvas.height = canvas.offsetHeight * dpi;
-		dropCanvas.width = textCanvas.width = canvas.width = canvas.offsetWidth * dpi;
+		dropCanvas.height = textCanvas.height = canvas.height = canvas.offsetHeight * dpr;
+		dropCanvas.width = textCanvas.width = canvas.width = canvas.offsetWidth * dpr;
 
 		context = canvas.getContext('2d')!;
 		dropContext = dropCanvas.getContext('2d')!;
 
-		fontSize = updateTextContext(textCanvas, dpi);
+		fontSize = updateTextContext(headerText, textCanvas, dpr);
 
 		drawDrops(context, 0);
 	}
@@ -101,12 +101,12 @@ export default new Skin('index-default', () => {
 		const x = eventX - elementX;
 		const y = eventY - elementY;
 
-		drops.push(new Drop(dropCanvas.width, dropCanvas.height, dpi, fontSize, `click-${performance.now()}`, x * dpi, y * dpi));
+		drops.push(new Drop(dropCanvas.width, dropCanvas.height, dpr, fontSize, `click-${performance.now()}`, x * dpr, y * dpr));
 	}
 
 	function randomDrop(timeoutIndex: number) {
 		const intensityPercentage = 1 - Math.min(0.8, lastFrameTime / MAX_DROP_INTENSITY_TIME);
-		drops.push(new Drop(canvas.width, canvas.height, dpi, fontSize));
+		drops.push(new Drop(canvas.width, canvas.height, dpr, fontSize));
 		dropTimeouts[timeoutIndex] = setTimeout(() => randomDrop(timeoutIndex), Math.round(randomInt(1250, 2500) * intensityPercentage));
 	}
 
@@ -120,7 +120,7 @@ export default new Skin('index-default', () => {
 	const stuffHeaderBg = setupSectionStuff();
 
 	window.skinUpdateColorScheme = () => {
-		updateTextContext(textCanvas, dpi);
+		updateTextContext(headerText, textCanvas, dpr);
 	};
 
 	return () => {
@@ -141,7 +141,7 @@ function clamp(min: number, value: number, max: number) {
 	return value < min ? min : value > max ? max : value;
 }
 
-function updateTextContext(textCanvas: HTMLCanvasElement, dpi: number): number {
+function updateTextContext(textElement: HTMLElement, textCanvas: HTMLCanvasElement, dpr: number): number {
 	const fontSize = Math.round(clamp(2.5 * REM, REM + 7.5 * (window.innerWidth / 100), 10 * REM));
 
 	const textContext = Object.assign(textCanvas.getContext('2d')!, {
@@ -150,7 +150,7 @@ function updateTextContext(textCanvas: HTMLCanvasElement, dpi: number): number {
 			: 'black',
 		textAlign: 'center',
 		textBaseline: 'middle',
-		font: `700 ${fontSize * dpi}px Atkinson Hyperlegible Next`,
+		font: `700 ${fontSize * dpr}px Atkinson Hyperlegible Next`,
 	} satisfies Partial<CanvasRenderingContext2D>);
 	textContext.clearRect(0, 0, textCanvas.width, textCanvas.height);
 	textContext.fillText('Stanisław Perek', textCanvas.width / 2, textCanvas.height / 2);
@@ -170,12 +170,12 @@ class Drop {
 	constructor(
 		canvasWidth: number,
 		canvasHeight: number,
-		dpi: number,
+		dpr: number,
 		fontSize: number,
 		public readonly id = performance.now().toString(),
 		public readonly x = randomInt(0, canvasWidth),
 		public readonly y = randomInt(canvasHeight * 0.05, canvasHeight * 0.75),
-		public readonly size = Math.max(0.05, Math.random() / 5) * fontSize * dpi,
+		public readonly size = Math.max(0.05, Math.random() / 5) * fontSize * dpr,
 		public readonly lifespan = randomInt(800, 1800),
 	) {
 		this.timeAlive = 0;
