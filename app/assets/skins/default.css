@@ -400,4 +400,9 @@
 			margin-inline: auto;
 		}
 	}
+
+	#experience-list {
+		display: flex;
+		flex-direction: column;
+	}
 }

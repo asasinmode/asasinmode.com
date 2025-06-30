@@ -5,6 +5,24 @@ useSkin(defaultSkin);
 
 const localePath = useLocalePath();
 const locale = useI18n().locale;
+
+const experienceCopes = [
+	'I\'m working on it 😓',
+	'It\'s a marathon not a race 🗿',
+	'Sorry for being young 😣',
+	'I\'m getting there 😫',
+	'Help me get some 😉',
+];
+
+const experienceCopeIndex = ref(0);
+
+function shuffleExperienceCope() {
+	let randomIndex = experienceCopes.length * Math.random() | 0;
+	while (randomIndex === experienceCopeIndex.value) {
+		randomIndex = experienceCopes.length * Math.random() | 0;
+	}
+	experienceCopeIndex.value = randomIndex;
+}
 </script>
 
 <template>
@@ -130,10 +148,15 @@ const locale = useI18n().locale;
 				</text>
 			</svg>
 		</h2>
-		<ol style="display: flex;">
+		<ol id="experience-list">
 			<li>4 years of polish <i>technikum</i> (vocational IT school), in the middle of which i started freelance work</li>
-			<li>internship that turned into 4 years of junior, then mid fullstack web developer position</li>
-			<li>i'm working on it :c</li>
+			<li>4 years of junior, then mid fullstack web developer position in a software house</li>
+			<li aria-live="polite">
+				{{ experienceCopes[experienceCopeIndex] }}
+				<button @click="shuffleExperienceCope">
+					cope
+				</button>
+			</li>
 		</ol>
 		<h3>web dev</h3>
 		<p>
