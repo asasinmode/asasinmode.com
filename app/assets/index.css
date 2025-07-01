@@ -31,6 +31,24 @@
 		outline-offset: var(--outline-offset, var(--outline-size));
 	}
 
+	*::selection {
+		background-color: var(--clr-rainbow-darker);
+	}
+
+	:root[data-color-scheme='light'] *::selection {
+		background-color: var(--clr-rainbow-light);
+	}
+
+	@supports (background-color: hsl(from var(--clr-rainbow-light) h s l / 0.75)) {
+		*::selection {
+			background-color: hsl(from var(--clr-rainbow-darker) h s l / 0.65);
+		}
+
+		:root[data-color-scheme='light'] *::selection {
+			background-color: hsl(from var(--clr-rainbow-light) h s l / 0.75);
+		}
+	}
+
 	body {
 		font-family: 'Atkinson Hyperlegible Next', system-ui, sans-serif;
 		background: var(--clr-page-bg);
