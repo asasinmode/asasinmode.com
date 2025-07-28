@@ -9,9 +9,9 @@ const locale = useI18n().locale;
 const experienceCopes = [
 	'I\'m working on it 😓',
 	'It\'s a marathon not a race 🗿',
-	'Sorry for being young 😣',
+	'Just a matter of time 😉',
 	'I\'m getting there 😫',
-	'Help me get some 😉',
+	// 'Help me get some 😣',
 ];
 
 const experienceCopeIndex = ref(0);
@@ -37,9 +37,13 @@ function shuffleExperienceCope() {
 			<li>programmer</li>
 			<li>i like coding</li>
 		</ul>
-		<h2 id="stuff-header">
+		<h2 id="stuff">
 			<span id="stuff-header-text">
 				stuff
+				<a class="section-anchor" href="#stuff">
+					<span aria-hidden="true">#</span>
+					<span class="sr-only">stuff section anchor</span>
+				</a>
 			</span>
 		</h2>
 		<ul id="stuff-list">
@@ -149,8 +153,8 @@ function shuffleExperienceCope() {
 			</svg>
 		</h2>
 		<ol id="experience-list">
-			<li>4 years of polish <i>technikum</i> (vocational IT school), in the middle of which i started freelance work</li>
-			<li>4 years of junior, then mid fullstack web developer position in a software house</li>
+			<li>2018-2022 vocational IT school</li>
+			<li>2022-2025 mid fullstack web developer</li>
 			<li aria-live="polite">
 				{{ experienceCopes[experienceCopeIndex] }}
 				<button @click="shuffleExperienceCope">
