@@ -17,7 +17,6 @@ export default defineNuxtConfig({
 	},
 	experimental: {
 		typedPages: true,
-		watcher: 'parcel',
 	},
 	features: {
 		inlineStyles: false,
@@ -33,7 +32,6 @@ export default defineNuxtConfig({
 			{ code: 'en', language: 'en-US', file: 'en.json', name: 'English' },
 			{ code: 'pl', language: 'pl-PL', file: 'pl.json', name: 'Polski' },
 		],
-		lazy: true,
 		defaultLocale: 'en',
 		baseUrl: 'https://asasinmode.com',
 	},
