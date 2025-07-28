@@ -398,7 +398,7 @@
 
 	.experience-path {
 		stroke-width: 4;
-		stroke-dasharray: 12, 170; /* 156 + 14, 7 colors +[2] for each, offset in elements is (length * 2 + [2]) */
+		stroke-dasharray: 12, 170; /* 156 + 14, 7 colors +2 for each */
 		stroke-dashoffset: var(--offset);
 		animation: experience-path 8s linear infinite;
 
@@ -440,7 +440,11 @@
 		}
 
 		.section-anchor {
-			transform: translate(calc(-100% * var(--anchor-offset-modifier) - 0.2em), -45%);
+			transform: translate(calc(215% - 0.2em), -45%);
+
+			:root[lang='pl-PL'] & {
+				transform: translate(calc(-25% - 0.2em), -45%);
+			}
 		}
 
 		&:hover .section-anchor {

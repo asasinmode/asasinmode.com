@@ -118,7 +118,7 @@ function shuffleExperienceCope() {
 				i enjoy creating user-facing stuff that someone can interact with, or creating complicated logic that makes me feel smart. Despite it, i understand that not all of programming can be exciting and sometimes a job needs to get done
 			</p>
 		</div>
-		<h2 id="experience" :style="`--anchor-offset-modifier: ${locale === 'en' ? -2.15 : 0.25}`">
+		<h2 id="experience">
 			<span id="experience-header-text">
 				<svg viewBox="0 0 525 80" xmlns="http://www.w3.org/2000/svg">
 					<path
@@ -131,7 +131,7 @@ function shuffleExperienceCope() {
 							'#000084',
 							'#2c009c',
 						]"
-						:id="stroke === '#de0000' ? 'experience-path' : undefined"
+						:id="index === 0 ? 'experience-path' : undefined"
 						:key="stroke"
 						class="experience-path"
 						fill="none"
