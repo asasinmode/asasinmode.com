@@ -440,6 +440,10 @@
 		}
 
 		.section-anchor {
+			transform: translate(calc(-110% - 0.2em), -20%);
+		}
+
+		svg + .section-anchor {
 			transform: translate(calc(215% - 0.2em), -45%);
 
 			:root[lang='pl-PL'] & {
@@ -458,6 +462,11 @@
 		height: 100%;
 		width: auto;
 		display: inline-block;
+
+		> span {
+			font-size: var(--fluid-40-64);
+			font-weight: inherit;
+		}
 	}
 
 	#experience-list {

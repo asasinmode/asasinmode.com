@@ -118,6 +118,7 @@ export default new Skin('index-default', () => {
 	}
 
 	const stuffHeaderBg = setupSectionStuff();
+	const experienceHeaderBg = setupSectionExperience();
 
 	window.skinUpdateColorScheme = () => {
 		updateTextContext(headerText, textCanvas, dpr);
@@ -134,6 +135,9 @@ export default new Skin('index-default', () => {
 		}
 
 		stuffHeaderBg.remove();
+		experienceHeaderBg.replaceWith(
+			Object.assign(document.createElement('span'), { textContent: skinIsEn() ? 'experience' : 'doświadczenie' }),
+		);
 	};
 });
 
@@ -238,7 +242,17 @@ class Drop {
 	}
 }
 
-function setupSectionStuff() {
+const rainbowColors = [
+	'#de0000',
+	'#fe622c',
+	'#fef600',
+	'#00bc00',
+	'#009cfe',
+	'#000084',
+	'#2c009c',
+];
+
+function setupSectionStuff(): SVGSVGElement {
 	const stuffHeaderText = document.getElementById('stuff-header-text')!;
 
 	const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -262,13 +276,13 @@ function setupSectionStuff() {
 
 	let accumulatedOffset = 0;
 	for (const [color, offset] of [
-		['#de0000', 0],
-		['#fe622c', 36],
-		['#fef600', 36],
-		['#00bc00', 36],
-		['#009cfe', 36],
-		['#000084', 36],
-		['#2c009c', 37],
+		[rainbowColors[0], 0],
+		[rainbowColors[1], 36],
+		[rainbowColors[2], 36],
+		[rainbowColors[3], 36],
+		[rainbowColors[4], 36],
+		[rainbowColors[5], 36],
+		[rainbowColors[6], 37],
 	] as [string, number][]) {
 		accumulatedOffset += offset;
 		const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
@@ -279,6 +293,44 @@ function setupSectionStuff() {
 	svg.appendChild(group);
 
 	stuffHeaderText.prepend(svg);
+
+	return svg;
+}
+
+function setupSectionExperience(): SVGSVGElement {
+	const isEn = skinIsEn();
+	const experienceHeaderText = document.getElementById('experience-header-text')!.childNodes[0]!;
+
+	const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+	svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+	svg.setAttribute('viewBox', '0 0 525 80');
+
+	for (let i = 0; i < rainbowColors.length; i++) {
+		const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+		i === 0 && path.setAttribute('id', 'experience-path');
+		path.setAttribute('fill', 'none');
+		path.setAttribute('stroke', rainbowColors[i]!);
+		path.setAttribute('class', 'experience-path');
+		path.setAttribute('style', `--offset: ${i * -(24 + 2)}; --animation-offset: ${i * -(24 + 2) - 182}`);
+		path.setAttribute('d', isEn
+			? 'M 77 55 C 138 40 143 35 205 34 C 260 34 269 50 320 50 C 398 52 401 44 448 34'
+			: 'M 14 52 C 65 43 110 33 175 32 C 240 32 285 52 350 52 C 415 52 460 32 511 32');
+		svg.appendChild(path);
+	}
+
+	const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+	text.setAttribute('fill', 'currentColor');
+	text.setAttribute('textLength', isEn ? '5.5em' : '7.25em');
+	const textPath = document.createElementNS('http://www.w3.org/2000/svg', 'textPath');
+	textPath.setAttribute('href', '#experience-path');
+	textPath.setAttribute('startOffset', '50%');
+	textPath.setAttribute('text-anchor', 'middle');
+	textPath.setAttribute('dominant-baseline', 'middle');
+	textPath.innerHTML = isEn ? 'experience' : 'doświadczenie';
+	text.appendChild(textPath);
+	svg.appendChild(text);
+
+	experienceHeaderText.replaceWith(svg);
 
 	return svg;
 }

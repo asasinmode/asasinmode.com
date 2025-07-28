@@ -11,6 +11,8 @@ declare global {
 	}
 	/** added in `nuxt.config.ts` injected script */
 	function skinIsDarkMode(): boolean;
+	/** added in `nuxt.config.ts` injected script */
+	function skinIsEn(): boolean;
 }
 
 export {};

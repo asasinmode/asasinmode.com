@@ -6,7 +6,7 @@ export default defineNuxtConfig({
 		head: {
 			script: [
 				{
-					innerHTML: 'const colorScheme = localStorage.getItem(\'color-scheme\'); document.documentElement.dataset.colorScheme = colorScheme || \'auto\' ; function skinIsDarkMode() { return document.documentElement.dataset.colorScheme === \'dark\' || (document.documentElement.dataset.colorScheme !== \'light\' && window.matchMedia && window.matchMedia(\'(prefers-color-scheme: dark)\').matches) }',
+					innerHTML: 'const colorScheme = localStorage.getItem(\'color-scheme\'); document.documentElement.dataset.colorScheme = colorScheme || \'auto\' ; function skinIsDarkMode() { return document.documentElement.dataset.colorScheme === \'dark\' || (document.documentElement.dataset.colorScheme !== \'light\' && window.matchMedia && window.matchMedia(\'(prefers-color-scheme: dark)\').matches) }; function skinIsEn() { return document.documentElement.lang === \'en-US\' }',
 					tagPriority: 0,
 				},
 			],
