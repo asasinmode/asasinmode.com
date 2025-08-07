@@ -10,6 +10,10 @@ async function copy() {
 function resetInfo() {
 	hasCopied.value = false;
 }
+
+function $t(text: string) {
+	return text;
+}
 </script>
 
 <template>

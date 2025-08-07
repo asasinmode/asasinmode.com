@@ -26,15 +26,16 @@ export default defineNuxtConfig({
 			standalone: false,
 		},
 	},
-	modules: ['@nuxtjs/i18n', '@nuxt/eslint', '@nuxt/icon', '@nuxt/fonts'],
-	i18n: {
-		locales: [
-			{ code: 'en', language: 'en-US', file: 'en.json', name: 'English' },
-			{ code: 'pl', language: 'pl-PL', file: 'pl.json', name: 'Polski' },
-		],
-		defaultLocale: 'en',
-		baseUrl: 'https://asasinmode.com',
-	},
+	modules: ['@nuxt/eslint', '@nuxt/icon', '@nuxt/fonts'],
+	// '@nuxtjs/i18n'
+	// i18n: {
+	// 	locales: [
+	// 		{ code: 'en', language: 'en-US', file: 'en.json', name: 'English' },
+	// 		{ code: 'pl', language: 'pl-PL', file: 'pl.json', name: 'Polski' },
+	// 	],
+	// 	defaultLocale: 'en',
+	// 	baseUrl: 'https://asasinmode.com',
+	// },
 	css: ['~/assets/index.css', '~/assets/reset.css', '#build/asasinmode:fluid-variables.css'],
 	fonts: {
 		defaults: {

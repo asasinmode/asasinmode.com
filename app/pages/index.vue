@@ -3,7 +3,7 @@ import defaultSkin from '~/composables/skins/index/default';
 
 useSkin(defaultSkin);
 
-const localePath = useLocalePath();
+// const localePath = useLocalePath();
 
 const experienceCopes = [
 	'I\'m working on it 😓',
@@ -105,11 +105,11 @@ function shuffleExperienceCope() {
 			</li>
 		</ul>
 		<div id="stuff-note">
-			<h3>
-				<NuxtLink :to="localePath('projects')">
-					projects page
-				</NuxtLink>
-			</h3>
+			<!-- <h3> -->
+			<!-- 	<NuxtLink :to="localePath('projects')"> -->
+			<!-- 		projects page -->
+			<!-- 	</NuxtLink> -->
+			<!-- </h3> -->
 			<p>
 				big or small, web, game or cli - doesn't matter. if it sounds fun or useful, i'll do it
 			</p>
@@ -119,7 +119,7 @@ function shuffleExperienceCope() {
 		</div>
 		<h2 id="experience">
 			<span id="experience-header-text">
-				<span>{{ $t('index.experience') }}</span>
+				<span>experience</span>
 				<a class="section-anchor" href="#experience">
 					<span aria-hidden="true">#</span>
 					<span class="sr-only">experience section anchor</span>
@@ -154,9 +154,8 @@ function shuffleExperienceCope() {
 		</p>
 		<h2>contact</h2>
 		<p>
-			get in touch through email (<a href="mailto:stanislaw.perek.ui@gmail.com">stanislaw.perek.ui@gmail.com</a>) or a discord dm (username: <v-copiable-text text="asasinmode" />). Whether business related or something i yapped about on <nuxt-link to="/blog">
-				<!-- eslint-disable-next-line vue/multiline-html-element-content-newline -->
-				blog</nuxt-link>, i'm happy to talk
+			get in touch through email (<a href="mailto:stanislaw.perek.ui@gmail.com">stanislaw.perek.ui@gmail.com</a>) or discord (username: <v-copiable-text text="asasinmode" />)
+			<!-- Whether business related or something i yapped about on <nuxt-link to="/blog">blog</nuxt-link>, i'm happy to talk -->
 		</p>
 	</main>
 </template>

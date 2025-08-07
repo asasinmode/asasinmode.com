@@ -1,27 +1,15 @@
 <script setup lang="ts">
 import type { NuxtError } from '#app';
 
-defineProps<{
-	error: NuxtError;
-}>();
-
-const localePath = useLocalePath();
-const route = useRoute();
+defineProps<{ error: NuxtError }>();
 </script>
 
 <template>
 	<h1>
-		{{ $t("error.code") }}: {{ error.statusCode }}
+		code: {{ error.statusCode }}
 	</h1>
-	<p>
-		{{ $t("error.message") }}:
-		{{
-			// TODO this doesnt work and shows the translation path if status code is unknown
-			$t(`error.${error.statusCode}`, { url: route.path })
-				|| error.statusMessage
-		}}
-	</p>
-	<NuxtLink :to="localePath('index')" @click="clearError()">
-		{{ $t("error.goBack") }}
+	<p> message: {{ error.statusMessage || '-' }} </p>
+	<NuxtLink to="/" @click="clearError()">
+		go back
 	</NuxtLink>
 </template>

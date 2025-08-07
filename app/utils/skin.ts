@@ -1,7 +1,8 @@
-import type { RouteNamedMapI18n } from 'vue-router/auto-routes';
+// import type { RouteNamedMapI18n } from 'vue-router/auto-routes';
 
 export type ISkinName = 'default' | 'minimal';
-export type ISkinPage = keyof RouteNamedMapI18n;
+// export type ISkinPage = keyof RouteNamedMapI18n;
+export type ISkinPage = string;
 export type ISkinKey = `${ISkinPage}-${ISkinName}`;
 
 export class Skin {

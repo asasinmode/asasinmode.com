@@ -15,7 +15,8 @@ const skinCache: Partial<Record<ISkinKey, Skin>> = {};
 export default async function useSkin(defaultSkin: Skin) {
 	const route = useRoute();
 	const { enabledSkins } = route.meta;
-	const page = useRouteBaseName()(route) as ISkinPage;
+	const page = route.name as string;
+	// const page = useRouteBaseName()(route) as ISkinPage;
 	const skinName = useState<ISkinName>('skinName', () => 'default');
 
 	let currentSkin: Skin | undefined;

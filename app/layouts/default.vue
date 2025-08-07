@@ -1,35 +1,35 @@
 <script setup lang="ts">
-const localePath = useLocalePath();
+// const localePath = useLocalePath();
 </script>
 
 <template>
 	<header id="wip">
-		{{ $t('index.wip') }}
+		work in progress
 	</header>
 	<nav>
-		<TheLanguageSwitch />
-		<menu>
-			<li>
-				<NuxtLink :to="localePath('index')">
-					home
-				</NuxtLink>
-			</li>
-			<li>
-				<NuxtLink :to="localePath('blog')">
-					blog
-				</NuxtLink>
-			</li>
-			<li>
-				<NuxtLink :to="localePath('projects')">
-					projects
-				</NuxtLink>
-			</li>
-			<li>
-				<NuxtLink :to="localePath('cv')">
-					cv
-				</NuxtLink>
-			</li>
-		</menu>
+		<!-- <TheLanguageSwitch /> -->
+		<!-- <menu> -->
+		<!-- 	<li> -->
+		<!-- 		<NuxtLink :to="localePath('index')"> -->
+		<!-- 			home -->
+		<!-- 		</NuxtLink> -->
+		<!-- 	</li> -->
+		<!-- 	<li> -->
+		<!-- 		<NuxtLink :to="localePath('blog')"> -->
+		<!-- 			blog -->
+		<!-- 		</NuxtLink> -->
+		<!-- 	</li> -->
+		<!-- 	<li> -->
+		<!-- 		<NuxtLink :to="localePath('projects')"> -->
+		<!-- 			projects -->
+		<!-- 		</NuxtLink> -->
+		<!-- 	</li> -->
+		<!-- 	<li> -->
+		<!-- 		<NuxtLink :to="localePath('cv')"> -->
+		<!-- 			cv -->
+		<!-- 		</NuxtLink> -->
+		<!-- 	</li> -->
+		<!-- </menu> -->
 		<TheThemeSwitch />
 	</nav>
 	<slot />

@@ -209,10 +209,14 @@ const activeDescendantId = computed(() => cursoredOverIndex.value !== undefined
 			display: inline-block;
 		}
 
+		span {
+			margin-inline-end: 0.3rem;
+		}
+
 		ul {
 			position: absolute;
 			top: 100%;
-			left: 0;
+			right: 0;
 		}
 
 		li[role='option'][data-focused='true'] {

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-const route = useRoute();
+// const route = useRoute();
 
-const skinName = useState<ISkinName>('skinName', () => 'default');
-const availableSkins = computed<ISkinName[]>(() => route.meta.enabledSkins || ['default', 'minimal']);
+// const skinName = useState<ISkinName>('skinName', () => 'default');
+// const availableSkins = computed<ISkinName[]>(() => route.meta.enabledSkins || ['default', 'minimal']);
 
 const colorScheme = ref('auto');
 const availableColorSchemes = ['light', 'auto', 'dark'];
@@ -27,20 +27,20 @@ function setColorScheme(name: string) {
 
 <template>
 	<div id="theme-controls">
-		<div class="theme-ctrls-group" role="group">
-			<span id="skin-lbl">skin</span>
-			:
-			<button
-				v-for="name in availableSkins"
-				:id="`skin-${name}`"
-				:key="name"
-				:aria-pressed="name === skinName"
-				:aria-labelledby="`skin-lbl skin-${name}`"
-				@click="skinName = name"
-			>
-				{{ name }}
-			</button>
-		</div>
+		<!-- <div class="theme-ctrls-group" role="group"> -->
+		<!-- 	<span id="skin-lbl">skin</span> -->
+		<!-- 	: -->
+		<!-- 	<button -->
+		<!-- 		v-for="name in availableSkins" -->
+		<!-- 		:id="`skin-${name}`" -->
+		<!-- 		:key="name" -->
+		<!-- 		:aria-pressed="name === skinName" -->
+		<!-- 		:aria-labelledby="`skin-lbl skin-${name}`" -->
+		<!-- 		@click="skinName = name" -->
+		<!-- 	> -->
+		<!-- 		{{ name }} -->
+		<!-- 	</button> -->
+		<!-- </div> -->
 		<VCombobox
 			id="color-scheme"
 			v-model="colorScheme"

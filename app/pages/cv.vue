@@ -3,7 +3,7 @@ definePageMeta({ layout: 'empty' });
 
 useHead({ link: [{ rel: 'stylesheet', href: '/cv.css' }] });
 
-const { t } = useI18n({ useScope: 'local' });
+// const { t } = useI18n({ useScope: 'local' });
 
 onMounted(() => {
 	document.getElementById('header-email')?.append(
@@ -13,6 +13,83 @@ onMounted(() => {
 		[54, 54, 55, 32, 49, 53, 56, 32, 55, 55, 50].map(code => String.fromCharCode(code)).join(''),
 	);
 });
+
+const translations = {
+	pl: {
+		headerMe: 'Technik informatyk, programista, full stack web developer',
+		header1: '{me}. Od 5 lat zajmuję się tworzeniem praktycznych stron internetowych i aplikacji webowych.',
+		header2: 'Odnajduję się zarówno na front jak i back-endzie, jednak preferuję frontend. Przykładam dużą uwagę do responsywności i dostępności ({a11y}) moich projektów i staram się dopilnować najmniejszych szczegółów.',
+		location: 'Kraków, 31-261',
+		technikZsl: 'technik informatyk (ZSŁ)',
+		english: 'angielski',
+		mandarin: 'mandaryński',
+		experience: 'Doświadczenie',
+		freelancing1: 'Praca na zlecenie, w tym spersonalizowany blog i CMS do zarządzania nim',
+		freelancing2: 'Montaż oraz edytowanie filmów',
+		rmtDev1: 'Praca samodzielna oraz w zespole nad systemem ATS, aplikacją do obstawiania, {saas}-ami oraz {productPage}/{cms}-y do nich',
+		rmtDev2: '{progressiveEnhancement} istniejących projektów, w tym responsywność, {a11y}, {pwa} i testy ({jest}/{vitest})',
+		rmtDev3: '{performanceRefactor} istniejących projektów',
+		rmtDev4: '{toolsScripts} ułatwiające workflow',
+		rmtDev5: '{thirdPartyIntegration} takimi jak OAuth, Stripe, Twilio, Geolocalization',
+		rmtDev6: '{fullstack} w tym {restApi} i zarządzanie {multitenancy} bazą danych',
+		multitenancy: 'multitenant',
+		performanceRefactor: 'Poprawianie wydajności i refactor',
+		toolsScripts: 'Narzędzia/skrypty dla deweloperów',
+		thirdPartyIntegration: 'Integracja z 3rd-party serwisami',
+		skills: 'Umiejętności',
+		skills1: 'Implementowanie {pixelPerfect} designów',
+		skills2: 'Umiejętność pracy samemu i w zespole',
+		skills3: 'Zdolność kierowania projektem i dzielenia obowiązków',
+		skills4: 'Szybkie przyswajanie nowych technologii/języków programowania',
+		technologies: 'Technologie',
+		technologies1: '{point} - jeśli to strona internetowa to mogę ją napisać',
+		technologies2: '{point} - używam praktycznie od początku i potrafię wykorzystać większość jego funkcjonalności',
+		technologies3: '{point} - pracuję z obydwoma od ~4 lat i znam je jak własną dłoń. Jeśli chodzi o inne frameworki to jestem gotów użyć każdego ale najbardziej intuicyjnymi znajduję te dwa',
+		technologies4: '{point} - najwięcej doświadczenie mam w używaniu node.js ale sprawdzałem też pozostałe 2 i nie widzę przeszkód w przerzuceniu się na nie',
+		technologiesNote: 'Poza wyżej wspomnianymi radzę sobie z bazami danych {sql}/{mongoDB} (przez {orm} też) i umiem pracować z {dockerContainer}. Dodatkowo znam {lua} i {java}.',
+		dockerContainer: 'docker kontenerami',
+		footer: 'Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO).',
+	},
+	en: {
+		headerMe: 'IT technician, programmer, fullstack web developer',
+		header1: '{me}. I\'ve been working on practical websites and webapps for 5 years.',
+		header2: 'I\'m comfortable both on the front and backend but I prefer frontend. I strive to make my projects responsive and accessible ({a11y}) and try to pay attention to the smallest details.',
+		location: 'Cracow, 31-261',
+		technikZsl: 'IT technician (ZSŁ)',
+		english: 'english',
+		mandarin: 'mandarin',
+		experience: 'Experience',
+		freelancing1: 'Contract work including personalized blog and a CMS for it',
+		freelancing2: 'Video montage and editing',
+		rmtDev1: 'Individual and as part of a team work on an ATS system, betting app, {saas} applications and {productPage}/{cms} for them',
+		rmtDev2: '{progressiveEnhancement} of existing projects including responsiveness, {a11y}, {pwa} and tests ({jest}/{vitest})',
+		rmtDev3: '{performanceRefactor} of old projects',
+		rmtDev4: '{toolsScripts} for easing the workflow',
+		rmtDev5: '{thirdPartyIntegration} like OAuth, Stripe, Twilio, Geolocalization',
+		rmtDev6: '{fullstack} including {restApi} and database management with {multitenancy}',
+		multitenancy: 'multitenancy',
+		performanceRefactor: 'Improving the performance and refactoring',
+		toolsScripts: 'Developer tools and scripts',
+		thirdPartyIntegration: 'Third party integrations',
+		skills: 'Skills',
+		skills1: 'Implementing {pixelPerfect} designs',
+		skills2: 'Working both individually and on a team',
+		skills3: 'Ability to lead a project and assign tasks',
+		skills4: 'Fast learning and adoption of new technologies/programming languages',
+		technologies: 'Technologies',
+		technologies1: '{point} - if it\'s a website, I can write it',
+		technologies2: '{point} - I\'m using it basically since the beginning and can take advantage of most of its functionality',
+		technologies3: '{point} - I\'ve worked with both for ~4 years now and know them like the back of my hand. When it comes to other frameworks I\'m ok with using any but I find these 2 the most intuitive',
+		technologies4: '{point} - I have the most experience with node.js but I\'ve checked out the other 2 and I don\'t see any issues with adopting them',
+		technologiesNote: 'Besides the above I\'m also familiar with {sql}/{mongoDB} (through an {orm} too) databases and can use {dockerContainer}. Additionally I know {lua} and {java}.',
+		dockerContainer: 'docker containers',
+		footer: 'I agree to the processing of personal data provided in this document for realising the recruitment process pursuant to the Personal Data Protection Act of 10 May 2018 (Journal of Laws 2018, item 1000) and in agreement with Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation).',
+	},
+};
+
+function t(key: keyof typeof translations['en']) {
+	return translations.en[key];
+}
 </script>
 
 <template>
@@ -61,11 +138,11 @@ onMounted(() => {
 			</p>
 			<hr>
 			<ul id="lang-list">
-				<li v-if="$i18n.locale === 'en'">
-					polish <span>native</span>
-				</li>
+				<!-- <li v-if="$i18n.locale === 'en'"> -->
+				<!-- 	polish <span>native</span> -->
+				<!-- </li> -->
 				<li>{{ t('english') }} <span>C2</span></li>
-				<li>{{ t('mandarin') }} <span>A1</span></li>
+				<!-- <li>{{ t('mandarin') }} <span>A1</span></li> -->
 			</ul>
 		</aside>
 
@@ -207,77 +284,6 @@ onMounted(() => {
 	</div>
 </template>
 
-<i18n lang="json">
-{
-	"pl": {
-		"headerMe": "Technik informatyk, programista, full stack web developer",
-		"header1": "{me}. Od 5 lat zajmuję się tworzeniem praktycznych stron internetowych i aplikacji webowych.",
-		"header2": "Odnajduję się zarówno na front jak i back-endzie, jednak preferuję frontend. Przykładam dużą uwagę do responsywności i dostępności ({a11y}) moich projektów i staram się dopilnować najmniejszych szczegółów.",
-		"location": "Kraków, 31-261",
-		"technikZsl": "technik informatyk (ZSŁ)",
-		"english": "angielski",
-		"mandarin": "mandaryński",
-		"experience": "Doświadczenie",
-		"freelancing1": "Praca na zlecenie, w tym spersonalizowany blog i CMS do zarządzania nim",
-		"freelancing2": "Montaż oraz edytowanie filmów",
-		"rmtDev1": "Praca samodzielna oraz w zespole nad systemem ATS, aplikacją do obstawiania, {saas}-ami oraz {productPage}/{cms}-y do nich",
-		"rmtDev2": "{progressiveEnhancement} istniejących projektów, w tym responsywność, {a11y}, {pwa} i testy ({jest}/{vitest})",
-		"rmtDev3": "{performanceRefactor} istniejących projektów",
-		"rmtDev4": "{toolsScripts} ułatwiające workflow",
-		"rmtDev5": "{thirdPartyIntegration} takimi jak OAuth, Stripe, Twilio, Geolocalization",
-		"rmtDev6": "{fullstack} w tym {restApi} i zarządzanie {multitenancy} bazą danych",
-		"multitenancy": "multitenant",
-		"performanceRefactor": "Poprawianie wydajności i refactor",
-		"toolsScripts": "Narzędzia/skrypty dla deweloperów",
-		"thirdPartyIntegration": "Integracja z 3rd-party serwisami",
-		"skills": "Umiejętności",
-		"skills1": "Implementowanie {pixelPerfect} designów",
-		"skills2": "Umiejętność pracy samemu i w zespole",
-		"skills3": "Zdolność kierowania projektem i dzielenia obowiązków",
-		"skills4": "Szybkie przyswajanie nowych technologii/języków programowania",
-		"technologies": "Technologie",
-		"technologies1": "{point} - jeśli to strona internetowa to mogę ją napisać",
-		"technologies2": "{point} - używam praktycznie od początku i potrafię wykorzystać większość jego funkcjonalności",
-		"technologies3": "{point} - pracuję z obydwoma od ~4 lat i znam je jak własną dłoń. Jeśli chodzi o inne frameworki to jestem gotów użyć każdego ale najbardziej intuicyjnymi znajduję te dwa",
-		"technologies4": "{point} - najwięcej doświadczenie mam w używaniu node.js ale sprawdzałem też pozostałe 2 i nie widzę przeszkód w przerzuceniu się na nie",
-		"technologiesNote": "Poza wyżej wspomnianymi radzę sobie z bazami danych {sql}/{mongoDB} (przez {orm} też) i umiem pracować z {dockerContainer}. Dodatkowo znam {lua} i {java}.",
-		"dockerContainer": "docker kontenerami",
-		"footer": "Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000) oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO)."
-	},
-	"en": {
-		"headerMe": "IT technician, programmer, fullstack web developer",
-		"header1": "{me}. I've been working on practical websites and webapps for 5 years.",
-		"header2": "I'm comfortable both on the front and backend but I prefer frontend. I strive to make my projects responsive and accessible ({a11y}) and try to pay attention to the smallest details.",
-		"location": "Cracow, 31-261",
-		"technikZsl": "IT technician (ZSŁ)",
-		"english": "english",
-		"mandarin": "mandarin",
-		"experience": "Experience",
-		"freelancing1": "Contract work including personalized blog and a CMS for it",
-		"freelancing2": "Video montage and editing",
-		"rmtDev1": "Individual and as part of a team work on an ATS system, betting app, {saas} applications and {productPage}/{cms} for them",
-		"rmtDev2": "{progressiveEnhancement} of existing projects including responsiveness, {a11y}, {pwa} and tests ({jest}/{vitest})",
-		"rmtDev3": "{performanceRefactor} of old projects",
-		"rmtDev4": "{toolsScripts} for easing the workflow",
-		"rmtDev5": "{thirdPartyIntegration} like OAuth, Stripe, Twilio, Geolocalization",
-		"rmtDev6": "{fullstack} including {restApi} and database management with {multitenancy}",
-		"multitenancy": "multitenancy",
-		"performanceRefactor": "Improving the performance and refactoring",
-		"toolsScripts": "Developer tools and scripts",
-		"thirdPartyIntegration": "Third party integrations",
-		"skills": "Skills",
-		"skills1": "Implementing {pixelPerfect} designs",
-		"skills2": "Working both individually and on a team",
-		"skills3": "Ability to lead a project and assign tasks",
-		"skills4": "Fast learning and adoption of new technologies/programming languages",
-		"technologies": "Technologies",
-		"technologies1": "{point} - if it's a website, I can write it",
-		"technologies2": "{point} - I'm using it basically since the beginning and can take advantage of most of its functionality",
-		"technologies3": "{point} - I've worked with both for ~4 years now and know them like the back of my hand. When it comes to other frameworks I'm ok with using any but I find these 2 the most intuitive",
-		"technologies4": "{point} - I have the most experience with node.js but I've checked out the other 2 and I don't see any issues with adopting them",
-		"technologiesNote": "Besides the above I'm also familiar with {sql}/{mongoDB} (through an {orm} too) databases and can use {dockerContainer}. Additionally I know {lua} and {java}.",
-		"dockerContainer": "docker containers",
-		"footer": "I agree to the processing of personal data provided in this document for realising the recruitment process pursuant to the Personal Data Protection Act of 10 May 2018 (Journal of Laws 2018, item 1000) and in agreement with Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation)."
-	}
-}
-</i18n>
+<!-- <i18n lang="json"> -->
+
+<!-- </i18n> -->
