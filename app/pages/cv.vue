@@ -142,7 +142,6 @@ function t(key: keyof typeof translations['en']) {
 				<!-- 	polish <span>native</span> -->
 				<!-- </li> -->
 				<li>{{ t('english') }} <span>C2</span></li>
-				<!-- <li>{{ t('mandarin') }} <span>A1</span></li> -->
 			</ul>
 		</aside>
 
