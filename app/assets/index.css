@@ -1,6 +1,38 @@
 @layer reset, base, layout, component, page, skin;
 
 @layer base {
+	@font-face {
+		font-family: 'Atkinson Hyperlegible Next';
+		src: url('/fonts/AtkinsonHyperlegibleNext-Regular.ttf') format('truetype');
+		font-weight: 400;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'Atkinson Hyperlegible Next';
+		src: url('/fonts/AtkinsonHyperlegibleNext-Medium.ttf') format('truetype');
+		font-weight: 500;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'Atkinson Hyperlegible Next';
+		src: url('/fonts/AtkinsonHyperlegibleNext-Bold.ttf') format('truetype');
+		font-weight: 700;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'Atkinson Hyperlegible Next Variable';
+		src: url('/fonts/AtkinsonHyperlegibleNext-VariableFont_wght.ttf') format('truetype');
+		font-weight: 100-900;
+		font-style: normal;
+		font-display: swap;
+	}
+
 	:root {
 		color-scheme: light dark;
 		--clr-page-bg: light-dark(#efefef, #050505);
@@ -54,6 +86,10 @@
 		background: var(--clr-page-bg);
 		color: var(--clr-page-text);
 		min-height: 100vh;
+
+		@supports (font-variation-settings: 'wdth' 800) {
+			font-family: 'Atkinson Hyperlegible Next Variable', system-ui, sans-serif;
+		}
 	}
 
 	main {
