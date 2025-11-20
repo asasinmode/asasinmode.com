@@ -111,10 +111,10 @@ function shuffleExperienceCope() {
 			<!-- 	</NuxtLink> -->
 			<!-- </h3> -->
 			<p>
-				big or small, web, game or cli - doesn't matter. if it sounds fun or useful, i'll do it
+				big or small, web, game or cli - doesn't matter. if it sounds fun or useful, I'll do it
 			</p>
 			<p>
-				i enjoy creating user-facing stuff that someone can interact with, or creating complicated logic that makes me feel smart. Despite it, i understand that not all of programming can be exciting and sometimes a job needs to get done
+				I enjoy creating user-facing stuff that someone can interact with, or creating complicated logic that makes me feel smart. Despite it, I understand that not all of programming can be exciting and sometimes a job needs to get done
 			</p>
 		</div>
 		<h2 id="experience">
@@ -127,8 +127,8 @@ function shuffleExperienceCope() {
 			</span>
 		</h2>
 		<ol id="experience-list">
-			<li>2018-2022 vocational IT school</li>
-			<li>2022-2025 mid fullstack web developer</li>
+			<li>2018-2022 <span>vocational IT school</span></li>
+			<li>2022-2025 <span>mid fullstack web developer</span></li>
 			<li aria-live="polite">
 				{{ experienceCopes[experienceCopeIndex] }}
 				<button @click="shuffleExperienceCope">
@@ -136,18 +136,22 @@ function shuffleExperienceCope() {
 				</button>
 			</li>
 		</ol>
-		<h3>web dev</h3>
+		<h3 id="web-dev">
+			web dev
+		</h3>
 		<p>
-			if it's javascript, html or css related i will be fine, regardless of the framework and tools. That said, i prefer Vue and use it a lot with Nuxt and tailwind (unocss). I can handle a typescript backend, whether it's using an ORM or pure SQL/Mongo, and 3rd-party integrations. I have written tests with Jest then migrated them to Vitest and rewritten a codebase from cjs to esm
+			if it's javascript, html or css related I will be fine, regardless of the framework and tools. That said, I prefer Vue and use it a lot with Nuxt and tailwind (unocss). I can handle a typescript backend, whether it's using an ORM or pure SQL/Mongo, and 3rd-party integrations. I have written tests with Jest then migrated them to Vitest and rewritten a codebase from cjs to esm
 		</p>
 		<p>
-			besides implementing the designs pixel-perfect, i do my best to make sure my websites meet the a11y standards, are responsive and fully keyboard navigable. I would like to explore making a website fully screen reader friendly but unforunately it's a very time consuming process and i haven't had the chance to do so. To anybody interested in accessibility i wholeheartedly recommend <NuxtLink target="_blank" to="https://adrianroselli.com/">
+			besides implementing the designs pixel-perfect, I do my best to make sure my websites meet the a11y standards, are responsive and fully keyboard navigable. To anybody interested in accessibility i wholeheartedly recommend <NuxtLink target="_blank" to="https://adrianroselli.com/">
 				Adrian Roselli's website
 			</NuxtLink>
 		</p>
-		<h3>not web dev</h3>
+		<h3 id="not-web-dev">
+			not web dev
+		</h3>
 		<p>
-			my mindset is that given enough time i'll figure it out - sooner rather than later, it's all programming after all. I enjoy finding new ways of doing things and programming languages are really good at providing them. I know what Rust, Python and PHP look like and i feel like i wouldn't be <i>that</i> lost amidst Java decorators or Lua's 1-based indexing.
+			my mindset is that given enough time I'll figure it out - sooner rather than later, it's all programming after all. I enjoy finding new ways of doing things and programming languages are really good at providing them. I wouldn't be <i>that</i> lost amidst Java decorators or Lua's 1-based indexing and I know what Rust, Python and PHP look like
 		</p>
 		<p>
 			git for version control and a decent knowledge of what to do with branches, pull requests and commits. I'm familiar with creating/maintaining Github CI/CD pipelines, as well as making and using Docker containers. I use Neovim btw. Additionally i have experience with video editing
@@ -156,6 +160,8 @@ function shuffleExperienceCope() {
 		<p>
 			get in touch through email (<a href="mailto:stanislaw.perek.ui@gmail.com">stanislaw.perek.ui@gmail.com</a>) or discord (username: <v-copiable-text text="asasinmode" />)
 			<!-- Whether business related or something i yapped about on <nuxt-link to="/blog">blog</nuxt-link>, i'm happy to talk -->
+			<br>
+			~
 		</p>
 	</main>
 </template>

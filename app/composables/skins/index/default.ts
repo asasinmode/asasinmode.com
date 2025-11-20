@@ -21,9 +21,9 @@ export default new Skin('index-default', () => {
 
 	handleResize();
 
-	window.addEventListener('resize', handleResize);
-	headerText.addEventListener('click', clickAddDrop);
-	document.addEventListener('visibilitychange', cleanupOldDrops);
+	window.addEventListener('resize', handleResize, { passive: true });
+	headerText.addEventListener('click', clickAddDrop, { passive: true });
+	document.addEventListener('visibilitychange', cleanupOldDrops, { passive: true });
 
 	const dropTimeouts: NodeJS.Timeout[] = [];
 
@@ -117,8 +117,11 @@ export default new Skin('index-default', () => {
 		}
 	}
 
-	const stuffHeaderBg = setupSectionStuff();
-	const experienceHeaderBg = setupSectionExperience();
+	const cleanups = [
+		setupSectionStuff(),
+		setupSectionExperience(),
+		setupSectionExperienceSubheaders(),
+	];
 
 	window.skinUpdateColorScheme = () => {
 		updateTextContext(headerText, textCanvas, dpr);
@@ -134,10 +137,9 @@ export default new Skin('index-default', () => {
 			timeout !== undefined && clearTimeout(timeout);
 		}
 
-		stuffHeaderBg.remove();
-		experienceHeaderBg.replaceWith(
-			Object.assign(document.createElement('span'), { textContent: skinIsEn() ? 'experience' : 'doświadczenie' }),
-		);
+		for (const cleanup of cleanups) {
+			cleanup();
+		}
 	};
 });
 
@@ -252,7 +254,7 @@ const rainbowColors = [
 	'#2c009c',
 ];
 
-function setupSectionStuff(): SVGSVGElement {
+function setupSectionStuff(): () => void {
 	const stuffHeaderText = document.getElementById('stuff-header-text')!;
 
 	const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -294,10 +296,12 @@ function setupSectionStuff(): SVGSVGElement {
 
 	stuffHeaderText.prepend(svg);
 
-	return svg;
+	return () => {
+		svg.remove();
+	};
 }
 
-function setupSectionExperience(): SVGSVGElement {
+function setupSectionExperience(): () => void {
 	const isEn = skinIsEn();
 	const experienceHeaderText = document.getElementById('experience-header-text')!.childNodes[0]!;
 
@@ -332,5 +336,45 @@ function setupSectionExperience(): SVGSVGElement {
 
 	experienceHeaderText.replaceWith(svg);
 
-	return svg;
+	return () => {
+		svg.replaceWith(
+			Object.assign(document.createElement('span'), { textContent: skinIsEn() ? 'experience' : 'doświadczenie' }),
+		);
+	};
+}
+
+function setupSectionExperienceSubheaders(): () => void {
+	const webDevHeader = document.getElementById('web-dev')!;
+	const webDevP1 = webDevHeader.nextElementSibling!;
+	const webDevP2 = webDevP1.nextElementSibling!;
+	const notWebDevHeader = document.getElementById('not-web-dev')!;
+	const notWebDevP1 = notWebDevHeader.nextElementSibling!;
+	const notWebDevP2 = notWebDevP1.nextElementSibling!;
+
+	const containerElement = Object.assign(document.createElement('div'), { id: 'experience-content' });
+	document.querySelector('main')!.insertBefore(containerElement, webDevHeader);
+
+	containerElement.append(
+		webDevHeader,
+		webDevP1,
+		webDevP2,
+		notWebDevHeader,
+		notWebDevP1,
+		notWebDevP2,
+	);
+
+	console.log(containerElement);
+
+	return () => {
+		containerElement.after(
+			webDevHeader,
+			webDevP1,
+			webDevP2,
+			notWebDevHeader,
+			notWebDevP1,
+			notWebDevP2,
+		);
+
+		containerElement.remove();
+	};
 }

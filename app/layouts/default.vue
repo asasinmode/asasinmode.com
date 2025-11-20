@@ -33,7 +33,6 @@
 		<TheThemeSwitch />
 	</nav>
 	<slot />
-	<span>~</span>
 </template>
 
 <style>
