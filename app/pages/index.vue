@@ -7,8 +7,8 @@ useSkin(defaultSkin);
 
 const experienceCopes = [
 	'I\'m working on it 😓',
-	'It\'s a marathon not a race 🗿',
-	'Just a matter of time 😉',
+	'it\'s a marathon not a race 🗿',
+	'just a matter of time 😉',
 	'I\'m getting there 😫',
 	// 'Help me get some 😣',
 ];
@@ -127,8 +127,8 @@ function shuffleExperienceCope() {
 			</span>
 		</h2>
 		<ol id="experience-list">
-			<li>2018-2022 <span>vocational IT school</span></li>
-			<li>2022-2025 <span>mid fullstack web developer</span></li>
+			<li>vocational IT school <span>2018-2022</span></li>
+			<li>fullstack web developer <span>2022-2025</span></li>
 			<li aria-live="polite">
 				{{ experienceCopes[experienceCopeIndex] }}
 				<button @click="shuffleExperienceCope">
