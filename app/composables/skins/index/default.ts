@@ -24,6 +24,7 @@ export default new Skin('index-default', () => {
 	window.addEventListener('resize', handleResize, { passive: true });
 	headerText.addEventListener('click', clickAddDrop, { passive: true });
 	document.addEventListener('visibilitychange', cleanupOldDrops, { passive: true });
+	document.fonts.ready.then(() => updateTextContext(headerText, textCanvas, dpr));
 
 	const dropTimeouts: NodeJS.Timeout[] = [];
 
@@ -117,15 +118,15 @@ export default new Skin('index-default', () => {
 		}
 	}
 
+	window.skinUpdateColorScheme = () => {
+		updateTextContext(headerText, textCanvas, dpr);
+	};
+
 	const cleanups = [
 		setupSectionStuff(),
 		setupSectionExperience(),
 		setupSectionExperienceSubheaders(),
 	];
-
-	window.skinUpdateColorScheme = () => {
-		updateTextContext(headerText, textCanvas, dpr);
-	};
 
 	return () => {
 		document.removeEventListener('visibilitychange', cleanupOldDrops);

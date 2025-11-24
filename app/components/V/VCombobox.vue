@@ -203,6 +203,7 @@ const activeDescendantId = computed(() => cursoredOverIndex.value !== undefined
 @layer components {
 	.combobox-container {
 		position: relative;
+		width: fit-content;
 
 		[role='combobox'] {
 			cursor: pointer;
