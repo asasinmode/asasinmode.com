@@ -97,7 +97,10 @@ function generateClamp(
 	const slope = (sizeTo - sizeFrom) / (maxScreenWidth - minScreenWidth);
 	const yAxisIntersection = -minScreenWidth * slope + sizeFrom;
 
-	return `clamp(${formatNumber(sizeFrom / defaultRemInPx)}rem, ${formatNumber(yAxisIntersection / remInPx)}rem + ${formatNumber(slope * 100)}vw, ${formatNumber(sizeTo / defaultRemInPx)}rem)`;
+	const minSize = Math.min(sizeFrom, sizeTo);
+	const maxSize = Math.max(sizeFrom, sizeTo);
+
+	return `clamp(${formatNumber(minSize / defaultRemInPx)}rem, ${formatNumber(yAxisIntersection / remInPx)}rem + ${formatNumber(slope * 100)}vw, ${formatNumber(maxSize / defaultRemInPx)}rem)`;
 }
 
 function formatNumber(number: number) {
